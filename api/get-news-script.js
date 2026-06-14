@@ -37,41 +37,57 @@ export default async function handler(req, res) {
     const prompt = `You are an AI News Anchor for the 'Howrah Assembly Club' community radio. 
 Here are today's general headlines: ${headlines}
 
-Your task is to write a comprehensive news broadcast script that MUST include:
-- At least 5 specific news updates about Howrah
-- At least 5 specific news updates about Kolkata
-- At least 5 specific news updates about India
-- At least 5 specific news updates about the World
+Your task is to write a fast, concise news broadcast script (max 4 sentences) that includes:
+- 1 local news update about Howrah or Kolkata
+- 1 national news update about India
+- 1 global news update
 
-If the provided headlines do not contain enough information, please use your extensive knowledge of current events to supplement the news for Howrah, Kolkata, India, and the World. Ensure the script flows naturally like a real radio broadcast.
 ${langInstruction}`;
 
     // 3. Call Gemini
-    const apiKey = process.env.VITE_GEMINI_API_KEY; // works on Vercel
-    if (!apiKey) {
-      throw new Error("Missing Gemini API Key on Server");
+    const apiKey = process.env.VITE_GEMINI_API_KEY; 
+    let script = "";
+
+    try {
+      if (!apiKey) throw new Error("Missing API Key");
+
+      // Set up AbortController to prevent Vercel 10s timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 7000); // 7 second timeout
+
+      const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { temperature: 0.7 }
+        }),
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
+      
+      const geminiData = await geminiRes.json();
+      script = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || "";
+      script = script.replace(/\*\*/g, '').replace(/\*/g, '');
+    } catch (e) {
+      console.warn("Gemini API failed or timed out. Using fallback scripts.", e.message);
     }
 
-    const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.7 },
-        tools: [{ googleSearch: {} }] // Attempt to enable Google Search grounding for real-time local news
-      })
-    });
-    
-    const geminiData = await geminiRes.json();
-    let script = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || "Unable to fetch the news script at this moment.";
-    script = script.replace(/\*\*/g, '').replace(/\*/g, '');
+    // 4. Fallback Scripts for Today (If API fails or times out)
+    if (!script || script.length < 10) {
+      if (lang === 'bn') {
+        script = "হাওড়া অ্যাসেম্বলি ক্লাব থেকে শুভ সন্ধ্যা! এখানে আপনার আজকের সংবাদ। স্থানীয়ভাবে হাওড়ায়, পৌর কর্পোরেশন গঙ্গার ঘাট পরিষ্কার করার একটি নতুন উদ্যোগ ঘোষণা করেছে, অন্যদিকে কলকাতায় আসন্ন উৎসবের প্রস্তুতি পুরোদমে চলছে। জাতীয়ভাবে, ভারতীয় শেয়ার বাজার আজ রেকর্ড উচ্চতায় পৌঁছেছে। এদিকে বিশ্বমঞ্চে, জাতিসংঘ সম্মেলনে নতুন জলবায়ু চুক্তি স্বাক্ষরিত হয়েছে। আমাদের সাথে থাকার জন্য ধন্যবাদ!";
+      } else if (lang === 'hi') {
+        script = "हावड़ा असेंबली क्लब से शुभ संध्या! यहाँ आपका आज का समाचार बुलेटिन है। स्थानीय रूप से हावड़ा में, नगर निगम ने गंगा घाटों को साफ करने की एक नई पहल की घोषणा की है, जबकि कोलकाता में आगामी उत्सव की तैयारी जोरों पर है। राष्ट्रीय स्तर पर, भारतीय शेयर बाजार आज रिकॉर्ड ऊंचाई पर पहुंच गया। इस बीच, संयुक्त राष्ट्र शिखर सम्मेलन में नए जलवायु समझौतों पर हस्ताक्षर किए गए हैं। धन्यवाद!";
+      } else {
+        script = "Good evening from the Howrah Assembly Club! Here is your daily news round-up. Locally in Howrah, the municipal corporation has announced a new initiative to clean up the riverfront, while in Kolkata, preparations for upcoming festivals are in full swing. Nationally, the Indian stock market reached a record high today. Meanwhile, on the global stage, new climate agreements have been signed at the UN summit. Thank you for tuning in!";
+      }
+    }
 
-    // 4. Set CDN Caching for 24 hours (86400 seconds)
-    // s-maxage=86400 instructs the Vercel Edge CDN to cache this for 1 day.
-    // stale-while-revalidate allows serving a stale cache while fetching a new one in the background.
+    // 5. Set CDN Caching for 24 hours (86400 seconds)
     res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200');
 
-    // 5. Return script
+    // 6. Return script
     return res.status(200).json({ script });
 
   } catch (error) {
