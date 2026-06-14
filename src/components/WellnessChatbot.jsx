@@ -50,8 +50,13 @@ const WellnessChatbot = () => {
           })
         });
         const data = await response.json();
-        const botText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't generate a routine right now.";
-        setMessages(prev => [...prev, { role: 'bot', text: botText }]);
+        
+        if (data.error) {
+           setMessages(prev => [...prev, { role: 'bot', text: `Gemini API Error: ${data.error.message}\n\nPlease check that your API key is correct and active.` }]);
+        } else {
+          const botText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't generate a routine right now.";
+          setMessages(prev => [...prev, { role: 'bot', text: botText }]);
+        }
       } catch (error) {
         setMessages(prev => [...prev, { role: 'bot', text: "Error connecting to AI API. Please try again or check your API key." }]);
       }
