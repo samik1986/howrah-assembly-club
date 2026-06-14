@@ -54,7 +54,15 @@ const resources = {
       "Most_Evenings": "(Most Evenings)",
 
       "Footer_Desc": "A premier community and table tennis club in Kadamtala, West Bengal. Serving the community with passion and excellence.",
-      "All_Rights": "All rights reserved."
+      "All_Rights": "All rights reserved.",
+
+      "Transit_Guide": "Transit Guide",
+      "Transit_Surface": "🚇 Surface (Rail/Metro/Bus):",
+      "Transit_Surface_Desc": "Nearest Metro is Howrah Maidan (~3 km). Nearest railway station is Howrah Junction (~3.5 km). Kadamtala Bus Stand is within walking distance.",
+      "Transit_Water": "⛴️ Water (Ferry):",
+      "Transit_Water_Desc": "Nearest ferry point is Howrah Ferry Ghat (~3.5 km), accessible via local transport.",
+      "Transit_Air": "✈️ Air:",
+      "Transit_Air_Desc": "Netaji Subhash Chandra Bose International Airport (CCU) is approx 25 km away."
     }
   },
   bn: {
@@ -109,7 +117,15 @@ const resources = {
       "Most_Evenings": "(বেশিরভাগ সন্ধ্যা)",
 
       "Footer_Desc": "কদমতলা, পশ্চিমবঙ্গের একটি প্রিমিয়ার কমিউনিটি এবং টেবিল টেনিস ক্লাব। আবেগ এবং শ্রেষ্ঠত্বের সাথে সম্প্রদায়ের সেবা করা।",
-      "All_Rights": "সমস্ত অধিকার সংরক্ষিত।"
+      "All_Rights": "সমস্ত অধিকার সংরক্ষিত।",
+
+      "Transit_Guide": "ট্রানজিট গাইড",
+      "Transit_Surface": "🚇 সড়ক ও রেল (মেট্রো/বাস/ট্রেন):",
+      "Transit_Surface_Desc": "নিকটতম মেট্রো হাওড়া ময়দান (~৩ কিমি)। নিকটতম রেলওয়ে স্টেশন হাওড়া জংশন (~৩.৫ কিমি)। কদমতলা বাস স্ট্যান্ড হাঁটার দূরত্বে।",
+      "Transit_Water": "⛴️ জলপথ (ফেরি):",
+      "Transit_Water_Desc": "নিকটতম ফেরি পয়েন্ট হাওড়া ফেরি ঘাট (~৩.৫ কিমি), স্থানীয় পরিবহনের মাধ্যমে যাওয়া যায়।",
+      "Transit_Air": "✈️ আকাশপথ:",
+      "Transit_Air_Desc": "নেতাজি সুভাষ চন্দ্র বসু আন্তর্জাতিক বিমানবন্দর (CCU) প্রায় ২৫ কিমি দূরে অবস্থিত।"
     }
   },
   hi: {
@@ -164,7 +180,15 @@ const resources = {
       "Most_Evenings": "(ज्यादातर शाम)",
 
       "Footer_Desc": "कदमतला, पश्चिम बंगाल में एक प्रमुख सामुदायिक और टेबल टेनिस क्लब। जुनून और उत्कृष्टता के साथ समुदाय की सेवा।",
-      "All_Rights": "सर्वाधिकार सुरक्षित।"
+      "All_Rights": "सर्वाधिकार सुरक्षित।",
+
+      "Transit_Guide": "पारगमन गाइड (Transit Guide)",
+      "Transit_Surface": "🚇 सड़क और रेल (मेट्रो/बस/ट्रेन):",
+      "Transit_Surface_Desc": "निकटतम मेट्रो हावड़ा मैदान (~3 किमी) है। निकटतम रेलवे स्टेशन हावड़ा जंक्शन (~3.5 किमी) है। कदमतला बस स्टैंड पैदल दूरी पर है।",
+      "Transit_Water": "⛴️ जलमार्ग (फेरी):",
+      "Transit_Water_Desc": "निकटतम फेरी पॉइंट हावड़ा फेरी घाट (~3.5 किमी) है, जहाँ स्थानीय परिवहन द्वारा पहुँचा जा सकता है।",
+      "Transit_Air": "✈️ हवाई मार्ग:",
+      "Transit_Air_Desc": "नेताजी सुभाष चंद्र बोस अंतर्राष्ट्रीय हवाई अड्डा (CCU) लगभग 25 किमी दूर है।"
     }
   }
 };

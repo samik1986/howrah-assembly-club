@@ -30,6 +30,25 @@ const Contact = () => {
                 <span>7:00 PM - 9:00 PM {t('Most_Evenings')}</span>
               </div>
             </div>
+
+            <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'var(--surface)', borderRadius: 'var(--radius)' }}>
+              <h3 style={{ marginBottom: '1rem', fontSize: '1.2rem', color: 'var(--primary)' }}>{t('Transit_Guide')}</h3>
+              
+              <div style={{ marginBottom: '1rem' }}>
+                <p style={{ fontWeight: '600', marginBottom: '0.25rem' }}>{t('Transit_Surface')}</p>
+                <span style={{ fontSize: '0.95rem', color: 'var(--text-light)', display: 'block', lineHeight: '1.5' }}>{t('Transit_Surface_Desc')}</span>
+              </div>
+              
+              <div style={{ marginBottom: '1rem' }}>
+                <p style={{ fontWeight: '600', marginBottom: '0.25rem' }}>{t('Transit_Water')}</p>
+                <span style={{ fontSize: '0.95rem', color: 'var(--text-light)', display: 'block', lineHeight: '1.5' }}>{t('Transit_Water_Desc')}</span>
+              </div>
+              
+              <div>
+                <p style={{ fontWeight: '600', marginBottom: '0.25rem' }}>{t('Transit_Air')}</p>
+                <span style={{ fontSize: '0.95rem', color: 'var(--text-light)', display: 'block', lineHeight: '1.5' }}>{t('Transit_Air_Desc')}</span>
+              </div>
+            </div>
           </div>
         </div>
 
