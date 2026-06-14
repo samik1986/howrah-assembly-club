@@ -5,6 +5,7 @@ import About from './components/About';
 import Activities from './components/Activities';
 import Gallery from './components/Gallery';
 import KidsCorner from './components/KidsCorner';
+import WellnessCorner from './components/WellnessCorner';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/activities" element={<Activities />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/kids-corner" element={<KidsCorner />} />
+          <Route path="/wellness" element={<WellnessCorner />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>

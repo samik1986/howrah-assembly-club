@@ -81,7 +81,21 @@ const resources = {
 
       "Pronunciation_Title": "Daily Pronunciation Challenge",
       "Pronunciation_Desc": "Listen to the correct pronunciation and try repeating it perfectly!",
-      "Listen": "Listen 🔊"
+      "Listen": "Listen 🔊",
+
+      "Wellness_Corner": "Wellness Corner",
+      "Wellness_Desc": "Your daily physical fitness routine. Stay strong and healthy!",
+      "Muscle_Building": "Muscle Building",
+      "Yoga_Posture": "Yoga Posture",
+      "HIIT_Exercises": "HIIT Exercises",
+      "Reps": "Reps",
+      "Duration": "Duration",
+      "Play_Music": "Play Music 🎵",
+      "Pause_Music": "Pause Music ⏸️",
+      "Timer": "Timer",
+      "Start": "Start",
+      "Pause": "Pause",
+      "Reset": "Reset"
     }
   },
   bn: {
@@ -163,7 +177,21 @@ const resources = {
 
       "Pronunciation_Title": "দৈনিক উচ্চারণ চ্যালেঞ্জ",
       "Pronunciation_Desc": "সঠিক উচ্চারণ শুনুন এবং এটি নিখুঁতভাবে পুনরাবৃত্তি করার চেষ্টা করুন!",
-      "Listen": "শুনুন 🔊"
+      "Listen": "শুনুন 🔊",
+
+      "Wellness_Corner": "সুস্থতা কর্নার",
+      "Wellness_Desc": "আপনার প্রতিদিনের শারীরিক সুস্থতার রুটিন। শক্তিশালী এবং সুস্থ থাকুন!",
+      "Muscle_Building": "পেশী গঠন",
+      "Yoga_Posture": "যোগ ব্যায়াম",
+      "HIIT_Exercises": "HIIT ব্যায়াম",
+      "Reps": "বার",
+      "Duration": "সময়কাল",
+      "Play_Music": "সঙ্গীত চালান 🎵",
+      "Pause_Music": "সঙ্গীত থামান ⏸️",
+      "Timer": "টাইমার",
+      "Start": "শুরু",
+      "Pause": "থামান",
+      "Reset": "রিসেট"
     }
   },
   hi: {
@@ -245,7 +273,21 @@ const resources = {
 
       "Pronunciation_Title": "दैनिक उच्चारण चुनौती",
       "Pronunciation_Desc": "सही उच्चारण सुनें और इसे पूरी तरह से दोहराने का प्रयास करें!",
-      "Listen": "सुनें 🔊"
+      "Listen": "सुनें 🔊",
+
+      "Wellness_Corner": "कल्याण कोना",
+      "Wellness_Desc": "आपकी दैनिक शारीरिक फिटनेस दिनचर्या। मजबूत और स्वस्थ रहें!",
+      "Muscle_Building": "मांसपेशियों का निर्माण",
+      "Yoga_Posture": "योग मुद्रा",
+      "HIIT_Exercises": "HIIT व्यायाम",
+      "Reps": "बार",
+      "Duration": "अवधि",
+      "Play_Music": "संगीत बजाएं 🎵",
+      "Pause_Music": "संगीत रोकें ⏸️",
+      "Timer": "टाइमर",
+      "Start": "शुरू",
+      "Pause": "रोकें",
+      "Reset": "रीसेट"
     }
   }
 };
