@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import ReactPlayer from 'react-player';
+import Hls from 'hls.js';
 
 const NEWS_FEEDS = {
   en: 'https://timesofindia.indiatimes.com/rssfeedstopstories.cms',
@@ -12,6 +12,7 @@ const NewsCorner = () => {
   const { t, i18n } = useTranslation();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const audioRef = useRef(null);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -43,6 +44,27 @@ const NewsCorner = () => {
     : 'https://audio-edge-fvq45.ams.d.radiomast.io/3ccc1156-fcf8-4ba7-9a0c-28e3a465e1ae?listening-from-radio-garden=1607152226837';
   const isHls = radioSrc.endsWith('.m3u8');
 
+  useEffect(() => {
+    let hls;
+    const audio = audioRef.current;
+    
+    if (audio) {
+      if (isHls && Hls.isSupported()) {
+        hls = new Hls();
+        hls.loadSource(radioSrc);
+        hls.attachMedia(audio);
+      } else {
+        audio.src = radioSrc;
+      }
+    }
+    
+    return () => {
+      if (hls) {
+        hls.destroy();
+      }
+    };
+  }, [radioSrc, isHls]);
+
   return (
     <section id="news-corner" className="section" style={{ background: '#d5d0c4', minHeight: '100vh', paddingTop: '100px', fontFamily: '"Georgia", "Times New Roman", serif', color: '#1a1a1a' }}>
       <div className="container" style={{ background: '#f4f1ea', padding: '3rem', boxShadow: 'inset 0 0 50px rgba(0,0,0,0.05), 0 5px 15px rgba(0,0,0,0.2)', border: '1px solid #b3aba0', maxWidth: '1200px' }}>
@@ -71,26 +93,13 @@ const NewsCorner = () => {
             </div>
           </div>
           <div style={{ filter: 'sepia(50%) grayscale(20%)' }}>
-            {isHls ? (
-              <ReactPlayer 
-                key={radioSrc}
-                url={radioSrc} 
-                playing={true} 
-                controls={true} 
-                width="300px" 
-                height="40px" 
-                config={{ file: { forceHLS: true } }}
-              />
-            ) : (
-              <audio 
-                key={radioSrc}
-                src={radioSrc} 
-                controls 
-                style={{ width: '300px', height: '40px', borderRadius: '0' }}
-              >
-                Your browser does not support the audio element.
-              </audio>
-            )}
+            <audio 
+              ref={audioRef}
+              controls 
+              style={{ width: '300px', height: '40px', borderRadius: '0' }}
+            >
+              Your browser does not support the audio element.
+            </audio>
           </div>
         </div>
 
