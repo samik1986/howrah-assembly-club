@@ -35,8 +35,15 @@ export default async function handler(req, res) {
     }
 
     const prompt = `You are an AI News Anchor for the 'Howrah Assembly Club' community radio. 
-Here are today's latest headlines: ${headlines}
-Write a concise, engaging, 3 to 4 sentence news broadcast script summarizing the most important points. Add a tiny bit of local flavor for Kolkata and Howrah if possible. 
+Here are today's general headlines: ${headlines}
+
+Your task is to write a comprehensive news broadcast script that MUST include:
+- At least 5 specific news updates about Howrah
+- At least 5 specific news updates about Kolkata
+- At least 5 specific news updates about India
+- At least 5 specific news updates about the World
+
+If the provided headlines do not contain enough information, please use your extensive knowledge of current events to supplement the news for Howrah, Kolkata, India, and the World. Ensure the script flows naturally like a real radio broadcast.
 ${langInstruction}`;
 
     // 3. Call Gemini
@@ -50,7 +57,8 @@ ${langInstruction}`;
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.7 }
+        generationConfig: { temperature: 0.7 },
+        tools: [{ googleSearch: {} }] // Attempt to enable Google Search grounding for real-time local news
       })
     });
     
