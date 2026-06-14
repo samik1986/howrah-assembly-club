@@ -1,4 +1,8 @@
+import { useTranslation } from 'react-i18next';
+
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer>
       <div className="container footer-content">
@@ -6,10 +10,10 @@ const Footer = () => {
           Howrah<span>Assembly</span>
         </a>
         <p style={{ maxWidth: '400px', color: 'rgba(255,255,255,0.7)' }}>
-          A premier community and table tennis club in Kadamtala, West Bengal. Serving the community with passion and excellence.
+          {t('Footer_Desc')}
         </p>
         <div className="footer-bottom">
-          &copy; {new Date().getFullYear()} Howrah Assembly Club. All rights reserved.
+          &copy; {new Date().getFullYear()} {t('Club_Name')}. {t('All_Rights')}
         </div>
       </div>
     </footer>

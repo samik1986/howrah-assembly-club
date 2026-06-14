@@ -1,44 +1,47 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Gallery = () => {
+  const { t } = useTranslation();
+
   const mediaItems = [
     {
       id: 1,
       type: 'image',
       url: 'https://images.unsplash.com/photo-1534158914592-062992fbe900?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       alt: 'Players engaged in a competitive table tennis match',
-      title: 'Evening Match'
+      title: t('Evening_Match')
     },
     {
       id: 2,
       type: 'image',
       url: 'https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       alt: 'Table tennis paddle and ball close up',
-      title: 'Equipment Ready'
+      title: t('Equipment_Ready')
     },
     {
       id: 3,
       type: 'image',
       url: 'https://images.unsplash.com/photo-1511067007398-7e4b90cfa4bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       alt: 'Community sports hall',
-      title: 'Our Facilities'
+      title: t('Our_Facilities')
     },
     {
       id: 4,
       type: 'image',
       url: 'https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       alt: 'Dynamic serve during a ping pong game',
-      title: 'Action Shot'
+      title: t('Action_Shot')
     }
   ];
 
   return (
     <section id="gallery" className="section container">
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-        <span className="hero-badge">Multimedia</span>
-        <h2>Club Gallery</h2>
+        <span className="hero-badge">{t('Multimedia')}</span>
+        <h2>{t('Club_Gallery')}</h2>
         <p style={{ color: 'var(--text-light)', maxWidth: '600px', margin: '1rem auto 0' }}>
-          A glimpse into the action at Howrah Assembly Club. Explore our facilities and vibrant community.
+          {t('Gallery_Desc')}
         </p>
       </div>
 

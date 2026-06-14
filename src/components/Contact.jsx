@@ -1,19 +1,23 @@
+import { useTranslation } from 'react-i18next';
+
 const Contact = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="contact" className="section container">
       <div className="contact-grid">
         <div className="contact-info">
-          <span className="hero-badge" style={{ marginBottom: '1rem' }}>Visit Us</span>
-          <h2>Get In Touch</h2>
+          <span className="hero-badge" style={{ marginBottom: '1rem' }}>{t('Visit_Us')}</span>
+          <h2>{t('Get_In_Touch')}</h2>
           <p>
-            Whether you are looking to join a table tennis session, participate in community events, or just want to see what we are about, we would love to have you.
+            {t('Contact_Desc')}
           </p>
 
           <div className="contact-details">
             <div className="contact-item">
               <div className="icon">📍</div>
               <div>
-                <p>Address</p>
+                <p>{t('Address')}</p>
                 <span>1/4, 23 Kali Kundu Lane, Kadamtala</span>
                 <span>Howrah, West Bengal - 711101</span>
               </div>
@@ -22,8 +26,8 @@ const Contact = () => {
             <div className="contact-item">
               <div className="icon">⏰</div>
               <div>
-                <p>Club Hours</p>
-                <span>7:00 PM - 9:00 PM (Most Evenings)</span>
+                <p>{t('Club_Hours')}</p>
+                <span>7:00 PM - 9:00 PM {t('Most_Evenings')}</span>
               </div>
             </div>
           </div>

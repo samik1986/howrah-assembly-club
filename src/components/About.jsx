@@ -1,34 +1,38 @@
+import { useTranslation } from 'react-i18next';
+
 const About = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="about" className="section container">
       <div className="text-center mb-12">
-        <span className="hero-badge" style={{ marginBottom: '1rem' }}>Our History</span>
-        <h2>About The Club</h2>
+        <span className="hero-badge" style={{ marginBottom: '1rem' }}>{t('Our_History')}</span>
+        <h2>{t('About_The_Club')}</h2>
         <p style={{ maxWidth: '700px', margin: '1rem auto' }}>
-          Established as a pillar of the Kadamtala community, the Howrah Assembly Club has long been a place for sports enthusiasts and residents to come together.
+          {t('About_Desc')}
         </p>
       </div>
       
       <div className="grid">
         <div className="card">
           <div className="card-icon">🏓</div>
-          <h3>Sports Excellence</h3>
+          <h3>{t('Sports_Excellence')}</h3>
           <p>
-            We pride ourselves on our state-of-the-art table tennis facilities, catering to everyone from beginners to seasoned professionals looking to hone their skills.
+            {t('Sports_Desc')}
           </p>
         </div>
         <div className="card">
           <div className="card-icon">🤝</div>
-          <h3>Community First</h3>
+          <h3>{t('Community_First')}</h3>
           <p>
-            Beyond sports, we are a hub for social engagement, bringing together individuals from all walks of life in Howrah to foster long-lasting connections.
+            {t('Community_Desc')}
           </p>
         </div>
         <div className="card">
           <div className="card-icon">🌟</div>
-          <h3>Welcoming Environment</h3>
+          <h3>{t('Welcoming_Environment')}</h3>
           <p>
-            Our doors are open to everyone. Experience a supportive and friendly atmosphere where you can learn, play, and grow.
+            {t('Welcoming_Desc')}
           </p>
         </div>
       </div>
