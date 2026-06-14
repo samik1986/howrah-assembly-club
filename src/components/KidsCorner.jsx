@@ -142,7 +142,7 @@ const KidsCorner = () => {
             border: '4px solid var(--primary)',
           }}>
             <iframe 
-              src="https://amuselabs.com/pmm/crossword?id=WapoDaily" 
+              src="https://a2zpuzzles.com/widgets/crossword-widget.html" 
               width="100%" 
               height="700px" 
               style={{ border: 'none', display: 'block' }}
