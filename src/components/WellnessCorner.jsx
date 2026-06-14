@@ -318,7 +318,7 @@ const WellnessCorner = () => {
             maxWidth: '600px', width: '100%', maxHeight: '90vh', overflowY: 'auto',
             position: 'relative'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', borderBottom: '2px solid #f3f4f6', paddingBottom: '1rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', borderBottom: '2px solid #f3f4f6', paddingBottom: '1rem' }}>
               <h2 style={{ margin: 0, color: 'var(--primary)', fontSize: '1.5rem', textTransform: 'capitalize' }}>
                 Today's 30-Min {activeModal} Routine
               </h2>
@@ -330,6 +330,38 @@ const WellnessCorner = () => {
               </button>
             </div>
             
+            {/* Modal Mini Timer & Music Controls */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#f8fafc', padding: '1rem', borderRadius: '12px', marginBottom: '1.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <button 
+                  onClick={toggleMusic} 
+                  className={`btn ${isPlaying ? 'btn-outline' : 'btn-primary'}`}
+                  style={{ padding: '0.5rem 1rem' }}
+                >
+                  {isPlaying ? t('Pause_Music') : t('Play_Music')}
+                </button>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <h3 style={{ fontSize: '1.5rem', margin: 0, color: 'var(--primary)' }}>
+                  {formatTime(time)}
+                </h3>
+                <button 
+                  onClick={() => setTimerRunning(!timerRunning)} 
+                  className="btn btn-outline"
+                  style={{ padding: '0.5rem 1rem' }}
+                >
+                  {timerRunning ? t('Pause') : t('Start')}
+                </button>
+                <button 
+                  onClick={() => { setTime(0); setTimerRunning(false); }} 
+                  className="btn btn-outline"
+                  style={{ padding: '0.5rem 1rem' }}
+                >
+                  {t('Reset')}
+                </button>
+              </div>
+            </div>
+
             <div style={{ display: 'grid', gap: '1.5rem' }}>
               {todaysRoutine[activeModal].map((exercise, idx) => (
                 <div key={idx} style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', background: 'var(--surface)', padding: '1rem', borderRadius: '12px' }}>
