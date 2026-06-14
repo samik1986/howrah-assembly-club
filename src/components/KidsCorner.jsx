@@ -12,6 +12,14 @@ const WORDS = [
   { word: "LEARN", hint: "Gain knowledge or skill." }
 ];
 
+const PRONUNCIATION_TASKS = [
+  { text: "She sells seashells by the seashore.", hint: "Focus on the 'sh' and 's' sounds!" },
+  { text: "How can a clam cram in a clean cream can?", hint: "Watch out for the 'cl' and 'cr' clusters." },
+  { text: "I scream, you scream, we all scream for ice cream!", hint: "A classic! Emphasize the 'scr' sounds." },
+  { text: "Fuzzy Wuzzy was a bear. Fuzzy Wuzzy had no hair.", hint: "Practice your 'z' sounds." },
+  { text: "Peter Piper picked a peck of pickled peppers.", hint: "Pop those 'p' sounds clearly." }
+];
+
 const KidsCorner = () => {
   const { t } = useTranslation();
   
@@ -20,6 +28,9 @@ const KidsCorner = () => {
   const [scrambledWord, setScrambledWord] = useState('');
   const [userAnswer, setUserAnswer] = useState('');
   const [feedback, setFeedback] = useState(null);
+
+  // State for Pronunciation
+  const [dailyPronunciation, setDailyPronunciation] = useState(null);
 
   useEffect(() => {
     // Select word based on the day of the year
@@ -32,6 +43,9 @@ const KidsCorner = () => {
     const wordObj = WORDS[dayOfYear % WORDS.length];
     setDailyWordObj(wordObj);
     
+    const pronObj = PRONUNCIATION_TASKS[dayOfYear % PRONUNCIATION_TASKS.length];
+    setDailyPronunciation(pronObj);
+    
     // Scramble the word (consistent per load, but could change on reload)
     const scrambled = wordObj.word.split('').sort(() => 0.5 - Math.random()).join('');
     setScrambledWord(scrambled);
@@ -42,6 +56,17 @@ const KidsCorner = () => {
       setFeedback('correct');
     } else {
       setFeedback('incorrect');
+    }
+  };
+
+  const handleSpeak = () => {
+    if ('speechSynthesis' in window && dailyPronunciation) {
+      const utterance = new SpeechSynthesisUtterance(dailyPronunciation.text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.85; // Slightly slower for kids
+      window.speechSynthesis.speak(utterance);
+    } else {
+      alert("Sorry, your browser doesn't support text to speech!");
     }
   };
 
@@ -128,6 +153,48 @@ const KidsCorner = () => {
                   {t('Incorrect')}
                 </div>
               )}
+            </div>
+          )}
+
+          {/* Native Pronunciation Game */}
+          {dailyPronunciation && (
+            <div style={{
+              width: '100%',
+              maxWidth: '600px',
+              background: 'white',
+              borderRadius: '16px',
+              padding: '2rem',
+              boxShadow: 'var(--shadow-md)',
+              borderTop: '6px solid #f59e0b',
+              textAlign: 'center'
+            }}>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{t('Pronunciation_Title')}</h3>
+              <p style={{ color: 'var(--text-light)', marginBottom: '1.5rem' }}>{t('Pronunciation_Desc')}</p>
+              
+              <div style={{ 
+                fontSize: '1.5rem', 
+                fontWeight: 'bold', 
+                color: '#d97706',
+                marginBottom: '1rem',
+                padding: '1.5rem',
+                background: '#fef3c7',
+                borderRadius: '8px',
+                lineHeight: '1.5'
+              }}>
+                "{dailyPronunciation.text}"
+              </div>
+
+              <div style={{ marginBottom: '1.5rem', fontStyle: 'italic', color: 'var(--text-light)' }}>
+                <strong>{t('Hint')}:</strong> {dailyPronunciation.hint}
+              </div>
+
+              <button 
+                onClick={handleSpeak}
+                className="btn btn-primary"
+                style={{ padding: '0.75rem 2rem', fontSize: '1.1rem', background: '#f59e0b', border: 'none' }}
+              >
+                {t('Listen')}
+              </button>
             </div>
           )}
 

@@ -77,7 +77,11 @@ const resources = {
       "Incorrect": "Not quite right. Try again!",
 
       "Explore_Club": "Explore the Club",
-      "Read_More": "Read More"
+      "Read_More": "Read More",
+
+      "Pronunciation_Title": "Daily Pronunciation Challenge",
+      "Pronunciation_Desc": "Listen to the correct pronunciation and try repeating it perfectly!",
+      "Listen": "Listen 🔊"
     }
   },
   bn: {
@@ -155,7 +159,11 @@ const resources = {
       "Incorrect": "ঠিক হয়নি। আবার চেষ্টা করুন!",
 
       "Explore_Club": "ক্লাবটি অন্বেষণ করুন",
-      "Read_More": "আরও পড়ুন"
+      "Read_More": "আরও পড়ুন",
+
+      "Pronunciation_Title": "দৈনিক উচ্চারণ চ্যালেঞ্জ",
+      "Pronunciation_Desc": "সঠিক উচ্চারণ শুনুন এবং এটি নিখুঁতভাবে পুনরাবৃত্তি করার চেষ্টা করুন!",
+      "Listen": "শুনুন 🔊"
     }
   },
   hi: {
@@ -233,7 +241,11 @@ const resources = {
       "Incorrect": "सही नहीं है। पुनः प्रयास करें!",
 
       "Explore_Club": "क्लब का अन्वेषण करें",
-      "Read_More": "और पढ़ें"
+      "Read_More": "और पढ़ें",
+
+      "Pronunciation_Title": "दैनिक उच्चारण चुनौती",
+      "Pronunciation_Desc": "सही उच्चारण सुनें और इसे पूरी तरह से दोहराने का प्रयास करें!",
+      "Listen": "सुनें 🔊"
     }
   }
 };
