@@ -14,6 +14,7 @@ const NewsCorner = () => {
   const [loading, setLoading] = useState(true);
   const [isGenerating, setIsGenerating] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [transcript, setTranscript] = useState("");
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -70,10 +71,12 @@ const NewsCorner = () => {
   const stopNews = () => {
     window.speechSynthesis.cancel();
     setIsPlaying(false);
+    setTranscript("");
   };
 
   const generateAndPlayNews = async () => {
     setIsGenerating(true);
+    setTranscript("");
     
     try {
       let voiceLang = "en-IN";
@@ -109,12 +112,23 @@ const NewsCorner = () => {
         localStorage.setItem(cacheKey, script);
       }
 
+      setTranscript(script);
+
       const utterance = new SpeechSynthesisUtterance(script);
       utterance.lang = voiceLang;
       utterance.rate = 0.95;
       
-      utterance.onend = () => setIsPlaying(false);
-      utterance.onerror = () => setIsPlaying(false);
+      utterance.onend = () => {
+        setIsPlaying(false);
+      };
+      
+      utterance.onerror = (e) => {
+        console.error("SpeechSynthesis error:", e);
+        setIsPlaying(false);
+        if (e.error !== 'interrupted') {
+           alert("Your device OS does not support Text-to-Speech for this language. Please read the Live Transcript below instead!");
+        }
+      };
       
       window.speechSynthesis.cancel();
       window.speechSynthesis.speak(utterance);
@@ -152,11 +166,11 @@ const NewsCorner = () => {
         </div>
 
         {/* AI News Reader Button */}
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: transcript ? '1.5rem' : '3rem' }}>
           {!isPlaying ? (
             <button 
               onClick={generateAndPlayNews} 
-              disabled={isGenerating || articles.length === 0}
+              disabled={isGenerating}
               style={{ background: '#1a1a1a', color: '#f4f1ea', padding: '1rem 2.5rem', fontSize: '1.2rem', fontFamily: '"Georgia", serif', textTransform: 'uppercase', letterSpacing: '2px', border: 'none', cursor: isGenerating ? 'not-allowed' : 'pointer', opacity: isGenerating ? 0.7 : 1, transition: 'all 0.2s', borderBottom: '4px solid #000' }}
             >
               {isGenerating ? (t('Generating_AI_News') || "Preparing Broadcast...") : (t('Read_AI_News') || "Listen to AI News Broadcast 🤖")}
@@ -170,6 +184,14 @@ const NewsCorner = () => {
             </button>
           )}
         </div>
+
+        {/* Live Transcript Box */}
+        {transcript && (
+          <div style={{ background: '#e8e4d9', padding: '2rem', border: '1px solid #1a1a1a', borderLeft: '4px solid #1a1a1a', marginBottom: '3rem', fontStyle: 'italic', fontSize: '1.1rem', lineHeight: '1.6' }}>
+            <h4 style={{ margin: '0 0 1rem 0', textTransform: 'uppercase', borderBottom: '1px dashed #1a1a1a', paddingBottom: '0.5rem' }}>Live Transcript</h4>
+            <p style={{ margin: 0 }}>{transcript}</p>
+          </div>
+        )}
 
         {/* Radio Player */}
         <div style={{ background: '#e8e4d9', padding: '1rem 2rem', border: '2px solid #1a1a1a', borderLeft: '8px solid #1a1a1a', marginBottom: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
