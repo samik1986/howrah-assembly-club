@@ -275,6 +275,11 @@ header.scrolled {
   box-shadow: var(--shadow-lg);
 }
 
+.home-card:hover {
+  transform: translateY(-5px);
+  border: 2px solid var(--primary) !important;
+}
+
 .card:hover::before {
   transform: scaleX(1);
 }

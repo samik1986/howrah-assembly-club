@@ -74,7 +74,10 @@ const resources = {
       "Your_Answer": "Your Answer",
       "Check_Answer": "Check Answer",
       "Correct": "Correct! Great job! 🎉",
-      "Incorrect": "Not quite right. Try again!"
+      "Incorrect": "Not quite right. Try again!",
+
+      "Explore_Club": "Explore the Club",
+      "Read_More": "Read More"
     }
   },
   bn: {
@@ -149,7 +152,10 @@ const resources = {
       "Your_Answer": "আপনার উত্তর",
       "Check_Answer": "উত্তর যাচাই করুন",
       "Correct": "সঠিক! দারুণ কাজ! 🎉",
-      "Incorrect": "ঠিক হয়নি। আবার চেষ্টা করুন!"
+      "Incorrect": "ঠিক হয়নি। আবার চেষ্টা করুন!",
+
+      "Explore_Club": "ক্লাবটি অন্বেষণ করুন",
+      "Read_More": "আরও পড়ুন"
     }
   },
   hi: {
@@ -224,7 +230,10 @@ const resources = {
       "Your_Answer": "आपका उत्तर",
       "Check_Answer": "उत्तर जांचें",
       "Correct": "सही! बहुत बढ़िया! 🎉",
-      "Incorrect": "सही नहीं है। पुनः प्रयास करें!"
+      "Incorrect": "सही नहीं है। पुनः प्रयास करें!",
+
+      "Explore_Club": "क्लब का अन्वेषण करें",
+      "Read_More": "और पढ़ें"
     }
   }
 };
