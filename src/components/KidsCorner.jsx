@@ -234,7 +234,7 @@ const KidsCorner = () => {
               <p style={{ margin: '0.5rem 0 0 0', opacity: 0.9 }}>{t('Comic_Desc')}</p>
             </div>
             <iframe 
-              src={`https://placehold.co/900x500/f8fafc/334155?text=Royalty-Free+Comic+Embed%5Cn(Dynamic+Language:+${i18n.language.toUpperCase()})`} 
+              src={`/comic-frame.html?lang=${i18n.language}`} 
               width="100%" 
               height="500px" 
               style={{ border: 'none', display: 'block' }}

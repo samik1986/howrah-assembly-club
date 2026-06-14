@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Comic</title>
+    <style>
+        body { 
+            margin: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            background: #f8fafc; 
+            height: 100vh; 
+            font-family: system-ui, -apple-system, sans-serif; 
+            flex-direction: column; 
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        #comic-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+        }
+        img { 
+            max-width: 100%; 
+            max-height: calc(100vh - 60px); 
+            object-fit: contain; 
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .title { 
+            margin-top: 15px; 
+            font-weight: 600; 
+            color: #334155; 
+            font-size: 1.1rem;
+        }
+        .lang-note {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="comic-container">Loading today's comic from the web...</div>
+    <script>
+        async function loadComic() {
+            try {
+                // Fetch from the free CORS-enabled MonkeyUser API
+                const response = await fetch('https://monkeyuser-api.ridvanaltun.vercel.app/api/comics/latest');
+                const data = await response.json();
+                
+                // Get language from query param
+                const urlParams = new URLSearchParams(window.location.search);
+                const lang = urlParams.get('lang') || 'en';
+                
+                let note = "Today's Comic (English only)";
+                if (lang === 'bn') note = "আজকের কমিক (বর্তমানে শুধুমাত্র ইংরেজিতে উপলব্ধ)";
+                if (lang === 'hi') note = "आज का कॉमिक (वर्तमान में केवल अंग्रेजी में उपलब्ध)";
+
+                const container = document.getElementById('comic-container');
+                container.innerHTML = `
+                    <img src="${data.image}" alt="${data.title}" />
+                    <div class="title">${data.title}</div>
+                    <div class="lang-note">${note}</div>
+                `;
+            } catch (error) {
+                document.getElementById('comic-container').innerText = 'Failed to load comic from the web. Please try again later.';
+            }
+        }
+        loadComic();
+    </script>
+</body>
+</html>
