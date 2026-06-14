@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import WellnessChatbot from './WellnessChatbot';
 
 const ROUTINES = [
   { // Sunday
@@ -393,6 +394,9 @@ const WellnessCorner = () => {
           </div>
         </div>
       )}
+
+      {/* Wellness AI Chatbot */}
+      <WellnessChatbot />
     </>
   );
 };
