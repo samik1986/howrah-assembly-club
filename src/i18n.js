@@ -66,7 +66,15 @@ const resources = {
 
       "Kids_Corner": "Kids Corner",
       "Daily_Game_Title": "Daily English Skill Builder",
-      "Daily_Game_Desc": "Improve your vocabulary and cognitive skills! This interactive daily crossword updates automatically every day."
+      "Daily_Game_Desc": "Improve your vocabulary and cognitive skills! This interactive daily crossword updates automatically every day.",
+
+      "Scramble_Title": "Word Scramble",
+      "Scramble_Desc": "Unscramble the letters to find the word of the day!",
+      "Hint": "Hint",
+      "Your_Answer": "Your Answer",
+      "Check_Answer": "Check Answer",
+      "Correct": "Correct! Great job! 🎉",
+      "Incorrect": "Not quite right. Try again!"
     }
   },
   bn: {
@@ -133,7 +141,15 @@ const resources = {
 
       "Kids_Corner": "কিডস কর্নার",
       "Daily_Game_Title": "দৈনিক ইংরেজি দক্ষতা নির্মাতা",
-      "Daily_Game_Desc": "আপনার শব্দভাণ্ডার এবং জ্ঞানীয় দক্ষতা উন্নত করুন! এই ইন্টারেক্টিভ দৈনিক ক্রসওয়ার্ড প্রতিদিন স্বয়ংক্রিয়ভাবে আপডেট হয়।"
+      "Daily_Game_Desc": "আপনার শব্দভাণ্ডার এবং জ্ঞানীয় দক্ষতা উন্নত করুন! এই ইন্টারেক্টিভ দৈনিক ক্রসওয়ার্ড প্রতিদিন স্বয়ংক্রিয়ভাবে আপডেট হয়।",
+
+      "Scramble_Title": "শব্দ সাজানো",
+      "Scramble_Desc": "আজকের শব্দ খুঁজে বের করতে অক্ষরগুলো সাজান!",
+      "Hint": "ইঙ্গিত",
+      "Your_Answer": "আপনার উত্তর",
+      "Check_Answer": "উত্তর যাচাই করুন",
+      "Correct": "সঠিক! দারুণ কাজ! 🎉",
+      "Incorrect": "ঠিক হয়নি। আবার চেষ্টা করুন!"
     }
   },
   hi: {
@@ -200,7 +216,15 @@ const resources = {
 
       "Kids_Corner": "किड्स कॉर्नर",
       "Daily_Game_Title": "दैनिक अंग्रेजी कौशल निर्माता",
-      "Daily_Game_Desc": "अपनी शब्दावली और संज्ञानात्मक कौशल में सुधार करें! यह इंटरैक्टिव दैनिक क्रॉसवर्ड हर दिन स्वचालित रूप से अपडेट होता है।"
+      "Daily_Game_Desc": "अपनी शब्दावली और संज्ञानात्मक कौशल में सुधार करें! यह इंटरैक्टिव दैनिक क्रॉसवर्ड हर दिन स्वचालित रूप से अपडेट होता है।",
+
+      "Scramble_Title": "शब्द पहेली",
+      "Scramble_Desc": "आज का शब्द खोजने के लिए अक्षरों को सही क्रम में लगाएं!",
+      "Hint": "संकेत",
+      "Your_Answer": "आपका उत्तर",
+      "Check_Answer": "उत्तर जांचें",
+      "Correct": "सही! बहुत बढ़िया! 🎉",
+      "Incorrect": "सही नहीं है। पुनः प्रयास करें!"
     }
   }
 };
