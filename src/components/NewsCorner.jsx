@@ -59,14 +59,14 @@ const NewsCorner = () => {
               <div style={{ color: '#ef4444', fontSize: '0.875rem', fontWeight: 'bold', animation: 'pulse 2s infinite' }}>● LIVE STREAM</div>
             </div>
           </div>
-          <ReactPlayer 
-            url='https://air.pc.cdn.bitgravity.com/air/live/pbaudio001/playlist.m3u8' 
-            playing={false} 
-            controls={true} 
-            width="300px" 
-            height="50px" 
-            config={{ file: { forceHLS: true } }}
-          />
+          <audio 
+            key={i18n.language} 
+            src={i18n.language === 'bn' ? 'https://audio.streamcast.xyz/listen/radiogoongoon/radio.mp3' : 'https://audio-edge-fvq45.ams.d.radiomast.io/3ccc1156-fcf8-4ba7-9a0c-28e3a465e1ae?listening-from-radio-garden=1607152226837'} 
+            controls 
+            style={{ width: '300px', height: '40px', borderRadius: '20px' }}
+          >
+            Your browser does not support the audio element.
+          </audio>
         </div>
 
         {loading ? (
