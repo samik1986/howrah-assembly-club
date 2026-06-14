@@ -88,24 +88,40 @@ const NewsCorner = () => {
         voiceLang = "hi-IN";
       }
 
-      const prompt = `You are an AI News Anchor for the 'Howrah Assembly Club' community radio. 
+      const today = new Date().toLocaleDateString('en-CA'); // 'YYYY-MM-DD'
+      const cacheKey = `ai_news_script_${currentLang}_${today}`;
+      let script = localStorage.getItem(cacheKey);
+
+      if (!script) {
+        const prompt = `You are an AI News Anchor for the 'Howrah Assembly Club' community radio. 
 Here are today's latest headlines: ${headlines}
 Write a concise, engaging, 3 to 4 sentence news broadcast script summarizing the most important points. Add a tiny bit of local flavor for Kolkata and Howrah if possible. 
 ${langInstruction}`;
 
-      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { temperature: 0.7 }
-        })
-      });
-      const data = await res.json();
-      let script = data.candidates?.[0]?.content?.parts?.[0]?.text || "Unable to fetch the news script at this moment.";
-      
-      script = script.replace(/\*\*/g, '').replace(/\*/g, '');
+        const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: { temperature: 0.7 }
+          })
+        });
+        const data = await res.json();
+        script = data.candidates?.[0]?.content?.parts?.[0]?.text || "Unable to fetch the news script at this moment.";
+        
+        script = script.replace(/\*\*/g, '').replace(/\*/g, '');
+
+        if (data.candidates) {
+          // Clean up old caches
+          Object.keys(localStorage).forEach(key => {
+            if (key.startsWith('ai_news_script_')) {
+              localStorage.removeItem(key);
+            }
+          });
+          localStorage.setItem(cacheKey, script);
+        }
+      }
 
       const utterance = new SpeechSynthesisUtterance(script);
       utterance.lang = voiceLang;
