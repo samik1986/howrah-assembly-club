@@ -105,21 +105,9 @@ const resources = {
       "AI_Typing": "AI is typing...",
       "AI_Ask_Me": "Ask me! 👋",
       "AI_Send": "Send",
-      "AI_Simulated_Muscle": "Here is a custom Muscle routine for you:
-• Push-ups (3 sets of 15)
-• Dumbbell Squats (3 sets of 12)
-• Plank (60s)
-Keep your core tight and form strict! Let me know if you want to add weights.",
-      "AI_Simulated_Yoga": "Here is a relaxing Yoga flow:
-• Child's Pose (2 mins)
-• Cat-Cow (2 mins)
-• Downward Dog (2 mins)
-Focus on deep, steady breathing. Namaste!",
-      "AI_Simulated_HIIT": "Ready to sweat? Here is a HIIT routine:
-• Jumping Jacks (45s)
-• Burpees (45s)
-• Mountain Climbers (45s)
-Rest for 15s between each! Repeat 3 times.",
+      "AI_Simulated_Muscle": "Here is a custom Muscle routine for you:\n• Push-ups (3 sets of 15)\n• Dumbbell Squats (3 sets of 12)\n• Plank (60s)\nKeep your core tight and form strict! Let me know if you want to add weights.",
+      "AI_Simulated_Yoga": "Here is a relaxing Yoga flow:\n• Child's Pose (2 mins)\n• Cat-Cow (2 mins)\n• Downward Dog (2 mins)\nFocus on deep, steady breathing. Namaste!",
+      "AI_Simulated_HIIT": "Ready to sweat? Here is a HIIT routine:\n• Jumping Jacks (45s)\n• Burpees (45s)\n• Mountain Climbers (45s)\nRest for 15s between each! Repeat 3 times.",
       "AI_Simulated_Unknown": "I can create custom routines for Muscle Building, Yoga, or HIIT. Tell me which one you prefer, and your current fitness level (beginner/advanced)!",
       "AI_Error": "Error connecting to AI API. Please try again or check your API key.",
       "AI_Fallback_Routine": "Sorry, I couldn't generate a routine right now.",
@@ -318,21 +306,9 @@ Rest for 15s between each! Repeat 3 times.",
       "AI_Typing": "এআই টাইপ করছে...",
       "AI_Ask_Me": "আমাকে জিজ্ঞাসা করুন! 👋",
       "AI_Send": "পাঠান",
-      "AI_Simulated_Muscle": "এখানে আপনার জন্য একটি কাস্টম পেশী রুটিন:
-• পুশ-আপস (৩ সেট ১৫ বার)
-• ডাম্বেল স্কোয়াটস (৩ সেট ১২ বার)
-• প্ল্যাঙ্ক (৬০ সেকেন্ড)
-আপনার কোর টাইট রাখুন! আপনি ওজন যোগ করতে চাইলে আমাকে জানান।",
-      "AI_Simulated_Yoga": "এখানে একটি শিথিল যোগ প্রবাহ:
-• চাইল্ডস পোজ (২ মিনিট)
-• বিড়াল-গরু (২ মিনিট)
-• ডাউনওয়ার্ড ডগ (২ মিনিট)
-গভীর, অবিচলিত শ্বাস-প্রশ্বাসে ফোকাস করুন। নমস্তে!",
-      "AI_Simulated_HIIT": "ঘাম ঝরাতে প্রস্তুত? এখানে একটি HIIT রুটিন:
-• জাম্পিং জ্যাকস (৪৫ সেকেন্ড)
-• বারপিস (৪৫ সেকেন্ড)
-• মাউন্টেন ক্লাইম্বার্স (৪৫ সেকেন্ড)
-প্রতিটির মধ্যে ১৫ সেকেন্ডের জন্য বিশ্রাম নিন! ৩ বার পুনরাবৃত্তি করুন।",
+      "AI_Simulated_Muscle": "এখানে আপনার জন্য একটি কাস্টম পেশী রুটিন:\n• পুশ-আপস (৩ সেট ১৫ বার)\n• ডাম্বেল স্কোয়াটস (৩ সেট ১২ বার)\n• প্ল্যাঙ্ক (৬০ সেকেন্ড)\nআপনার কোর টাইট রাখুন! আপনি ওজন যোগ করতে চাইলে আমাকে জানান।",
+      "AI_Simulated_Yoga": "এখানে একটি শিথিল যোগ প্রবাহ:\n• চাইল্ডস পোজ (২ মিনিট)\n• বিড়াল-গরু (২ মিনিট)\n• ডাউনওয়ার্ড ডগ (২ মিনিট)\nগভীর, অবিচলিত শ্বাস-প্রশ্বাসে ফোকাস করুন। নমস্তে!",
+      "AI_Simulated_HIIT": "ঘাম ঝরাতে প্রস্তুত? এখানে একটি HIIT রুটিন:\n• জাম্পিং জ্যাকস (৪৫ সেকেন্ড)\n• বারপিস (৪৫ সেকেন্ড)\n• মাউন্টেন ক্লাইম্বার্স (৪৫ সেকেন্ড)\nপ্রতিটির মধ্যে ১৫ সেকেন্ডের জন্য বিশ্রাম নিন! ৩ বার পুনরাবৃত্তি করুন।",
       "AI_Simulated_Unknown": "আমি পেশী, যোগ বা HIIT এর জন্য কাস্টম রুটিন তৈরি করতে পারি। আপনি কোনটি পছন্দ করেন এবং আপনার বর্তমান ফিটনেস স্তর কী তা আমাকে বলুন!",
       "AI_Error": "এআই এপিআই এর সাথে সংযোগ করতে ত্রুটি। অনুগ্রহ করে আবার চেষ্টা করুন বা আপনার এপিআই কী চেক করুন।",
       "AI_Fallback_Routine": "দুঃখিত, আমি এই মুহূর্তে একটি রুটিন তৈরি করতে পারিনি।",
@@ -531,21 +507,9 @@ Rest for 15s between each! Repeat 3 times.",
       "AI_Typing": "एआई टाइप कर रहा है...",
       "AI_Ask_Me": "मुझसे पूछें! 👋",
       "AI_Send": "भेजें",
-      "AI_Simulated_Muscle": "आपके लिए यहाँ एक स्नायु रूटीन है:
-• पुश-अप्स (3 सेट 15 बार)
-• डंबेल स्क्वाट्स (3 सेट 12 बार)
-• प्लैंक (60 सेकंड)
-अपने कोर को टाइट रखें!",
-      "AI_Simulated_Yoga": "यहाँ एक योग प्रवाह है:
-• चाइल्ड पोज़ (2 मिनट)
-• कैट-काउ (2 मिनट)
-• डाउनवर्ड डॉग (2 मिनट)
-गहरी सांसों पर ध्यान दें। नमस्ते!",
-      "AI_Simulated_HIIT": "पसीना बहाने के लिए तैयार? यहाँ एक HIIT रूटीन है:
-• जंपिंग जैक (45 सेकंड)
-• बर्पीज़ (45 सेकंड)
-• माउंटेन क्लाइम्बर्स (45 सेकंड)
-प्रत्येक के बीच 15 सेकंड का आराम करें! 3 बार दोहराएं।",
+      "AI_Simulated_Muscle": "आपके लिए यहाँ एक स्नायु रूटीन है:\n• पुश-अप्स (3 सेट 15 बार)\n• डंबेल स्क्वाट्स (3 सेट 12 बार)\n• प्लैंक (60 सेकंड)\nअपने कोर को टाइट रखें!",
+      "AI_Simulated_Yoga": "यहाँ एक योग प्रवाह है:\n• चाइल्ड पोज़ (2 मिनट)\n• कैट-काउ (2 मिनट)\n• डाउनवर्ड डॉग (2 मिनट)\nगहरी सांसों पर ध्यान दें। नमस्ते!",
+      "AI_Simulated_HIIT": "पसीना बहाने के लिए तैयार? यहाँ एक HIIT रूटीन है:\n• जंपिंग जैक (45 सेकंड)\n• बर्पीज़ (45 सेकंड)\n• माउंटेन क्लाइम्बर्स (45 सेकंड)\nप्रत्येक के बीच 15 सेकंड का आराम करें! 3 बार दोहराएं।",
       "AI_Simulated_Unknown": "मैं स्नायु, योग या HIIT के लिए रूटीन बना सकता हूं। आप कौन सा पसंद करते हैं, मुझे बताएं!",
       "AI_Error": "एआई एपीआई से कनेक्ट करने में त्रुटि। कृपया पुनः प्रयास करें या अपनी एपीआई कुंजी जांचें।",
       "AI_Fallback_Routine": "क्षमा करें, मैं अभी कोई रूटीन नहीं बना सका।",
