@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Activities from './components/Activities';
 import Gallery from './components/Gallery';
+import KidsCorner from './components/KidsCorner';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -15,6 +16,7 @@ function App() {
         <About />
         <Activities />
         <Gallery />
+        <KidsCorner />
         <Contact />
       </main>
       <Footer />

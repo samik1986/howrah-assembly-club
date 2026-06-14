@@ -62,7 +62,11 @@ const resources = {
       "Transit_Water": "⛴️ Water (Ferry):",
       "Transit_Water_Desc": "Nearest ferry point is Howrah Ferry Ghat (~3.5 km), accessible via local transport.",
       "Transit_Air": "✈️ Air:",
-      "Transit_Air_Desc": "Netaji Subhash Chandra Bose International Airport (CCU) is approx 25 km away."
+      "Transit_Air_Desc": "Netaji Subhash Chandra Bose International Airport (CCU) is approx 25 km away.",
+
+      "Kids_Corner": "Kids Corner",
+      "Daily_Game_Title": "Daily English Skill Builder",
+      "Daily_Game_Desc": "Improve your vocabulary and cognitive skills! This interactive daily crossword updates automatically every day."
     }
   },
   bn: {
@@ -125,7 +129,11 @@ const resources = {
       "Transit_Water": "⛴️ জলপথ (ফেরি):",
       "Transit_Water_Desc": "নিকটতম ফেরি পয়েন্ট হাওড়া ফেরি ঘাট (~৩.৫ কিমি), স্থানীয় পরিবহনের মাধ্যমে যাওয়া যায়।",
       "Transit_Air": "✈️ আকাশপথ:",
-      "Transit_Air_Desc": "নেতাজি সুভাষ চন্দ্র বসু আন্তর্জাতিক বিমানবন্দর (CCU) প্রায় ২৫ কিমি দূরে অবস্থিত।"
+      "Transit_Air_Desc": "নেতাজি সুভাষ চন্দ্র বসু আন্তর্জাতিক বিমানবন্দর (CCU) প্রায় ২৫ কিমি দূরে অবস্থিত।",
+
+      "Kids_Corner": "কিডস কর্নার",
+      "Daily_Game_Title": "দৈনিক ইংরেজি দক্ষতা নির্মাতা",
+      "Daily_Game_Desc": "আপনার শব্দভাণ্ডার এবং জ্ঞানীয় দক্ষতা উন্নত করুন! এই ইন্টারেক্টিভ দৈনিক ক্রসওয়ার্ড প্রতিদিন স্বয়ংক্রিয়ভাবে আপডেট হয়।"
     }
   },
   hi: {
@@ -188,7 +196,11 @@ const resources = {
       "Transit_Water": "⛴️ जलमार्ग (फेरी):",
       "Transit_Water_Desc": "निकटतम फेरी पॉइंट हावड़ा फेरी घाट (~3.5 किमी) है, जहाँ स्थानीय परिवहन द्वारा पहुँचा जा सकता है।",
       "Transit_Air": "✈️ हवाई मार्ग:",
-      "Transit_Air_Desc": "नेताजी सुभाष चंद्र बोस अंतर्राष्ट्रीय हवाई अड्डा (CCU) लगभग 25 किमी दूर है।"
+      "Transit_Air_Desc": "नेताजी सुभाष चंद्र बोस अंतर्राष्ट्रीय हवाई अड्डा (CCU) लगभग 25 किमी दूर है।",
+
+      "Kids_Corner": "किड्स कॉर्नर",
+      "Daily_Game_Title": "दैनिक अंग्रेजी कौशल निर्माता",
+      "Daily_Game_Desc": "अपनी शब्दावली और संज्ञानात्मक कौशल में सुधार करें! यह इंटरैक्टिव दैनिक क्रॉसवर्ड हर दिन स्वचालित रूप से अपडेट होता है।"
     }
   }
 };

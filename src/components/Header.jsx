@@ -28,6 +28,7 @@ const Header = () => {
           <a href="#about">{t('About')}</a>
           <a href="#activities">{t('Activities')}</a>
           <a href="#gallery">{t('Gallery')}</a>
+          <a href="#kids-corner">{t('Kids_Corner')}</a>
           <a href="#contact">{t('Contact')}</a>
         </nav>
         <div className="lang-switcher" style={{ display: 'flex', gap: '0.5rem', marginLeft: '1rem' }}>
