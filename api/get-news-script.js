@@ -37,11 +37,13 @@ export default async function handler(req, res) {
     const prompt = `You are an AI News Anchor for the 'Howrah Assembly Club' community radio. 
 Here are today's general headlines: ${headlines}
 
-Your task is to write a fast, concise news broadcast script (max 4 sentences) that includes:
-- 1 local news update about Howrah or Kolkata
-- 1 national news update about India
-- 1 global news update
+Your task is to write a comprehensive news broadcast script that MUST include exactly:
+- 5 specific news updates about Howrah
+- 5 specific news updates about Kolkata
+- 5 specific news updates about India
+- 5 specific news updates about the World
 
+If the provided headlines do not contain enough information, use your internal knowledge of realistic current events to invent highly plausible news for Howrah and Kolkata.
 ${langInstruction}`;
 
     // 3. Call Gemini
@@ -53,7 +55,7 @@ ${langInstruction}`;
 
       // Set up AbortController to prevent Vercel 10s timeout
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 7000); // 7 second timeout
+      const timeoutId = setTimeout(() => controller.abort(), 8500); // 8.5 second timeout
 
       const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST',
@@ -76,11 +78,11 @@ ${langInstruction}`;
     // 4. Fallback Scripts for Today (If API fails or times out)
     if (!script || script.length < 10) {
       if (lang === 'bn') {
-        script = "হাওড়া অ্যাসেম্বলি ক্লাব থেকে শুভ সন্ধ্যা! এখানে আপনার আজকের সংবাদ। স্থানীয়ভাবে হাওড়ায়, পৌর কর্পোরেশন গঙ্গার ঘাট পরিষ্কার করার একটি নতুন উদ্যোগ ঘোষণা করেছে, অন্যদিকে কলকাতায় আসন্ন উৎসবের প্রস্তুতি পুরোদমে চলছে। জাতীয়ভাবে, ভারতীয় শেয়ার বাজার আজ রেকর্ড উচ্চতায় পৌঁছেছে। এদিকে বিশ্বমঞ্চে, জাতিসংঘ সম্মেলনে নতুন জলবায়ু চুক্তি স্বাক্ষরিত হয়েছে। আমাদের সাথে থাকার জন্য ধন্যবাদ!";
+        script = "হাওড়া অ্যাসেম্বলি ক্লাব থেকে শুভ সন্ধ্যা! হাওড়ার সংবাদ: ১. গঙ্গার ঘাট পরিষ্কার অভিযান শুরু। ২. শিবপুরে নতুন ট্রাফিক নিয়ম। ৩. হাওড়া স্টেশনে নতুন এস্কেলেটর। ৪. বোটানিক্যাল গার্ডেনে ফুল উৎসব। ৫. কদমতলায় নতুন স্পোর্টস কমপ্লেক্স। কলকাতার সংবাদ: ১. ময়দানে আসন্ন বইমেলার প্রস্তুতি। ২. মেট্রোর নতুন রুট চালু। ৩. ভিক্টোরিয়া মেমোরিয়ালে লাইট অ্যান্ড সাউন্ড শো। ৪. নিউ টাউনে আইটি হাব সম্প্রসারণ। ৫. পার্ক স্ট্রিটে খাদ্য উৎসব। জাতীয় সংবাদ: ১. ভারতীয় শেয়ার বাজারে রেকর্ড। ২. নতুন হাইওয়ে প্রকল্প উদ্বোধন। ৩. জিএসটি সংগ্রহ বৃদ্ধি। ৪. মহাকাশ গবেষণায় নতুন স্যাটেলাইট। ৫. কৃষকদের জন্য নতুন বীমা প্রকল্প। আন্তর্জাতিক সংবাদ: ১. জাতিসংঘে জলবায়ু চুক্তি। ২. ইউরোপে নতুন প্রযুক্তি আইন। ৩. অলিম্পিকের প্রস্তুতি। ৪. বিশ্ব স্বাস্থ্য সংস্থার নতুন নির্দেশিকা। ৫. আন্তর্জাতিক বাণিজ্য চুক্তি। আমাদের সাথে থাকার জন্য ধন্যবাদ!";
       } else if (lang === 'hi') {
-        script = "हावड़ा असेंबली क्लब से शुभ संध्या! यहाँ आपका आज का समाचार बुलेटिन है। स्थानीय रूप से हावड़ा में, नगर निगम ने गंगा घाटों को साफ करने की एक नई पहल की घोषणा की है, जबकि कोलकाता में आगामी उत्सव की तैयारी जोरों पर है। राष्ट्रीय स्तर पर, भारतीय शेयर बाजार आज रिकॉर्ड ऊंचाई पर पहुंच गया। इस बीच, संयुक्त राष्ट्र शिखर सम्मेलन में नए जलवायु समझौतों पर हस्ताक्षर किए गए हैं। धन्यवाद!";
+        script = "हावड़ा असेंबली क्लब से शुभ संध्या! हावड़ा के 5 समाचार: 1. गंगा घाट सफाई अभियान शुरू। 2. शिबपुर में नए यातायात नियम। 3. हावड़ा स्टेशन पर नए एस्केलेटर। 4. बोटैनिकल गार्डन में फूल उत्सव। 5. कदमतला में नया स्पोर्ट्स कॉम्प्लेक्स। कोलकाता के 5 समाचार: 1. मैदान में पुस्तक मेले की तैयारी। 2. मेट्रो का नया मार्ग चालू। 3. विक्टोरिया मेमोरियल में लाइट एंड साउंड शो। 4. न्यू टाउन में आईटी हब का विस्तार। 5. पार्क स्ट्रीट में खाद्य उत्सव। राष्ट्रीय समाचार: 1. भारतीय शेयर बाजार में रिकॉर्ड। 2. नई राजमार्ग परियोजना। 3. जीएसटी संग्रह में वृद्धि। 4. अंतरिक्ष अनुसंधान में नया उपग्रह। 5. किसानों के लिए नई बीमा योजना। अंतर्राष्ट्रीय समाचार: 1. संयुक्त राष्ट्र में जलवायु समझौता। 2. यूरोप में नया तकनीकी कानून। 3. ओलंपिक की तैयारी। 4. विश्व स्वास्थ्य संगठन के नए दिशानिर्देश। 5. अंतर्राष्ट्रीय व्यापार समझौता। धन्यवाद!";
       } else {
-        script = "Good evening from the Howrah Assembly Club! Here is your daily news round-up. Locally in Howrah, the municipal corporation has announced a new initiative to clean up the riverfront, while in Kolkata, preparations for upcoming festivals are in full swing. Nationally, the Indian stock market reached a record high today. Meanwhile, on the global stage, new climate agreements have been signed at the UN summit. Thank you for tuning in!";
+        script = "Good evening from the Howrah Assembly Club! Here are 5 updates from Howrah: 1. Riverfront clean-up initiative launched. 2. New traffic rules in Shibpur. 3. New escalators at Howrah Station. 4. Flower festival at Botanical Garden. 5. New sports complex in Kadamtala. Here are 5 updates from Kolkata: 1. Preparations for the Book Fair at Maidan. 2. New Metro route operational. 3. Light and sound show at Victoria Memorial. 4. IT hub expansion in New Town. 5. Food festival at Park Street. National News: 1. Indian stock market hits record high. 2. New highway project inaugurated. 3. GST collection increases. 4. New satellite launched for space research. 5. New insurance scheme for farmers. World News: 1. Climate agreement signed at the UN. 2. New tech law passed in Europe. 3. Preparations for the Olympics. 4. New WHO guidelines issued. 5. International trade agreement finalized. Thank you for tuning in!";
       }
     }
 
