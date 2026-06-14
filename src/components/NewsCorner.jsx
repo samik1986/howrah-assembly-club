@@ -37,6 +37,12 @@ const NewsCorner = () => {
     fetchNews();
   }, [i18n.language]);
 
+  const currentLang = i18n.language || 'en';
+  const radioSrc = currentLang === 'bn' 
+    ? 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio055/hlspbaudio05564kbps.m3u8' 
+    : 'https://audio-edge-fvq45.ams.d.radiomast.io/3ccc1156-fcf8-4ba7-9a0c-28e3a465e1ae?listening-from-radio-garden=1607152226837';
+  const isHls = radioSrc.endsWith('.m3u8');
+
   return (
     <section id="news-corner" className="section" style={{ background: '#d5d0c4', minHeight: '100vh', paddingTop: '100px', fontFamily: '"Georgia", "Times New Roman", serif', color: '#1a1a1a' }}>
       <div className="container" style={{ background: '#f4f1ea', padding: '3rem', boxShadow: 'inset 0 0 50px rgba(0,0,0,0.05), 0 5px 15px rgba(0,0,0,0.2)', border: '1px solid #b3aba0', maxWidth: '1200px' }}>
@@ -48,7 +54,7 @@ const NewsCorner = () => {
           </h2>
           <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #1a1a1a', borderBottom: '1px solid #1a1a1a', padding: '0.5rem 0', fontStyle: 'italic', fontSize: '0.9rem', fontWeight: 'bold' }}>
             <span>VOL. 1 — HOWRAH ASSEMBLY CLUB</span>
-            <span>{new Date().toLocaleDateString(i18n.language === 'en' ? 'en-US' : (i18n.language === 'bn' ? 'bn-IN' : 'hi-IN'), { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            <span>{new Date().toLocaleDateString(currentLang === 'en' ? 'en-US' : (currentLang === 'bn' ? 'bn-IN' : 'hi-IN'), { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
             <span>{t('News_Corner').toUpperCase()}</span>
           </div>
         </div>
@@ -58,18 +64,34 @@ const NewsCorner = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <span style={{ fontSize: '2.5rem' }}>🎙️</span>
             <div>
-              <h3 style={{ margin: 0, textTransform: 'uppercase', letterSpacing: '1px', fontSize: '1.2rem' }}>{t('Live_Radio')}</h3>
+              <h3 style={{ margin: 0, textTransform: 'uppercase', letterSpacing: '1px', fontSize: '1.2rem' }}>
+                {currentLang === 'bn' ? 'AKASHVANI KOLKATA' : t('Live_Radio')}
+              </h3>
               <div style={{ color: '#c00', fontSize: '0.875rem', fontWeight: 'bold', animation: 'pulse 2s infinite' }}>● ON AIR</div>
             </div>
           </div>
-          <audio 
-            key={i18n.language} 
-            src={i18n.language === 'bn' ? 'https://audio.streamcast.xyz/listen/radiogoongoon/radio.mp3' : 'https://audio-edge-fvq45.ams.d.radiomast.io/3ccc1156-fcf8-4ba7-9a0c-28e3a465e1ae?listening-from-radio-garden=1607152226837'} 
-            controls 
-            style={{ width: '300px', height: '40px', borderRadius: '0', filter: 'sepia(50%) grayscale(20%)' }}
-          >
-            Your browser does not support the audio element.
-          </audio>
+          <div style={{ filter: 'sepia(50%) grayscale(20%)' }}>
+            {isHls ? (
+              <ReactPlayer 
+                key={radioSrc}
+                url={radioSrc} 
+                playing={true} 
+                controls={true} 
+                width="300px" 
+                height="40px" 
+                config={{ file: { forceHLS: true } }}
+              />
+            ) : (
+              <audio 
+                key={radioSrc}
+                src={radioSrc} 
+                controls 
+                style={{ width: '300px', height: '40px', borderRadius: '0' }}
+              >
+                Your browser does not support the audio element.
+              </audio>
+            )}
+          </div>
         </div>
 
         {loading ? (
