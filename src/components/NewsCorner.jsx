@@ -38,81 +38,72 @@ const NewsCorner = () => {
   }, [i18n.language]);
 
   return (
-    <section id="news-corner" className="section" style={{ background: 'var(--surface)', minHeight: '100vh', paddingTop: '100px' }}>
-      <div className="container">
-        <div className="text-center" style={{ marginBottom: '3rem' }}>
-          <span className="hero-badge" style={{ marginBottom: '1rem', background: '#3b82f6', color: 'white' }}>
-            {t('News_Corner')}
-          </span>
-          <h2>{t('Daily_News')}</h2>
-          <p style={{ maxWidth: '600px', margin: '1rem auto', color: 'var(--text-light)' }}>
-            {t('News_Desc')}
-          </p>
+    <section id="news-corner" className="section" style={{ background: '#d5d0c4', minHeight: '100vh', paddingTop: '100px', fontFamily: '"Georgia", "Times New Roman", serif', color: '#1a1a1a' }}>
+      <div className="container" style={{ background: '#f4f1ea', padding: '3rem', boxShadow: 'inset 0 0 50px rgba(0,0,0,0.05), 0 5px 15px rgba(0,0,0,0.2)', border: '1px solid #b3aba0', maxWidth: '1200px' }}>
+        
+        {/* Newspaper Header */}
+        <div className="text-center" style={{ marginBottom: '2rem', borderBottom: '4px double #1a1a1a', paddingBottom: '2rem' }}>
+          <h2 style={{ fontSize: '4rem', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '2px', margin: '0', borderBottom: '2px solid #1a1a1a', display: 'inline-block', paddingBottom: '0.5rem', marginBottom: '1rem' }}>
+            {t('Daily_News')}
+          </h2>
+          <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #1a1a1a', borderBottom: '1px solid #1a1a1a', padding: '0.5rem 0', fontStyle: 'italic', fontSize: '0.9rem', fontWeight: 'bold' }}>
+            <span>VOL. 1 — HOWRAH ASSEMBLY CLUB</span>
+            <span>{new Date().toLocaleDateString(i18n.language === 'en' ? 'en-US' : (i18n.language === 'bn' ? 'bn-IN' : 'hi-IN'), { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            <span>{t('News_Corner').toUpperCase()}</span>
+          </div>
         </div>
 
         {/* Radio Player */}
-        <div style={{ background: '#f8fafc', padding: '1rem 2rem', borderRadius: '12px', border: '2px solid #3b82f6', marginBottom: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+        <div style={{ background: '#e8e4d9', padding: '1rem 2rem', border: '2px solid #1a1a1a', borderLeft: '8px solid #1a1a1a', marginBottom: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ fontSize: '2rem' }}>📻</span>
+            <span style={{ fontSize: '2.5rem' }}>🎙️</span>
             <div>
-              <h3 style={{ margin: 0 }}>{t('Live_Radio')}</h3>
-              <div style={{ color: '#ef4444', fontSize: '0.875rem', fontWeight: 'bold', animation: 'pulse 2s infinite' }}>● LIVE STREAM</div>
+              <h3 style={{ margin: 0, textTransform: 'uppercase', letterSpacing: '1px', fontSize: '1.2rem' }}>{t('Live_Radio')}</h3>
+              <div style={{ color: '#c00', fontSize: '0.875rem', fontWeight: 'bold', animation: 'pulse 2s infinite' }}>● ON AIR</div>
             </div>
           </div>
           <audio 
             key={i18n.language} 
             src={i18n.language === 'bn' ? 'https://audio.streamcast.xyz/listen/radiogoongoon/radio.mp3' : 'https://audio-edge-fvq45.ams.d.radiomast.io/3ccc1156-fcf8-4ba7-9a0c-28e3a465e1ae?listening-from-radio-garden=1607152226837'} 
             controls 
-            style={{ width: '300px', height: '40px', borderRadius: '20px' }}
+            style={{ width: '300px', height: '40px', borderRadius: '0', filter: 'sepia(50%) grayscale(20%)' }}
           >
             Your browser does not support the audio element.
           </audio>
         </div>
 
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '3rem' }}>
-            <div className="loader" style={{ display: 'inline-block', width: '50px', height: '50px', border: '5px solid #e2e8f0', borderTopColor: '#3b82f6', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
-            <style>{`@keyframes spin { 100% { transform: rotate(360deg); } }`}</style>
+          <div style={{ textAlign: 'center', padding: '5rem' }}>
+            <div className="loader" style={{ display: 'inline-block', width: '50px', height: '50px', border: '4px solid #d5d0c4', borderTopColor: '#1a1a1a', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '3rem 2rem', columnRule: '1px solid #ccc' }}>
             {articles.map((article, idx) => {
               // Safely extract a thumbnail if it exists, otherwise fallback
               let thumb = article.thumbnail || article.enclosure?.link;
               if (!thumb && article.description) {
-                  // Sometimes rss2json puts the image inside the description HTML
                   const imgMatch = article.description.match(/<img[^>]+src="([^">]+)"/);
                   if (imgMatch) thumb = imgMatch[1];
               }
 
               return (
               <div key={idx} style={{ 
-                background: 'white', 
-                borderRadius: '12px', 
-                overflow: 'hidden', 
-                boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
+                background: 'transparent', 
+                borderBottom: '1px solid #1a1a1a',
+                paddingBottom: '2rem',
                 display: 'flex',
                 flexDirection: 'column',
-                transition: 'transform 0.2s',
-                cursor: 'pointer'
-              }}
-              onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-              onMouseOut={(e) => e.currentTarget.style.transform = 'none'}
-              >
-                {thumb ? (
-                  <img src={thumb} alt={article.title} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-                ) : (
-                  <div style={{ width: '100%', height: '200px', background: '#e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span style={{ fontSize: '3rem' }}>📰</span>
-                  </div>
+              }}>
+                {thumb && (
+                  <img src={thumb} alt={article.title} style={{ width: '100%', height: 'auto', maxHeight: '200px', objectFit: 'cover', border: '2px solid #1a1a1a', filter: 'sepia(40%) grayscale(60%) contrast(120%)', marginBottom: '1rem' }} />
                 )}
-                <div style={{ padding: '1.5rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                  <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', lineHeight: '1.4' }}>{article.title}</h3>
-                  <div style={{ color: 'var(--text-light)', fontSize: '0.9rem', marginBottom: '1rem' }}>
-                    {new Date(article.pubDate).toLocaleDateString()}
+                <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                  <h3 style={{ fontSize: '1.6rem', marginBottom: '0.8rem', lineHeight: '1.2', fontWeight: 'bold' }}>{article.title}</h3>
+                  <div style={{ color: '#444', fontSize: '0.85rem', textTransform: 'uppercase', borderBottom: '1px dotted #888', paddingBottom: '0.5rem', marginBottom: '1rem', fontWeight: 'bold' }}>
+                    PUBLISHED: {new Date(article.pubDate).toLocaleTimeString()}
                   </div>
-                  <div style={{ marginTop: 'auto' }}>
-                    <a href={article.link} target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6', fontWeight: 'bold', textDecoration: 'none' }}>
+                  <div style={{ marginTop: 'auto', textAlign: 'right' }}>
+                    <a href={article.link} target="_blank" rel="noopener noreferrer" style={{ color: '#1a1a1a', fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic', fontSize: '1.1rem' }}>
                       {t('Read_More')} &rarr;
                     </a>
                   </div>
