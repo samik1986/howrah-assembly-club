@@ -73,54 +73,35 @@ const NewsCorner = () => {
   };
 
   const generateAndPlayNews = async () => {
-    if (!articles.length) return;
     setIsGenerating(true);
     
     try {
-      const headlines = articles.map((a, i) => `${i+1}. ${a.title}`).join(" ");
-      let langInstruction = "Respond completely in English.";
       let voiceLang = "en-IN";
       if (currentLang === 'bn') {
-        langInstruction = "Respond completely in Bengali script.";
         voiceLang = "bn-IN";
       } else if (currentLang === 'hi') {
-        langInstruction = "Respond completely in Hindi script.";
         voiceLang = "hi-IN";
       }
 
-      const today = new Date().toLocaleDateString('en-CA'); // 'YYYY-MM-DD'
+      const today = new Date().toLocaleDateString('en-CA');
       const cacheKey = `ai_news_script_${currentLang}_${today}`;
       let script = localStorage.getItem(cacheKey);
 
       if (!script) {
-        const prompt = `You are an AI News Anchor for the 'Howrah Assembly Club' community radio. 
-Here are today's latest headlines: ${headlines}
-Write a concise, engaging, 3 to 4 sentence news broadcast script summarizing the most important points. Add a tiny bit of local flavor for Kolkata and Howrah if possible. 
-${langInstruction}`;
-
-        const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: { temperature: 0.7 }
-          })
-        });
-        const data = await res.json();
-        script = data.candidates?.[0]?.content?.parts?.[0]?.text || "Unable to fetch the news script at this moment.";
+        // Fetch from Vercel Serverless Function (Cached via Edge CDN)
+        const res = await fetch(`/api/get-news-script?lang=${currentLang}`);
+        if (!res.ok) throw new Error('Failed to fetch from server API');
         
-        script = script.replace(/\*\*/g, '').replace(/\*/g, '');
-
-        if (data.candidates) {
-          // Clean up old caches
-          Object.keys(localStorage).forEach(key => {
-            if (key.startsWith('ai_news_script_')) {
-              localStorage.removeItem(key);
-            }
-          });
-          localStorage.setItem(cacheKey, script);
-        }
+        const data = await res.json();
+        script = data.script || "Unable to fetch the news script at this moment.";
+        
+        // Save to local fallback cache and clean up old ones
+        Object.keys(localStorage).forEach(key => {
+          if (key.startsWith('ai_news_script_')) {
+            localStorage.removeItem(key);
+          }
+        });
+        localStorage.setItem(cacheKey, script);
       }
 
       const utterance = new SpeechSynthesisUtterance(script);
@@ -136,7 +117,7 @@ ${langInstruction}`;
       
     } catch (error) {
       console.error("Error generating AI news:", error);
-      alert("Failed to generate AI news broadcast.");
+      alert("Failed to fetch AI news broadcast.");
     } finally {
       setIsGenerating(false);
     }
