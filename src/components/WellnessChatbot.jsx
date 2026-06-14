@@ -7,6 +7,7 @@ const WellnessChatbot = () => {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isListening, setIsListening] = useState(false);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -16,6 +17,39 @@ const WellnessChatbot = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  const handleSpeech = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("Speech recognition is not supported in this browser. Please try Chrome or Edge.");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onstart = () => {
+      setIsListening(true);
+    };
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setInput(prev => prev + (prev ? ' ' : '') + transcript);
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Speech recognition error", event.error);
+      setIsListening(false);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
+    recognition.start();
+  };
 
   const generateSimulatedResponse = (text) => {
     const lowerText = text.toLowerCase();
@@ -129,9 +163,16 @@ const WellnessChatbot = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-              placeholder="Ask for a routine..."
-              style={{ flex: 1, padding: '0.75rem', borderRadius: '8px', border: '1px solid #cbd5e1', outline: 'none' }}
+              placeholder={isListening ? "Listening..." : "Ask for a routine..."}
+              style={{ flex: 1, padding: '0.75rem', borderRadius: '8px', border: '1px solid #cbd5e1', outline: 'none', background: isListening ? '#f0fdf4' : 'white' }}
             />
+            <button 
+              onClick={handleSpeech}
+              title="Voice Input"
+              style={{ background: isListening ? '#ef4444' : '#f1f5f9', color: isListening ? 'white' : 'var(--text)', border: 'none', borderRadius: '8px', padding: '0 0.75rem', cursor: 'pointer', fontSize: '1.2rem', transition: 'background 0.3s' }}
+            >
+              🎤
+            </button>
             <button 
               onClick={handleSend}
               disabled={isLoading || !input.trim()}
