@@ -292,8 +292,13 @@ const WellnessCorner = () => {
 
           </div>
 
+          {/* Club Invitation Note */}
+          <div style={{ marginTop: '4rem', padding: '1.5rem', background: '#d4edda', color: '#155724', borderRadius: '8px', border: '1px solid #c3e6cb', fontSize: '1.1rem', lineHeight: '1.5', textAlign: 'center', fontWeight: 'bold' }}>
+            Please visit our club for expert advice from professional trainers! We provide memberships for Gym, Yoga, and Free-hand exercises to be performed based on professional advice at our premises.
+          </div>
+
           {/* Disclaimer */}
-          <div style={{ marginTop: '4rem', padding: '1.5rem', background: '#fff3cd', color: '#856404', borderRadius: '8px', border: '1px solid #ffeeba', fontSize: '0.9rem', lineHeight: '1.5', textAlign: 'center' }}>
+          <div style={{ marginTop: '1.5rem', padding: '1.5rem', background: '#fff3cd', color: '#856404', borderRadius: '8px', border: '1px solid #ffeeba', fontSize: '0.9rem', lineHeight: '1.5', textAlign: 'center' }}>
             <strong>Disclaimer:</strong> All these routines are AI generated. It is advised to contact a personal trainer for exact poses and routines for your wellness. We do not claim any expert advice and users are solely and legally responsible for practicing any such routines on the website without contacting professional trainers. Any injury due to unsolicited use of the routines is to be borne by the user only.
           </div>
 
