@@ -138,28 +138,48 @@ const WellnessChatbot = () => {
         </div>
       )}
 
-      {/* Floating Toggle Button */}
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        style={{
-          width: '60px',
-          height: '60px',
-          borderRadius: '50%',
-          background: 'var(--primary)',
-          color: 'white',
-          border: 'none',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-          cursor: 'pointer',
-          fontSize: '2rem',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginLeft: 'auto'
-        }}
-        title="Open Wellness AI Chatbot"
-      >
-        {isOpen ? '❌' : '🏃‍♂️'}
-      </button>
+      {/* Floating Toggle Button & Sign */}
+      <div style={{ position: 'relative', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+        {!isOpen && (
+          <div style={{
+            position: 'absolute',
+            right: '75px',
+            background: 'white',
+            color: 'var(--primary)',
+            padding: '0.4rem 0.8rem',
+            borderRadius: '20px',
+            fontSize: '0.9rem',
+            fontWeight: 'bold',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+            border: '2px solid var(--primary)',
+            whiteSpace: 'nowrap',
+            pointerEvents: 'none'
+          }}>
+            Ask me! 👋
+          </div>
+        )}
+        <button 
+          onClick={() => setIsOpen(!isOpen)}
+          style={{
+            width: '60px',
+            height: '60px',
+            borderRadius: '50%',
+            background: 'var(--primary)',
+            color: 'white',
+            border: 'none',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+            cursor: 'pointer',
+            fontSize: '2rem',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginLeft: 'auto'
+          }}
+          title="Open Wellness AI Chatbot"
+        >
+          {isOpen ? '❌' : '🏃‍♂️'}
+        </button>
+      </div>
     </div>
   );
 };
