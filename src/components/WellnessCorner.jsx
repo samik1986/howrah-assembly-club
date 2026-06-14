@@ -375,10 +375,10 @@ const WellnessCorner = () => {
                     />
                   </div>
                   <div>
-                    <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.1rem', color: 'var(--text)' }}>{idx + 1}. {exercise.name}</h3>
-                    {exercise.reps && <p style={{ margin: '0.25rem 0', color: 'var(--text-light)', fontSize: '0.9rem' }}><strong>Reps/Duration:</strong> {exercise.reps}</p>}
-                    {exercise.duration && <p style={{ margin: '0.25rem 0', color: 'var(--text-light)', fontSize: '0.9rem' }}><strong>Duration:</strong> {exercise.duration}</p>}
-                    {exercise.weight && <p style={{ margin: '0.25rem 0', color: 'var(--text-light)', fontSize: '0.9rem' }}><strong>Weight:</strong> {exercise.weight}</p>}
+                    <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.1rem', color: 'var(--text)' }}>{idx + 1}. {t(exercise.name)}</h3>
+                    {exercise.reps && <p style={{ margin: '0.25rem 0', color: 'var(--text-light)', fontSize: '0.9rem' }}><strong>{t('Reps')}:</strong> {t(exercise.reps)}</p>}
+                    {exercise.duration && <p style={{ margin: '0.25rem 0', color: 'var(--text-light)', fontSize: '0.9rem' }}><strong>{t('Duration')}:</strong> {t(exercise.duration)}</p>}
+                    {exercise.weight && <p style={{ margin: '0.25rem 0', color: 'var(--text-light)', fontSize: '0.9rem' }}><strong>Weight:</strong> {t(exercise.weight)}</p>}
                   </div>
                 </div>
               ))}
