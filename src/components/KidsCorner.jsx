@@ -21,7 +21,7 @@ const PRONUNCIATION_TASKS = [
 ];
 
 const KidsCorner = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   
   // State for Word Scramble
   const [dailyWordObj, setDailyWordObj] = useState(null);
@@ -215,6 +215,31 @@ const KidsCorner = () => {
               style={{ border: 'none', display: 'block' }}
               title="Daily English Skill Builder Game"
               sandbox="allow-scripts allow-same-origin allow-popups"
+            ></iframe>
+          </div>
+
+          {/* Daily Comic Iframe */}
+          <div style={{
+            width: '100%',
+            maxWidth: '900px',
+            background: 'white',
+            borderRadius: '16px',
+            overflow: 'hidden',
+            boxShadow: 'var(--shadow-lg)',
+            border: '4px solid #10b981',
+            marginTop: '1rem'
+          }}>
+            <div style={{ background: '#10b981', color: 'white', padding: '1rem', textAlign: 'center' }}>
+              <h3 style={{ margin: 0, fontSize: '1.5rem' }}>{t('Daily_Comic')}</h3>
+              <p style={{ margin: '0.5rem 0 0 0', opacity: 0.9 }}>{t('Comic_Desc')}</p>
+            </div>
+            <iframe 
+              src={`https://placehold.co/900x500/f8fafc/334155?text=Royalty-Free+Comic+Embed%5Cn(Dynamic+Language:+${i18n.language.toUpperCase()})`} 
+              width="100%" 
+              height="500px" 
+              style={{ border: 'none', display: 'block' }}
+              title="Daily Comic"
+              sandbox="allow-scripts allow-same-origin"
             ></iframe>
           </div>
 
