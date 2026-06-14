@@ -35,6 +35,7 @@ const Header = () => {
           <Link to="/activities" style={getStyle('/activities')}>{t('Activities')}</Link>
           <Link to="/gallery" style={getStyle('/gallery')}>{t('Gallery')}</Link>
           <Link to="/kids-corner" style={getStyle('/kids-corner')}>{t('Kids_Corner')}</Link>
+          <Link to="/news" style={getStyle('/news')}>{t('News_Corner')}</Link>
           <Link to="/wellness" style={getStyle('/wellness')}>{t('Wellness_Corner')}</Link>
           <Link to="/contact" style={getStyle('/contact')}>{t('Contact')}</Link>
         </nav>
