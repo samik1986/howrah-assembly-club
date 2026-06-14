@@ -206,7 +206,7 @@ const resources = {
       "3 sets of 10 per arm": "3 sets of 10 per arm",
       "3 sets of 10 per side": "3 sets of 10 per side",
       "45 seconds": "45 seconds"
-    }
+    , "Read_AI_News": "Listen to AI News Broadcast 🤖", "Stop_AI_News": "Stop Broadcast ⏹️", "Generating_AI_News": "Preparing Broadcast..."}
   },
   bn: {
     translation: {
@@ -412,7 +412,7 @@ const resources = {
       "3 sets of 10 per arm": "প্রতি বাহুতে ৩ সেট ১০ বার",
       "3 sets of 10 per side": "প্রতি পাশে ৩ সেট ১০ বার",
       "45 seconds": "৪৫ সেকেন্ড"
-    }
+    , "Read_AI_News": "এআই নিউজ ব্রডকাস্ট শুনুন 🤖", "Stop_AI_News": "সম্প্রচার থামান ⏹️", "Generating_AI_News": "সম্প্রচার প্রস্তুত করা হচ্ছে..."}
   },
   hi: {
     translation: {
@@ -618,7 +618,7 @@ const resources = {
       "3 sets of 10 per arm": "प्रति बांह 3 सेट 10 बार",
       "3 sets of 10 per side": "प्रति पक्ष 3 सेट 10 बार",
       "45 seconds": "45 सेकंड"
-    }
+    , "Read_AI_News": "एआई समाचार प्रसारण सुनें 🤖", "Stop_AI_News": "प्रसारण रोकें ⏹️", "Generating_AI_News": "प्रसारण तैयार किया जा रहा है..."}
   }
 };
 

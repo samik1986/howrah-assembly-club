@@ -12,6 +12,8 @@ const NewsCorner = () => {
   const { t, i18n } = useTranslation();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -65,6 +67,72 @@ const NewsCorner = () => {
     };
   }, [radioSrc, isHls]);
 
+  const stopNews = () => {
+    window.speechSynthesis.cancel();
+    setIsPlaying(false);
+  };
+
+  const generateAndPlayNews = async () => {
+    if (!articles.length) return;
+    setIsGenerating(true);
+    
+    try {
+      const headlines = articles.map((a, i) => `${i+1}. ${a.title}`).join(" ");
+      let langInstruction = "Respond completely in English.";
+      let voiceLang = "en-IN";
+      if (currentLang === 'bn') {
+        langInstruction = "Respond completely in Bengali script.";
+        voiceLang = "bn-IN";
+      } else if (currentLang === 'hi') {
+        langInstruction = "Respond completely in Hindi script.";
+        voiceLang = "hi-IN";
+      }
+
+      const prompt = `You are an AI News Anchor for the 'Howrah Assembly Club' community radio. 
+Here are today's latest headlines: ${headlines}
+Write a concise, engaging, 3 to 4 sentence news broadcast script summarizing the most important points. Add a tiny bit of local flavor for Kolkata and Howrah if possible. 
+${langInstruction}`;
+
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { temperature: 0.7 }
+        })
+      });
+      const data = await res.json();
+      let script = data.candidates?.[0]?.content?.parts?.[0]?.text || "Unable to fetch the news script at this moment.";
+      
+      script = script.replace(/\*\*/g, '').replace(/\*/g, '');
+
+      const utterance = new SpeechSynthesisUtterance(script);
+      utterance.lang = voiceLang;
+      utterance.rate = 0.95;
+      
+      utterance.onend = () => setIsPlaying(false);
+      utterance.onerror = () => setIsPlaying(false);
+      
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+      setIsPlaying(true);
+      
+    } catch (error) {
+      console.error("Error generating AI news:", error);
+      alert("Failed to generate AI news broadcast.");
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  // Stop speech if component unmounts
+  useEffect(() => {
+    return () => {
+      window.speechSynthesis.cancel();
+    };
+  }, []);
+
   return (
     <section id="news-corner" className="section" style={{ background: '#d5d0c4', minHeight: '100vh', paddingTop: '100px', fontFamily: '"Georgia", "Times New Roman", serif', color: '#1a1a1a' }}>
       <div className="container" style={{ background: '#f4f1ea', padding: '3rem', boxShadow: 'inset 0 0 50px rgba(0,0,0,0.05), 0 5px 15px rgba(0,0,0,0.2)', border: '1px solid #b3aba0', maxWidth: '1200px' }}>
@@ -79,6 +147,26 @@ const NewsCorner = () => {
             <span>{new Date().toLocaleDateString(currentLang === 'en' ? 'en-US' : (currentLang === 'bn' ? 'bn-IN' : 'hi-IN'), { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
             <span>{t('News_Corner').toUpperCase()}</span>
           </div>
+        </div>
+
+        {/* AI News Reader Button */}
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          {!isPlaying ? (
+            <button 
+              onClick={generateAndPlayNews} 
+              disabled={isGenerating || articles.length === 0}
+              style={{ background: '#1a1a1a', color: '#f4f1ea', padding: '1rem 2.5rem', fontSize: '1.2rem', fontFamily: '"Georgia", serif', textTransform: 'uppercase', letterSpacing: '2px', border: 'none', cursor: isGenerating ? 'not-allowed' : 'pointer', opacity: isGenerating ? 0.7 : 1, transition: 'all 0.2s', borderBottom: '4px solid #000' }}
+            >
+              {isGenerating ? (t('Generating_AI_News') || "Preparing Broadcast...") : (t('Read_AI_News') || "Listen to AI News Broadcast 🤖")}
+            </button>
+          ) : (
+            <button 
+              onClick={stopNews} 
+              style={{ background: '#c00', color: '#f4f1ea', padding: '1rem 2.5rem', fontSize: '1.2rem', fontFamily: '"Georgia", serif', textTransform: 'uppercase', letterSpacing: '2px', border: 'none', cursor: 'pointer', borderBottom: '4px solid #800', animation: 'pulse 2s infinite' }}
+            >
+              {t('Stop_AI_News') || "Stop Broadcast ⏹️"}
+            </button>
+          )}
         </div>
 
         {/* Radio Player */}
