@@ -69,13 +69,12 @@ const NewsCorner = () => {
   }, [radioSrc, isHls]);
 
   const audioQueue = useRef([]);
-  const currentAudio = useRef(null);
+  const globalAudio = useRef(new Audio());
 
   const stopNews = () => {
     window.speechSynthesis.cancel();
-    if (currentAudio.current) {
-      currentAudio.current.pause();
-      currentAudio.current = null;
+    if (globalAudio.current) {
+      globalAudio.current.pause();
     }
     audioQueue.current = [];
     setIsPlaying(false);
@@ -114,14 +113,13 @@ const NewsCorner = () => {
         return;
       }
       const nextUrl = audioQueue.current.shift();
-      const audio = new Audio(nextUrl);
-      currentAudio.current = audio;
-      audio.onended = playNext;
-      audio.onerror = (e) => {
+      globalAudio.current.src = nextUrl;
+      globalAudio.current.onended = playNext;
+      globalAudio.current.onerror = (e) => {
         console.error("Cloud TTS Audio playback failed", e);
         playNext();
       };
-      audio.play().catch(e => {
+      globalAudio.current.play().catch(e => {
         console.error("Audio play blocked", e);
         setIsPlaying(false);
       });
@@ -132,6 +130,12 @@ const NewsCorner = () => {
   };
 
   const generateAndPlayNews = async () => {
+    // SYNCHRONOUSLY UNLOCK BROWSER AUDIO CONTEXT ON BUTTON CLICK!
+    // This prevents "NotAllowedError: play() failed because the user didn't interact"
+    // caused by awaiting the fetch request before playing audio.
+    globalAudio.current.src = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
+    globalAudio.current.play().catch(() => {});
+
     setIsGenerating(true);
     setTranscript("");
     
@@ -144,7 +148,7 @@ const NewsCorner = () => {
       }
 
       const today = new Date().toLocaleDateString('en-CA');
-      const cacheKey = `ai_news_script_${currentLang}_${today}_v3`;
+      const cacheKey = `ai_news_script_${currentLang}_${today}_v4`;
       let script = localStorage.getItem(cacheKey);
 
       // If we accidentally cached the error message previously, ignore it
