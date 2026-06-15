@@ -215,7 +215,7 @@ const NewsCorner = () => {
         </div>
 
         {/* AI News Reader Button */}
-        <div style={{ textAlign: 'center', marginBottom: transcript ? '1.5rem' : '3rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           {!isPlaying ? (
             <button 
               onClick={generateAndPlayNews} 
@@ -233,14 +233,6 @@ const NewsCorner = () => {
             </button>
           )}
         </div>
-
-        {/* Live Transcript Box */}
-        {transcript && (
-          <div style={{ background: '#e8e4d9', padding: '2rem', border: '1px solid #1a1a1a', borderLeft: '4px solid #1a1a1a', marginBottom: '3rem', fontStyle: 'italic', fontSize: '1.1rem', lineHeight: '1.6' }}>
-            <h4 style={{ margin: '0 0 1rem 0', textTransform: 'uppercase', borderBottom: '1px dashed #1a1a1a', paddingBottom: '0.5rem' }}>Live Transcript</h4>
-            <p style={{ margin: 0, whiteSpace: 'pre-wrap' }}>{transcript}</p>
-          </div>
-        )}
 
         {/* Radio Player */}
         <div style={{ background: '#e8e4d9', padding: '1rem 2rem', border: '2px solid #1a1a1a', borderLeft: '8px solid #1a1a1a', marginBottom: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
