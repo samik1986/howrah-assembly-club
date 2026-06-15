@@ -121,6 +121,7 @@ const NewsCorner = () => {
       };
       globalAudio.current.play().catch(e => {
         console.error("Audio play blocked", e);
+        setTranscript(prev => prev + "\n\n[System Audio Error: " + e.message + " - The browser has blocked auto-playing audio.]");
         setIsPlaying(false);
       });
     };
@@ -148,7 +149,7 @@ const NewsCorner = () => {
       }
 
       const today = new Date().toLocaleDateString('en-CA');
-      const cacheKey = `ai_news_script_${currentLang}_${today}_v4`;
+      const cacheKey = `ai_news_script_${currentLang}_${today}_v5`;
       let script = localStorage.getItem(cacheKey);
 
       // If we accidentally cached the error message previously, ignore it
@@ -158,11 +159,14 @@ const NewsCorner = () => {
 
       if (!script) {
         // Fetch from Vercel Serverless Function, appending a version string to bust any bad Vercel CDN caches
-        const res = await fetch(`/api/get-news-script?lang=${currentLang}&v=3`);
+        const res = await fetch(`/api/get-news-script?lang=${currentLang}&v=5`);
         if (!res.ok) throw new Error('Failed to fetch from server API');
         
         const data = await res.json();
         script = data.script || "Unable to fetch the news script at this moment.";
+        
+        // Ensure some spacing for formatting if the AI forgot
+        script = script.replace(/([.!?।])\s+(\d+\.)/g, '$1\n\n$2');
         
         // Save to local fallback cache and clean up old ones
         Object.keys(localStorage).forEach(key => {
@@ -256,7 +260,7 @@ const NewsCorner = () => {
         {transcript && (
           <div style={{ background: '#e8e4d9', padding: '2rem', border: '1px solid #1a1a1a', borderLeft: '4px solid #1a1a1a', marginBottom: '3rem', fontStyle: 'italic', fontSize: '1.1rem', lineHeight: '1.6' }}>
             <h4 style={{ margin: '0 0 1rem 0', textTransform: 'uppercase', borderBottom: '1px dashed #1a1a1a', paddingBottom: '0.5rem' }}>Live Transcript</h4>
-            <p style={{ margin: 0 }}>{transcript}</p>
+            <p style={{ margin: 0, whiteSpace: 'pre-wrap' }}>{transcript}</p>
           </div>
         )}
 
