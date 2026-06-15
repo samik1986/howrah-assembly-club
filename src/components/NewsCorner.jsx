@@ -90,8 +90,8 @@ const NewsCorner = () => {
     for (let chunk of chunks) {
       chunk = chunk.trim();
       if (!chunk) continue;
-      // encode URI
-      const url = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&client=tw-ob&q=${encodeURIComponent(chunk)}`;
+      // Use googleapis.com with client=gtx to avoid 403/Captcha blocks
+      const url = `https://translate.googleapis.com/translate_tts?ie=UTF-8&tl=${lang}&client=gtx&q=${encodeURIComponent(chunk)}`;
       audioQueue.current.push(url);
     }
 
