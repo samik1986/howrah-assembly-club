@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import WellnessChatbot from './WellnessChatbot';
 
 const ROUTINES = [
@@ -299,9 +300,9 @@ const WellnessCorner = () => {
             <p style={{ fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '2rem', opacity: 0.9, maxWidth: '800px', margin: '0 auto 2rem auto' }}>
               Please visit our club for expert advice from professional trainers. We provide premium memberships for Gym, Yoga, and Free-hand exercises to be performed under professional supervision right here at our premises!
             </p>
-            <a href="#/contact" className="btn" style={{ background: 'white', color: '#059669', fontSize: '1.2rem', padding: '1rem 3rem', textDecoration: 'none', display: 'inline-block', fontWeight: 'bold', borderRadius: '50px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+            <Link to="/contact" className="btn" style={{ background: 'white', color: '#059669', fontSize: '1.2rem', padding: '1rem 3rem', textDecoration: 'none', display: 'inline-block', fontWeight: 'bold', borderRadius: '50px', textTransform: 'uppercase', letterSpacing: '1px' }}>
               {t('Contact_Us') || "Become a Member"}
-            </a>
+            </Link>
           </div>
 
           {/* Disclaimer */}
