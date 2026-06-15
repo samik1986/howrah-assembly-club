@@ -42,19 +42,52 @@ const NewsCorner = () => {
   }, [i18n.language]);
 
   const [selectedStation, setSelectedStation] = useState(0);
-  const currentLang = i18n.language || 'en';
+  const [selectedFmStation, setSelectedFmStation] = useState(0);
+  const akashvaniAudioRef = useRef(null);
+  const fmAudioRef = useRef(null);
+
+  const AKASHVANI_KOLKATA_URL = 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio055/hlspbaudio05564kbps.m3u8';
   
-  const KOLKATA_STATIONS = [
-    { name: 'AIR KOLKATA (FM RAINBOW)', url: 'https://zeno.fm/player/air-kolkata-fm-rainbow' },
-    { name: 'AIR KOLKATA (SANCHAYITA)', url: 'https://zeno.fm/player/air-kolkata-sanchayita' },
-    { name: 'RADIO KOLKATA', url: 'https://zeno.fm/player/radio-kolkata' },
-    { name: 'DISCOBANI KOLKATA', url: 'https://zeno.fm/player/discobani-kolkata' }
+  const OTHER_FM_STATIONS = [
+    { name: 'FM GOLD KOLKATA (100.2 MHz)', url: 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio056/hlspbaudio05664kbps.m3u8' },
+    { name: 'AKASHVANI MAITREE', url: 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio057/hlspbaudio05764kbps.m3u8' },
+    { name: 'RADIO MILAN (BENGALI FM)', url: 'https://stream.zeno.fm/f3y7x0m83yzuv' },
+    { name: 'VIVIDH BHARATI NATIONAL', url: 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio001/hlspbaudio00164kbps.m3u8' }
   ];
 
-  const radioSrc = KOLKATA_STATIONS[selectedStation].url;
+  const fmSrc = OTHER_FM_STATIONS[selectedFmStation].url;
 
-  // HLS logic removed as we now use reliable iframes for live streaming
+  // Initialize HLS for Akashvani Player
+  useEffect(() => {
+    let hls;
+    const audio = akashvaniAudioRef.current;
+    if (audio) {
+      if (AKASHVANI_KOLKATA_URL.endsWith('.m3u8') && Hls.isSupported()) {
+        hls = new Hls();
+        hls.loadSource(AKASHVANI_KOLKATA_URL);
+        hls.attachMedia(audio);
+      } else {
+        audio.src = AKASHVANI_KOLKATA_URL;
+      }
+    }
+    return () => { if (hls) hls.destroy(); };
+  }, []);
 
+  // Initialize HLS for Secondary FM Player
+  useEffect(() => {
+    let hls;
+    const audio = fmAudioRef.current;
+    if (audio) {
+      if (fmSrc.endsWith('.m3u8') && Hls.isSupported()) {
+        hls = new Hls();
+        hls.loadSource(fmSrc);
+        hls.attachMedia(audio);
+      } else {
+        audio.src = fmSrc;
+      }
+    }
+    return () => { if (hls) hls.destroy(); };
+  }, [fmSrc]);
 
   const audioQueue = useRef([]);
   const globalAudio = useRef(new Audio());
@@ -222,33 +255,57 @@ const NewsCorner = () => {
           )}
         </div>
 
-        {/* Radio Player */}
-        <div style={{ background: '#e8e4d9', padding: '1rem 2rem', border: '2px solid #1a1a1a', borderLeft: '8px solid #1a1a1a', marginBottom: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ fontSize: '2.5rem' }}>🎙️</span>
-            <div>
-              <select 
-                value={selectedStation} 
-                onChange={(e) => setSelectedStation(Number(e.target.value))}
-                style={{ margin: 0, textTransform: 'uppercase', letterSpacing: '1px', fontSize: '1.2rem', background: 'transparent', border: '1px solid #1a1a1a', padding: '0.2rem', fontFamily: '"Georgia", serif', fontWeight: 'bold', cursor: 'pointer' }}
+        {/* Dual Radio Players */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginBottom: '3rem' }}>
+          
+          {/* Player 1: Akashvani Kolkata */}
+          <div style={{ flex: '1 1 400px', background: '#e8e4d9', padding: '1.5rem', border: '2px solid #1a1a1a', borderLeft: '8px solid #c00', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <span style={{ fontSize: '2rem' }}>📡</span>
+              <div>
+                <h3 style={{ margin: 0, textTransform: 'uppercase', letterSpacing: '1px', fontSize: '1.2rem' }}>
+                  AKASHVANI KOLKATA
+                </h3>
+                <div style={{ color: '#c00', fontSize: '0.85rem', fontWeight: 'bold', animation: 'pulse 2s infinite' }}>ALL INDIA RADIO • LIVE</div>
+              </div>
+            </div>
+            <div style={{ filter: 'sepia(50%) grayscale(20%)' }}>
+              <audio 
+                ref={akashvaniAudioRef}
+                controls 
+                style={{ width: '100%', height: '40px', borderRadius: '0' }}
               >
-                {KOLKATA_STATIONS.map((station, idx) => (
-                  <option key={idx} value={idx}>{station.name}</option>
-                ))}
-              </select>
-              <div style={{ color: '#c00', fontSize: '0.875rem', fontWeight: 'bold', animation: 'pulse 2s infinite', marginTop: '0.2rem' }}>● ON AIR</div>
+                Your browser does not support the audio element.
+              </audio>
             </div>
           </div>
-          <div style={{ filter: 'sepia(50%) grayscale(20%)', width: '300px', height: '150px', overflow: 'hidden', borderRadius: '10px', border: '1px solid #1a1a1a' }}>
-            <iframe 
-              src={radioSrc}
-              width="100%" 
-              height="150" 
-              frameBorder="0" 
-              scrolling="no"
-              allow="autoplay"
-              title="Kolkata FM Player"
-            ></iframe>
+
+          {/* Player 2: Other Kolkata FM Channels */}
+          <div style={{ flex: '1 1 400px', background: '#e8e4d9', padding: '1.5rem', border: '2px solid #1a1a1a', borderLeft: '8px solid #1a1a1a', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <span style={{ fontSize: '2rem' }}>📻</span>
+              <div style={{ flexGrow: 1 }}>
+                <select 
+                  value={selectedFmStation} 
+                  onChange={(e) => setSelectedFmStation(Number(e.target.value))}
+                  style={{ width: '100%', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '1rem', background: 'transparent', border: '1px solid #1a1a1a', padding: '0.3rem', fontFamily: '"Georgia", serif', fontWeight: 'bold', cursor: 'pointer' }}
+                >
+                  {OTHER_FM_STATIONS.map((station, idx) => (
+                    <option key={idx} value={idx}>{station.name}</option>
+                  ))}
+                </select>
+                <div style={{ color: '#c00', fontSize: '0.85rem', fontWeight: 'bold', animation: 'pulse 2s infinite', marginTop: '0.3rem' }}>LOCAL FM • LIVE</div>
+              </div>
+            </div>
+            <div style={{ filter: 'sepia(50%) grayscale(20%)' }}>
+              <audio 
+                ref={fmAudioRef}
+                controls 
+                style={{ width: '100%', height: '40px', borderRadius: '0' }}
+              >
+                Your browser does not support the audio element.
+              </audio>
+            </div>
           </div>
         </div>
 
