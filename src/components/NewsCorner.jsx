@@ -41,7 +41,7 @@ const NewsCorner = () => {
     fetchNews();
   }, [i18n.language]);
 
-  const [selectedStation, setSelectedStation] = useState(0);
+  const currentLang = i18n.language || 'en';
   const [selectedFmStation, setSelectedFmStation] = useState(0);
   const akashvaniAudioRef = useRef(null);
   const fmAudioRef = useRef(null);
