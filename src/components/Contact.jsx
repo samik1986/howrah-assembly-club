@@ -18,7 +18,7 @@ const Contact = () => {
               <div className="icon">📍</div>
               <div>
                 <p>{t('Address')}</p>
-                <span>1/4, 23 Kali Kundu Lane, Kadamtala</span>
+                <span>23/1/4 Kali Kundu Lane, Kadamtala</span>
                 <span>Howrah, West Bengal - 711101</span>
               </div>
             </div>
@@ -52,10 +52,10 @@ const Contact = () => {
           </div>
         </div>
 
-        <div className="map-container">
+        <div className="map-container" style={{ position: 'relative' }}>
           {/* Simple map placeholder or iframe embed */}
           <iframe 
-            src="https://maps.google.com/maps?q=1/4,%2023%20Kali%20Kundu%20Lane,%20Kadamtala,%20Howrah,%20West%20Bengal%20711101&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+            src="https://maps.google.com/maps?q=23/1/4%20Kali%20Kundu%20Lane,%20Kadamtala,%20Howrah,%20West%20Bengal%20711101&t=&z=16&ie=UTF8&iwloc=&output=embed" 
             width="100%" 
             height="100%" 
             style={{ border: 0 }} 
@@ -64,6 +64,60 @@ const Contact = () => {
             referrerPolicy="no-referrer-when-downgrade"
             title="Howrah Assembly Club Location"
           ></iframe>
+          
+          {/* Animated Dropped Pin Overlay */}
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -100%)',
+            pointerEvents: 'none',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            animation: 'dropBounce 2s infinite'
+          }}>
+            <div style={{
+              width: '40px',
+              height: '40px',
+              background: '#e11d48',
+              borderRadius: '50% 50% 50% 0',
+              transform: 'rotate(-45deg)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '-3px 3px 12px rgba(0,0,0,0.4)',
+              marginBottom: '8px'
+            }}>
+              <div style={{
+                width: '16px',
+                height: '16px',
+                background: 'white',
+                borderRadius: '50%'
+              }}></div>
+            </div>
+            {/* Shadow under the pin */}
+            <div style={{
+              width: '24px',
+              height: '6px',
+              background: 'rgba(0,0,0,0.4)',
+              borderRadius: '50%',
+              animation: 'shadowPulse 2s infinite'
+            }}></div>
+          </div>
+
+          <style>
+            {`
+              @keyframes dropBounce {
+                0%, 100% { transform: translate(-50%, -100%); }
+                50% { transform: translate(-50%, -130%); }
+              }
+              @keyframes shadowPulse {
+                0%, 100% { transform: scale(1); opacity: 0.6; }
+                50% { transform: scale(0.6); opacity: 0.2; }
+              }
+            `}
+          </style>
         </div>
       </div>
     </section>
