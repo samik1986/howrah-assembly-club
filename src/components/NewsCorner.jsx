@@ -179,31 +179,9 @@ const NewsCorner = () => {
 
       setTranscript(script);
 
-      // Use Cloud TTS for regional languages
-      if (currentLang === 'bn' || currentLang === 'hi') {
-         playCloudTTS(script, currentLang);
-      } else {
-         // Use native device TTS for English
-         const utterance = new SpeechSynthesisUtterance(script);
-         utterance.lang = voiceLang;
-         utterance.rate = 0.95;
-         
-         utterance.onend = () => {
-           setIsPlaying(false);
-         };
-         
-         utterance.onerror = (e) => {
-           console.error("SpeechSynthesis error:", e);
-           setIsPlaying(false);
-           if (e.error !== 'interrupted') {
-              alert("Your device OS does not support Text-to-Speech for this language. Please read the Live Transcript below instead!");
-           }
-         };
-         
-         window.speechSynthesis.cancel();
-         window.speechSynthesis.speak(utterance);
-         setIsPlaying(true);
-      }
+      // Use Cloud TTS for ALL languages to ensure a consistent, 
+      // smooth voice that is perfectly cached for the entire day.
+      playCloudTTS(script, currentLang);
       
     } catch (error) {
       console.error("Error generating AI news:", error);
