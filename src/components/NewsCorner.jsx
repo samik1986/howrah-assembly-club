@@ -102,8 +102,8 @@ const NewsCorner = () => {
     for (let chunk of chunks) {
       chunk = chunk.trim();
       if (!chunk) continue;
-      // Use googleapis.com with client=gtx to avoid 403/Captcha blocks
-      const url = `https://translate.googleapis.com/translate_tts?ie=UTF-8&tl=${lang}&client=gtx&q=${encodeURIComponent(chunk)}`;
+      // Fetch via our secure backend proxy to bypass browser restrictions and Captchas
+      const url = `/api/tts?lang=${lang}&text=${encodeURIComponent(chunk)}`;
       audioQueue.current.push(url);
     }
 
