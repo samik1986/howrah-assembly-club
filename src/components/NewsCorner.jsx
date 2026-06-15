@@ -45,35 +45,16 @@ const NewsCorner = () => {
   const currentLang = i18n.language || 'en';
   
   const KOLKATA_STATIONS = [
-    { name: currentLang === 'bn' ? 'AKASHVANI KOLKATA' : 'VIVIDH BHARATI KOLKATA', url: 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio055/hlspbaudio05564kbps.m3u8' },
-    { name: 'FM GOLD KOLKATA', url: 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio056/hlspbaudio05664kbps.m3u8' },
-    { name: 'AKASHVANI MAITREE', url: 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio057/hlspbaudio05764kbps.m3u8' },
-    { name: 'RADIO MILAN (BENGALI)', url: 'https://stream.zeno.fm/f3y7x0m83yzuv' }
+    { name: 'AIR KOLKATA (FM RAINBOW)', url: 'https://zeno.fm/player/air-kolkata-fm-rainbow' },
+    { name: 'AIR KOLKATA (SANCHAYITA)', url: 'https://zeno.fm/player/air-kolkata-sanchayita' },
+    { name: 'RADIO KOLKATA', url: 'https://zeno.fm/player/radio-kolkata' },
+    { name: 'DISCOBANI KOLKATA', url: 'https://zeno.fm/player/discobani-kolkata' }
   ];
 
   const radioSrc = KOLKATA_STATIONS[selectedStation].url;
-  const isHls = radioSrc.endsWith('.m3u8');
 
-  useEffect(() => {
-    let hls;
-    const audio = audioRef.current;
-    
-    if (audio) {
-      if (isHls && Hls.isSupported()) {
-        hls = new Hls();
-        hls.loadSource(radioSrc);
-        hls.attachMedia(audio);
-      } else {
-        audio.src = radioSrc;
-      }
-    }
-    
-    return () => {
-      if (hls) {
-        hls.destroy();
-      }
-    };
-  }, [radioSrc, isHls]);
+  // HLS logic removed as we now use reliable iframes for live streaming
+
 
   const audioQueue = useRef([]);
   const globalAudio = useRef(new Audio());
@@ -258,14 +239,16 @@ const NewsCorner = () => {
               <div style={{ color: '#c00', fontSize: '0.875rem', fontWeight: 'bold', animation: 'pulse 2s infinite', marginTop: '0.2rem' }}>● ON AIR</div>
             </div>
           </div>
-          <div style={{ filter: 'sepia(50%) grayscale(20%)' }}>
-            <audio 
-              ref={audioRef}
-              controls 
-              style={{ width: '300px', height: '40px', borderRadius: '0' }}
-            >
-              Your browser does not support the audio element.
-            </audio>
+          <div style={{ filter: 'sepia(50%) grayscale(20%)', width: '300px', height: '150px', overflow: 'hidden', borderRadius: '10px', border: '1px solid #1a1a1a' }}>
+            <iframe 
+              src={radioSrc}
+              width="100%" 
+              height="150" 
+              frameBorder="0" 
+              scrolling="no"
+              allow="autoplay"
+              title="Kolkata FM Player"
+            ></iframe>
           </div>
         </div>
 
