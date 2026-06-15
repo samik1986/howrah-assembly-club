@@ -42,9 +42,9 @@ const NewsCorner = () => {
   }, [i18n.language]);
 
   const currentLang = i18n.language || 'en';
-  const radioSrc = currentLang === 'bn' 
-    ? 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio055/hlspbaudio05564kbps.m3u8' // Akashvani Kolkata
-    : 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio001/hlspbaudio00164kbps.m3u8'; // Vividh Bharati National
+  // The National Vividh Bharati stream is currently unstable, so we use the robust 
+  // Akashvani Kolkata feed (101.8 FM / FM Rainbow) for all languages as Vividh Bharati Kolkata
+  const radioSrc = 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio055/hlspbaudio05564kbps.m3u8';
   const isHls = radioSrc.endsWith('.m3u8');
 
   useEffect(() => {
@@ -240,7 +240,7 @@ const NewsCorner = () => {
             <span style={{ fontSize: '2.5rem' }}>🎙️</span>
             <div>
               <h3 style={{ margin: 0, textTransform: 'uppercase', letterSpacing: '1px', fontSize: '1.2rem' }}>
-                {currentLang === 'bn' ? 'AKASHVANI KOLKATA' : 'VIVIDH BHARATI'}
+                {currentLang === 'bn' ? 'AKASHVANI KOLKATA' : 'VIVIDH BHARATI KOLKATA'}
               </h3>
               <div style={{ color: '#c00', fontSize: '0.875rem', fontWeight: 'bold', animation: 'pulse 2s infinite' }}>● ON AIR</div>
             </div>
