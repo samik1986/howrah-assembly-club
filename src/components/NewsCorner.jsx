@@ -43,8 +43,8 @@ const NewsCorner = () => {
 
   const currentLang = i18n.language || 'en';
   const radioSrc = currentLang === 'bn' 
-    ? 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio055/hlspbaudio05564kbps.m3u8' 
-    : 'https://audio-edge-fvq45.ams.d.radiomast.io/3ccc1156-fcf8-4ba7-9a0c-28e3a465e1ae?listening-from-radio-garden=1607152226837';
+    ? 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio055/hlspbaudio05564kbps.m3u8' // Akashvani Kolkata
+    : 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio001/hlspbaudio00164kbps.m3u8'; // Vividh Bharati National
   const isHls = radioSrc.endsWith('.m3u8');
 
   useEffect(() => {
@@ -240,7 +240,7 @@ const NewsCorner = () => {
             <span style={{ fontSize: '2.5rem' }}>🎙️</span>
             <div>
               <h3 style={{ margin: 0, textTransform: 'uppercase', letterSpacing: '1px', fontSize: '1.2rem' }}>
-                {currentLang === 'bn' ? 'AKASHVANI KOLKATA' : t('Live_Radio')}
+                {currentLang === 'bn' ? 'AKASHVANI KOLKATA' : 'VIVIDH BHARATI'}
               </h3>
               <div style={{ color: '#c00', fontSize: '0.875rem', fontWeight: 'bold', animation: 'pulse 2s infinite' }}>● ON AIR</div>
             </div>
