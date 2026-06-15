@@ -293,9 +293,15 @@ const WellnessCorner = () => {
 
           </div>
 
-          {/* Club Invitation Note */}
-          <div style={{ marginTop: '4rem', padding: '1.5rem', background: '#d4edda', color: '#155724', borderRadius: '8px', border: '1px solid #c3e6cb', fontSize: '1.1rem', lineHeight: '1.5', textAlign: 'center', fontWeight: 'bold' }}>
-            Please visit our club for expert advice from professional trainers! We provide memberships for Gym, Yoga, and Free-hand exercises to be performed based on professional advice at our premises.
+          {/* Club Invitation Banner */}
+          <div style={{ marginTop: '4rem', padding: '3rem 2rem', background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', color: 'white', borderRadius: '16px', boxShadow: '0 10px 25px rgba(16,185,129,0.3)', textAlign: 'center' }}>
+            <h3 style={{ fontSize: '2.2rem', marginBottom: '1rem', color: 'white', fontWeight: 'bold' }}>Take Your Wellness to the Next Level!</h3>
+            <p style={{ fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '2rem', opacity: 0.9, maxWidth: '800px', margin: '0 auto 2rem auto' }}>
+              Please visit our club for expert advice from professional trainers. We provide premium memberships for Gym, Yoga, and Free-hand exercises to be performed under professional supervision right here at our premises!
+            </p>
+            <a href="#/contact" className="btn" style={{ background: 'white', color: '#059669', fontSize: '1.2rem', padding: '1rem 3rem', textDecoration: 'none', display: 'inline-block', fontWeight: 'bold', borderRadius: '50px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+              {t('Contact_Us') || "Become a Member"}
+            </a>
           </div>
 
           {/* Disclaimer */}
