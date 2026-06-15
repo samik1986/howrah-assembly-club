@@ -68,10 +68,54 @@ const NewsCorner = () => {
     };
   }, [radioSrc, isHls]);
 
+  const audioQueue = useRef([]);
+  const currentAudio = useRef(null);
+
   const stopNews = () => {
     window.speechSynthesis.cancel();
+    if (currentAudio.current) {
+      currentAudio.current.pause();
+      currentAudio.current = null;
+    }
+    audioQueue.current = [];
     setIsPlaying(false);
     setTranscript("");
+  };
+
+  const playCloudTTS = (text, lang) => {
+    // Google Translate TTS is limited to 200 chars. We chunk by sentences.
+    const chunks = text.match(/[^.!?।]+[.!?।]+/g) || [text];
+    
+    audioQueue.current = [];
+    for (let chunk of chunks) {
+      chunk = chunk.trim();
+      if (!chunk) continue;
+      // encode URI
+      const url = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&client=tw-ob&q=${encodeURIComponent(chunk)}`;
+      audioQueue.current.push(url);
+    }
+
+    const playNext = () => {
+      if (audioQueue.current.length === 0) {
+        setIsPlaying(false);
+        return;
+      }
+      const nextUrl = audioQueue.current.shift();
+      const audio = new Audio(nextUrl);
+      currentAudio.current = audio;
+      audio.onended = playNext;
+      audio.onerror = (e) => {
+        console.error("Cloud TTS Audio playback failed", e);
+        playNext();
+      };
+      audio.play().catch(e => {
+        console.error("Audio play blocked", e);
+        setIsPlaying(false);
+      });
+    };
+
+    setIsPlaying(true);
+    playNext();
   };
 
   const generateAndPlayNews = async () => {
@@ -114,25 +158,31 @@ const NewsCorner = () => {
 
       setTranscript(script);
 
-      const utterance = new SpeechSynthesisUtterance(script);
-      utterance.lang = voiceLang;
-      utterance.rate = 0.95;
-      
-      utterance.onend = () => {
-        setIsPlaying(false);
-      };
-      
-      utterance.onerror = (e) => {
-        console.error("SpeechSynthesis error:", e);
-        setIsPlaying(false);
-        if (e.error !== 'interrupted') {
-           alert("Your device OS does not support Text-to-Speech for this language. Please read the Live Transcript below instead!");
-        }
-      };
-      
-      window.speechSynthesis.cancel();
-      window.speechSynthesis.speak(utterance);
-      setIsPlaying(true);
+      // Use Cloud TTS for regional languages
+      if (currentLang === 'bn' || currentLang === 'hi') {
+         playCloudTTS(script, currentLang);
+      } else {
+         // Use native device TTS for English
+         const utterance = new SpeechSynthesisUtterance(script);
+         utterance.lang = voiceLang;
+         utterance.rate = 0.95;
+         
+         utterance.onend = () => {
+           setIsPlaying(false);
+         };
+         
+         utterance.onerror = (e) => {
+           console.error("SpeechSynthesis error:", e);
+           setIsPlaying(false);
+           if (e.error !== 'interrupted') {
+              alert("Your device OS does not support Text-to-Speech for this language. Please read the Live Transcript below instead!");
+           }
+         };
+         
+         window.speechSynthesis.cancel();
+         window.speechSynthesis.speak(utterance);
+         setIsPlaying(true);
+      }
       
     } catch (error) {
       console.error("Error generating AI news:", error);
