@@ -131,7 +131,7 @@ const NewsCorner = () => {
       }
 
       const today = new Date().toLocaleDateString('en-CA');
-      const cacheKey = `ai_news_script_${currentLang}_${today}_v2`;
+      const cacheKey = `ai_news_script_${currentLang}_${today}_v3`;
       let script = localStorage.getItem(cacheKey);
 
       // If we accidentally cached the error message previously, ignore it
@@ -141,7 +141,7 @@ const NewsCorner = () => {
 
       if (!script) {
         // Fetch from Vercel Serverless Function, appending a version string to bust any bad Vercel CDN caches
-        const res = await fetch(`/api/get-news-script?lang=${currentLang}&v=2`);
+        const res = await fetch(`/api/get-news-script?lang=${currentLang}&v=3`);
         if (!res.ok) throw new Error('Failed to fetch from server API');
         
         const data = await res.json();
