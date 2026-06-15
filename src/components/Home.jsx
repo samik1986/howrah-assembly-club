@@ -12,6 +12,7 @@ const Home = () => {
     { title: t('Gallery'), path: '/gallery', icon: '📸', desc: t('Gallery_Desc') },
     { title: t('Kids_Corner'), path: '/kids-corner', icon: '🧩', desc: t('Daily_Game_Desc') },
     { title: t('Wellness_Corner'), path: '/wellness', icon: '💪', desc: t('Wellness_Desc') },
+    { title: t('News_Corner'), path: '/news-corner', icon: '📰', desc: t('News_Desc') },
     { title: t('Contact'), path: '/contact', icon: '📞', desc: t('Contact_Desc') }
   ];
 
