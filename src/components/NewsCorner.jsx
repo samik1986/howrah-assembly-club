@@ -41,10 +41,17 @@ const NewsCorner = () => {
     fetchNews();
   }, [i18n.language]);
 
+  const [selectedStation, setSelectedStation] = useState(0);
   const currentLang = i18n.language || 'en';
-  // The National Vividh Bharati stream is currently unstable, so we use the robust 
-  // Akashvani Kolkata feed (101.8 FM / FM Rainbow) for all languages as Vividh Bharati Kolkata
-  const radioSrc = 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio055/hlspbaudio05564kbps.m3u8';
+  
+  const KOLKATA_STATIONS = [
+    { name: currentLang === 'bn' ? 'AKASHVANI KOLKATA' : 'VIVIDH BHARATI KOLKATA', url: 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio055/hlspbaudio05564kbps.m3u8' },
+    { name: 'FM GOLD KOLKATA', url: 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio056/hlspbaudio05664kbps.m3u8' },
+    { name: 'AKASHVANI MAITREE', url: 'https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio057/hlspbaudio05764kbps.m3u8' },
+    { name: 'RADIO MILAN (BENGALI)', url: 'https://stream.zeno.fm/f3y7x0m83yzuv' }
+  ];
+
+  const radioSrc = KOLKATA_STATIONS[selectedStation].url;
   const isHls = radioSrc.endsWith('.m3u8');
 
   useEffect(() => {
@@ -239,10 +246,16 @@ const NewsCorner = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <span style={{ fontSize: '2.5rem' }}>🎙️</span>
             <div>
-              <h3 style={{ margin: 0, textTransform: 'uppercase', letterSpacing: '1px', fontSize: '1.2rem' }}>
-                {currentLang === 'bn' ? 'AKASHVANI KOLKATA' : 'VIVIDH BHARATI KOLKATA'}
-              </h3>
-              <div style={{ color: '#c00', fontSize: '0.875rem', fontWeight: 'bold', animation: 'pulse 2s infinite' }}>● ON AIR</div>
+              <select 
+                value={selectedStation} 
+                onChange={(e) => setSelectedStation(Number(e.target.value))}
+                style={{ margin: 0, textTransform: 'uppercase', letterSpacing: '1px', fontSize: '1.2rem', background: 'transparent', border: '1px solid #1a1a1a', padding: '0.2rem', fontFamily: '"Georgia", serif', fontWeight: 'bold', cursor: 'pointer' }}
+              >
+                {KOLKATA_STATIONS.map((station, idx) => (
+                  <option key={idx} value={idx}>{station.name}</option>
+                ))}
+              </select>
+              <div style={{ color: '#c00', fontSize: '0.875rem', fontWeight: 'bold', animation: 'pulse 2s infinite', marginTop: '0.2rem' }}>● ON AIR</div>
             </div>
           </div>
           <div style={{ filter: 'sepia(50%) grayscale(20%)' }}>
