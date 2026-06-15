@@ -83,8 +83,21 @@ const NewsCorner = () => {
   };
 
   const playCloudTTS = (text, lang) => {
-    // Google Translate TTS is limited to 200 chars. We chunk by sentences.
-    const chunks = text.match(/[^.!?।]+[.!?।]+/g) || [text];
+    // Google TTS has a strict 200 byte limit. Bengali/Hindi chars use 3 bytes each.
+    // We must aggressively chunk by words to ~50 characters maximum.
+    const words = text.split(/\s+/);
+    const chunks = [];
+    let currentChunk = "";
+    
+    for (let word of words) {
+      if ((currentChunk.length + word.length + 1) <= 50) {
+        currentChunk += (currentChunk ? " " : "") + word;
+      } else {
+        if (currentChunk) chunks.push(currentChunk);
+        currentChunk = word;
+      }
+    }
+    if (currentChunk) chunks.push(currentChunk);
     
     audioQueue.current = [];
     for (let chunk of chunks) {
