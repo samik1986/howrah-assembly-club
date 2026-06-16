@@ -6,134 +6,134 @@ import WellnessChatbot from './WellnessChatbot';
 const ROUTINES = [
   { // Sunday
     muscle: [
-      { name: "Light Stretching", reps: "15 mins", weight: "Bodyweight", image: "/assets/wellness/stretch.gif" },
-      { name: "Yoga Flow", reps: "10 mins", weight: "Bodyweight", image: "/assets/wellness/yoga.gif" }
+      { name: "Light Stretching", reps: "15 mins", weight: "Bodyweight", image: "/assets/gymvisual_gifs/3_leg_chatarunga_pose_female.gif" },
+      { name: "Yoga Flow", reps: "10 mins", weight: "Bodyweight", image: "/assets/gymvisual_gifs/3_leg_chatarunga_pose_female.gif" }
     ],
     yoga: [
-      { name: "Gentle Stretching", duration: "15 mins", image: "/assets/wellness/y_stretch.gif" },
-      { name: "Savasana (Meditation)", duration: "15 mins", image: "/assets/wellness/savasana.gif" }
+      { name: "Gentle Stretching", duration: "15 mins", image: "/assets/gymvisual_gifs/1_to_2_jump_box_male.gif" },
+      { name: "Savasana (Meditation)", duration: "15 mins", image: "/assets/gymvisual_gifs/4_way_single_leg_hop_version_2_male.gif" }
     ],
     hiit: [
-      { name: "Light Jogging in Place", reps: "5 mins", image: "/assets/wellness/h_jog.gif" },
-      { name: "Active Recovery", reps: "25 mins", image: "/assets/wellness/h_rest.gif" }
+      { name: "Light Jogging in Place", reps: "5 mins", image: "/assets/gymvisual_gifs/45_degree_twisting_hyperextension.gif" },
+      { name: "Active Recovery", reps: "25 mins", image: "/assets/gymvisual_gifs/45_degree_hyperextension_arms_in_front_of_chest.gif" }
     ]
   },
   { // Monday
     muscle: [
-      { name: "Push-ups", reps: "3 sets of 15", weight: "Bodyweight", image: "/assets/wellness/pushup.gif" },
-      { name: "Dumbbell Bench Press", reps: "3 sets of 12", weight: "Moderate", image: "/assets/wellness/benchpress.gif" },
-      { name: "Tricep Dips", reps: "3 sets of 15", weight: "Bodyweight", image: "/assets/wellness/dips.gif" },
-      { name: "Overhead Tricep Extension", reps: "3 sets of 12", weight: "Light", image: "/assets/wellness/tricep.gif" }
+      { name: "Push-ups", reps: "3 sets of 15", weight: "Bodyweight", image: "/assets/gymvisual_gifs/3_leg_dog_pose_female.gif" },
+      { name: "Dumbbell Bench Press", reps: "3 sets of 12", weight: "Moderate", image: "/assets/gymvisual_gifs/45_degree_twisting_hyperextension.gif" },
+      { name: "Tricep Dips", reps: "3 sets of 15", weight: "Bodyweight", image: "/assets/gymvisual_gifs/45_degree_hyperextension_arms_in_front_of_chest_male.gif" },
+      { name: "Overhead Tricep Extension", reps: "3 sets of 12", weight: "Light", image: "/assets/gymvisual_gifs/1_2_stick_drill_male.gif" }
     ],
     yoga: [
-      { name: "Sun Salutation", duration: "5 mins", image: "/assets/wellness/y_sun.gif" },
-      { name: "Downward Dog", duration: "3 mins", image: "/assets/wellness/y_downward.gif" },
-      { name: "Warrior I & II", duration: "5 mins per side", image: "/assets/wellness/y_warrior.gif" },
-      { name: "Tree Pose", duration: "2 mins per side", image: "/assets/wellness/y_tree.gif" }
+      { name: "Sun Salutation", duration: "5 mins", image: "/assets/gymvisual_gifs/45_degree_one_leg_hyperextension_arms_in_front_of_chest.gif" },
+      { name: "Downward Dog", duration: "3 mins", image: "/assets/gymvisual_gifs/3_4_sit_up.gif" },
+      { name: "Warrior I & II", duration: "5 mins per side", image: "/assets/gymvisual_gifs/45_degree_hip_extension_glute_focused_female.gif" },
+      { name: "Tree Pose", duration: "2 mins per side", image: "/assets/gymvisual_gifs/1_to_2_jump_box_male.gif" }
     ],
     hiit: [
-      { name: "Jumping Jacks", reps: "45 seconds", image: "/assets/wellness/h_jacks.gif" },
-      { name: "Burpees", reps: "45 seconds", image: "/assets/wellness/h_burpees.gif" },
-      { name: "Mountain Climbers", reps: "45 seconds", image: "/assets/wellness/h_mountain.gif" },
-      { name: "High Knees", reps: "45 seconds", image: "/assets/wellness/h_highknees.gif" }
+      { name: "Jumping Jacks", reps: "45 seconds", image: "/assets/gymvisual_gifs/1_2_stick_drill_male.gif" },
+      { name: "Burpees", reps: "45 seconds", image: "/assets/gymvisual_gifs/123_back_drill_male.gif" },
+      { name: "Mountain Climbers", reps: "45 seconds", image: "/assets/gymvisual_gifs/45_degree_one_leg_hyperextension_arms_in_front_of_chest.gif" },
+      { name: "High Knees", reps: "45 seconds", image: "/assets/gymvisual_gifs/3_leg_dog_pose_female.gif" }
     ]
   },
   { // Tuesday
     muscle: [
-      { name: "Dumbbell Rows", reps: "3 sets of 12", weight: "Moderate", image: "/assets/wellness/rows.gif" },
-      { name: "Pull-ups", reps: "3 sets of 10", weight: "Bodyweight", image: "/assets/wellness/pullups.gif" },
-      { name: "Dumbbell Bicep Curls", reps: "3 sets of 15", weight: "Light", image: "/assets/wellness/curls.gif" },
-      { name: "Hammer Curls", reps: "3 sets of 12", weight: "Light", image: "/assets/wellness/hammer.gif" }
+      { name: "Dumbbell Rows", reps: "3 sets of 12", weight: "Moderate", image: "/assets/gymvisual_gifs/1_2_stick_drill_male.gif" },
+      { name: "Pull-ups", reps: "3 sets of 10", weight: "Bodyweight", image: "/assets/gymvisual_gifs/3_leg_chatarunga_pose_female.gif" },
+      { name: "Dumbbell Bicep Curls", reps: "3 sets of 15", weight: "Light", image: "/assets/gymvisual_gifs/1_to_2_jump_box_male.gif" },
+      { name: "Hammer Curls", reps: "3 sets of 12", weight: "Light", image: "/assets/gymvisual_gifs/45_degree_bycicle_twisting_crunch.gif" }
     ],
     yoga: [
-      { name: "Cat-Cow Stretch", duration: "3 mins", image: "/assets/wellness/y_catcow.gif" },
-      { name: "Child's Pose", duration: "5 mins", image: "/assets/wellness/y_child.gif" },
-      { name: "Cobra Pose", duration: "3 mins", image: "/assets/wellness/y_cobra.gif" },
-      { name: "Seated Forward Bend", duration: "5 mins", image: "/assets/wellness/y_seated.gif" }
+      { name: "Cat-Cow Stretch", duration: "3 mins", image: "/assets/gymvisual_gifs/45_degree_bycicle_twisting_crunch_male.gif" },
+      { name: "Child's Pose", duration: "5 mins", image: "/assets/gymvisual_gifs/3_leg_chatarunga_pose_female.gif" },
+      { name: "Cobra Pose", duration: "3 mins", image: "/assets/gymvisual_gifs/45_degree_bycicle_twisting_crunch.gif" },
+      { name: "Seated Forward Bend", duration: "5 mins", image: "/assets/gymvisual_gifs/1_2_stick_drill_male.gif" }
     ],
     hiit: [
-      { name: "Jump Squats", reps: "45 seconds", image: "/assets/wellness/h_jumpsquat.gif" },
-      { name: "Skaters", reps: "45 seconds", image: "/assets/wellness/h_skaters.gif" },
-      { name: "Plank Jacks", reps: "45 seconds", image: "/assets/wellness/h_plankjacks.gif" },
-      { name: "Butt Kicks", reps: "45 seconds", image: "/assets/wellness/h_buttkicks.gif" }
+      { name: "Jump Squats", reps: "45 seconds", image: "/assets/gymvisual_gifs/3_leg_chatarunga_pose_female.gif" },
+      { name: "Skaters", reps: "45 seconds", image: "/assets/gymvisual_gifs/1_to_2_jump_box_male.gif" },
+      { name: "Plank Jacks", reps: "45 seconds", image: "/assets/gymvisual_gifs/4_way_single_leg_hop_male.gif" },
+      { name: "Butt Kicks", reps: "45 seconds", image: "/assets/gymvisual_gifs/123_back_drill_male.gif" }
     ]
   },
   { // Wednesday
     muscle: [
-      { name: "Goblet Squats", reps: "4 sets of 12", weight: "Moderate", image: "/assets/wellness/squat.gif" },
-      { name: "Lunges", reps: "3 sets of 12 per leg", weight: "Light", image: "/assets/wellness/lunge.gif" },
-      { name: "Glute Bridges", reps: "3 sets of 15", weight: "Bodyweight", image: "/assets/wellness/bridge.gif" },
-      { name: "Plank", reps: "3 sets of 60 seconds", weight: "Bodyweight", image: "/assets/wellness/plank.gif" }
+      { name: "Goblet Squats", reps: "4 sets of 12", weight: "Moderate", image: "/assets/gymvisual_gifs/45_degree_hip_extension_glute_focused_version_2_female.gif" },
+      { name: "Lunges", reps: "3 sets of 12 per leg", weight: "Light", image: "/assets/gymvisual_gifs/3_4_sit_up.gif" },
+      { name: "Glute Bridges", reps: "3 sets of 15", weight: "Bodyweight", image: "/assets/gymvisual_gifs/45_degree_one_leg_hyperextension_arms_in_front_of_chest.gif" },
+      { name: "Plank", reps: "3 sets of 60 seconds", weight: "Bodyweight", image: "/assets/gymvisual_gifs/3_leg_dog_pose_female.gif" }
     ],
     yoga: [
-      { name: "Triangle Pose", duration: "3 mins per side", image: "/assets/wellness/y_triangle.gif" },
-      { name: "Bridge Pose", duration: "4 mins", image: "/assets/wellness/y_bridge.gif" },
-      { name: "Pigeon Pose", duration: "4 mins per side", image: "/assets/wellness/y_pigeon.gif" },
-      { name: "Corpse Pose (Savasana)", duration: "10 mins", image: "/assets/wellness/savasana.gif" }
+      { name: "Triangle Pose", duration: "3 mins per side", image: "/assets/gymvisual_gifs/2_to_1_jump_box_male.gif" },
+      { name: "Bridge Pose", duration: "4 mins", image: "/assets/gymvisual_gifs/1_to_2_jump_box_male.gif" },
+      { name: "Pigeon Pose", duration: "4 mins per side", image: "/assets/gymvisual_gifs/123_back_drill_male.gif" },
+      { name: "Corpse Pose (Savasana)", duration: "10 mins", image: "/assets/gymvisual_gifs/123_back_drill_male.gif" }
     ],
     hiit: [
-      { name: "Tuck Jumps", reps: "45 seconds", image: "/assets/wellness/h_tuck.gif" },
-      { name: "Lunge Jumps", reps: "45 seconds", image: "/assets/wellness/h_lungejump.gif" },
-      { name: "Bicycle Crunches", reps: "45 seconds", image: "/assets/wellness/h_bicycle.gif" },
-      { name: "Russian Twists", reps: "45 seconds", image: "/assets/wellness/h_twist.gif" }
+      { name: "Tuck Jumps", reps: "45 seconds", image: "/assets/gymvisual_gifs/4_way_single_leg_hop_version_2_male.gif" },
+      { name: "Lunge Jumps", reps: "45 seconds", image: "/assets/gymvisual_gifs/45_degree_hyperextension_arms_in_front_of_chest_side_pov.gif" },
+      { name: "Bicycle Crunches", reps: "45 seconds", image: "/assets/gymvisual_gifs/45_degree_hyperextension_arms_in_front_of_chest_side_pov.gif" },
+      { name: "Russian Twists", reps: "45 seconds", image: "/assets/gymvisual_gifs/45_degree_one_leg_hyperextension_arms_in_front_of_chest.gif" }
     ]
   },
   { // Thursday
     muscle: [
-      { name: "Overhead Press", reps: "3 sets of 12", weight: "Moderate", image: "/assets/wellness/press.gif" },
-      { name: "Lateral Raises", reps: "3 sets of 15", weight: "Light", image: "/assets/wellness/lateral.gif" },
-      { name: "Front Raises", reps: "3 sets of 12", weight: "Light", image: "/assets/wellness/front.gif" },
-      { name: "Bicycle Crunches", reps: "3 sets of 20", weight: "Bodyweight", image: "/assets/wellness/bicycle.gif" }
+      { name: "Overhead Press", reps: "3 sets of 12", weight: "Moderate", image: "/assets/gymvisual_gifs/45_degree_hip_extension_glute_focused_version_2_female.gif" },
+      { name: "Lateral Raises", reps: "3 sets of 15", weight: "Light", image: "/assets/gymvisual_gifs/45_degree_bycicle_twisting_crunch.gif" },
+      { name: "Front Raises", reps: "3 sets of 12", weight: "Light", image: "/assets/gymvisual_gifs/2_to_1_jump_box_male.gif" },
+      { name: "Bicycle Crunches", reps: "3 sets of 20", weight: "Bodyweight", image: "/assets/gymvisual_gifs/3_4_sit_up.gif" }
     ],
     yoga: [
-      { name: "Mountain Pose", duration: "2 mins", image: "/assets/wellness/y_mountain.gif" },
-      { name: "Chair Pose", duration: "3 mins", image: "/assets/wellness/y_chair.gif" },
-      { name: "Eagle Pose", duration: "3 mins per side", image: "/assets/wellness/y_eagle.gif" },
-      { name: "Boat Pose", duration: "4 mins", image: "/assets/wellness/y_boat.gif" }
+      { name: "Mountain Pose", duration: "2 mins", image: "/assets/gymvisual_gifs/1_to_2_jump_box_male.gif" },
+      { name: "Chair Pose", duration: "3 mins", image: "/assets/gymvisual_gifs/2_to_1_jump_box_male.gif" },
+      { name: "Eagle Pose", duration: "3 mins per side", image: "/assets/gymvisual_gifs/45_degree_hip_extension_glute_focused_female.gif" },
+      { name: "Boat Pose", duration: "4 mins", image: "/assets/gymvisual_gifs/3_leg_dog_pose_female.gif" }
     ],
     hiit: [
-      { name: "Jumping Jacks", reps: "45 seconds", image: "/assets/wellness/h_jacks.gif" },
-      { name: "Burpees", reps: "45 seconds", image: "/assets/wellness/h_burpees.gif" },
-      { name: "Push-ups", reps: "45 seconds", image: "/assets/wellness/h_pushup.gif" },
-      { name: "Core Plank", reps: "45 seconds", image: "/assets/wellness/h_plank.gif" }
+      { name: "Jumping Jacks", reps: "45 seconds", image: "/assets/gymvisual_gifs/45_degree_hyperextension_arms_in_front_of_chest_male.gif" },
+      { name: "Burpees", reps: "45 seconds", image: "/assets/gymvisual_gifs/3_leg_dog_pose_female.gif" },
+      { name: "Push-ups", reps: "45 seconds", image: "/assets/gymvisual_gifs/2_to_1_jump_box_male.gif" },
+      { name: "Core Plank", reps: "45 seconds", image: "/assets/gymvisual_gifs/45_degree_bycicle_twisting_crunch.gif" }
     ]
   },
   { // Friday
     muscle: [
-      { name: "Dumbbell Deadlifts", reps: "3 sets of 10", weight: "Moderate", image: "/assets/wellness/deadlift.gif" },
-      { name: "Thrusters", reps: "3 sets of 12", weight: "Light", image: "/assets/wellness/thruster.gif" },
-      { name: "Renegade Rows", reps: "3 sets of 10 per arm", weight: "Moderate", image: "/assets/wellness/renegade.gif" }
+      { name: "Dumbbell Deadlifts", reps: "3 sets of 10", weight: "Moderate", image: "/assets/gymvisual_gifs/45_degree_bycicle_twisting_crunch.gif" },
+      { name: "Thrusters", reps: "3 sets of 12", weight: "Light", image: "/assets/gymvisual_gifs/45_degree_bycicle_twisting_crunch.gif" },
+      { name: "Renegade Rows", reps: "3 sets of 10 per arm", weight: "Moderate", image: "/assets/gymvisual_gifs/4_way_single_leg_hop_version_2_male.gif" }
     ],
     yoga: [
-      { name: "Camel Pose", duration: "3 mins", image: "/assets/wellness/y_camel.gif" },
-      { name: "Bow Pose", duration: "3 mins", image: "/assets/wellness/y_bow.gif" },
-      { name: "Locust Pose", duration: "4 mins", image: "/assets/wellness/y_locust.gif" },
-      { name: "Fish Pose", duration: "3 mins", image: "/assets/wellness/y_fish.gif" }
+      { name: "Camel Pose", duration: "3 mins", image: "/assets/gymvisual_gifs/45_degree_hyperextension_arms_in_front_of_chest_side_pov.gif" },
+      { name: "Bow Pose", duration: "3 mins", image: "/assets/gymvisual_gifs/kneeling_back_rotation_stretch_female.gif" },
+      { name: "Locust Pose", duration: "4 mins", image: "/assets/gymvisual_gifs/45_degree_hyperextension_arms_in_front_of_chest.gif" },
+      { name: "Fish Pose", duration: "3 mins", image: "/assets/gymvisual_gifs/kneeling_back_rotation_stretch_female.gif" }
     ],
     hiit: [
-      { name: "Mountain Climbers", reps: "45 seconds", image: "/assets/wellness/h_mountain.gif" },
-      { name: "High Knees", reps: "45 seconds", image: "/assets/wellness/h_highknees.gif" },
-      { name: "Skaters", reps: "45 seconds", image: "/assets/wellness/h_skaters.gif" },
-      { name: "Jump Squats", reps: "45 seconds", image: "/assets/wellness/h_jumpsquat.gif" }
+      { name: "Mountain Climbers", reps: "45 seconds", image: "/assets/gymvisual_gifs/1_2_stick_drill_male.gif" },
+      { name: "High Knees", reps: "45 seconds", image: "/assets/gymvisual_gifs/45_degree_twisting_hyperextension.gif" },
+      { name: "Skaters", reps: "45 seconds", image: "/assets/gymvisual_gifs/45_degree_one_leg_hyperextension_arms_in_front_of_chest.gif" },
+      { name: "Jump Squats", reps: "45 seconds", image: "/assets/gymvisual_gifs/45_degree_hyperextension_arms_in_front_of_chest_side_pov.gif" }
     ]
   },
   { // Saturday
     muscle: [
-      { name: "Bird-Dog", reps: "3 sets of 10 per side", weight: "Bodyweight", image: "/assets/wellness/birddog.gif" },
-      { name: "Dead Bug", reps: "3 sets of 12", weight: "Bodyweight", image: "/assets/wellness/deadbug.gif" },
-      { name: "Russian Twists", reps: "3 sets of 20", weight: "Light", image: "/assets/wellness/twist.gif" }
+      { name: "Bird-Dog", reps: "3 sets of 10 per side", weight: "Bodyweight", image: "/assets/gymvisual_gifs/45_degree_hyperextension_arms_in_front_of_chest.gif" },
+      { name: "Dead Bug", reps: "3 sets of 12", weight: "Bodyweight", image: "/assets/gymvisual_gifs/4_way_single_leg_hop_version_2_male.gif" },
+      { name: "Russian Twists", reps: "3 sets of 20", weight: "Light", image: "/assets/gymvisual_gifs/45_degree_bycicle_twisting_crunch.gif" }
     ],
     yoga: [
-      { name: "Half Moon Pose", duration: "3 mins per side", image: "/assets/wellness/y_halfmoon.gif" },
-      { name: "Extended Side Angle", duration: "3 mins per side", image: "/assets/wellness/y_sideangle.gif" },
-      { name: "Upward Facing Dog", duration: "3 mins", image: "/assets/wellness/y_upward.gif" },
-      { name: "Child's Pose", duration: "5 mins", image: "/assets/wellness/y_child.gif" }
+      { name: "Half Moon Pose", duration: "3 mins per side", image: "/assets/gymvisual_gifs/2_to_1_jump_box_male.gif" },
+      { name: "Extended Side Angle", duration: "3 mins per side", image: "/assets/gymvisual_gifs/4_way_single_leg_hop_male.gif" },
+      { name: "Upward Facing Dog", duration: "3 mins", image: "/assets/gymvisual_gifs/2_to_1_jump_box_male.gif" },
+      { name: "Child's Pose", duration: "5 mins", image: "/assets/gymvisual_gifs/4_way_single_leg_hop_male.gif" }
     ],
     hiit: [
-      { name: "Broad Jumps", reps: "45 seconds", image: "/assets/wellness/h_broad.gif" },
-      { name: "Bear Crawls", reps: "45 seconds", image: "/assets/wellness/h_bear.gif" },
-      { name: "Inchworms", reps: "45 seconds", image: "/assets/wellness/h_inchworm.gif" },
-      { name: "Fast Feet", reps: "45 seconds", image: "/assets/wellness/h_fastfeet.gif" }
+      { name: "Broad Jumps", reps: "45 seconds", image: "/assets/gymvisual_gifs/3_leg_chatarunga_pose_female.gif" },
+      { name: "Bear Crawls", reps: "45 seconds", image: "/assets/gymvisual_gifs/1_to_2_jump_box_male.gif" },
+      { name: "Inchworms", reps: "45 seconds", image: "/assets/gymvisual_gifs/45_degree_bycicle_twisting_crunch_male.gif" },
+      { name: "Fast Feet", reps: "45 seconds", image: "/assets/gymvisual_gifs/45_degree_bycicle_twisting_crunch_male.gif" }
     ]
   }
 ];
