@@ -275,18 +275,23 @@ header.scrolled {
   font-size: 4.5rem;
   letter-spacing: -1.5px;
   margin-bottom: 1.5rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
 }
 
 .hero h1 span {
-  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: none;
 }
 
 .hero p {
   font-size: 1.25rem;
   margin-bottom: 2.5rem;
   max-width: 600px;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
 }
 
 .hero-buttons {
