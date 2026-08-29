@@ -10,20 +10,40 @@ const Home = () => {
     <>
       <Hero />
       <section className="section container animate-fade-in" style={{ padding: '4rem 2rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', alignItems: 'center', marginBottom: '4rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', alignItems: 'start', marginBottom: '4rem' }}>
           <div>
             <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--primary)' }}>About Howrah Assembly Club</h2>
-            <p style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
+            <p style={{ fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '2rem' }}>
               A beacon of culture, heritage, and social harmony in the heart of Howrah. For decades, our club has been at the forefront of community engagement, bringing people together through sports, cultural events, and philanthropic activities.
             </p>
           </div>
-          <div style={{ textAlign: 'center' }}>
-            <img 
-              src="/assets/media/History.jpeg" 
-              alt="History of Howrah Assembly Club" 
-              style={{ width: '100%', maxWidth: '500px', borderRadius: '12px', boxShadow: 'var(--shadow-lg)' }} 
-              loading="lazy"
-            />
+          
+          <div className="history-timeline" style={{ background: 'var(--surface)', padding: '2rem', borderRadius: '12px', boxShadow: 'var(--shadow-md)' }}>
+            <h3 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--primary)', borderBottom: '2px solid var(--primary-light)', paddingBottom: '0.5rem' }}>Our Historic Milestones</h3>
+            
+            <div style={{ marginBottom: '1.5rem', borderLeft: '3px solid var(--primary)', paddingLeft: '1rem' }}>
+              <h4 style={{ fontSize: '1.2rem', color: 'var(--text-main)', marginBottom: '0.5rem' }}>1934 - Journey to Shantiniketan</h4>
+              <p style={{ fontSize: '0.95rem', lineHeight: '1.6', color: 'var(--text-muted)' }}>
+                On Good Friday, 21 members of Howrah Assembly went to Shantiniketan by Cycle. Rabindranath Tagore gave the following blessing:
+              </p>
+              <blockquote style={{ fontStyle: 'italic', background: 'var(--bg-main)', padding: '0.8rem', borderRadius: '8px', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                "I am pleased with the adventurous spirit of young members of Howrah Wheelers, who are touring over our motherland enduring hardship and privations."
+              </blockquote>
+            </div>
+
+            <div style={{ marginBottom: '1.5rem', borderLeft: '3px solid var(--primary)', paddingLeft: '1rem' }}>
+              <h4 style={{ fontSize: '1.2rem', color: 'var(--text-main)', marginBottom: '0.5rem' }}>1939 - The Mahajati Sadan</h4>
+              <p style={{ fontSize: '0.95rem', lineHeight: '1.6', color: 'var(--text-muted)' }}>
+                It is said that the freedom fighter Subhas Chandra Bose had asked Rabindranath Tagore to build a theatre, and Tagore responded by laying the foundation stone of the Mahajati Sadan on 10th August 1939 in presence of the Howrah Assembly Band team.
+              </p>
+            </div>
+
+            <div style={{ borderLeft: '3px solid var(--primary)', paddingLeft: '1rem' }}>
+              <h4 style={{ fontSize: '1.2rem', color: 'var(--text-main)', marginBottom: '0.5rem' }}>1999 - A New Building</h4>
+              <p style={{ fontSize: '0.95rem', lineHeight: '1.6', color: 'var(--text-muted)' }}>
+                Principal of Ramkrishna Mission B.T. College, Swami Sanatanananda (Shisher Maharaj) opened the newly constructed Howrah Assembly club Building on 18th July 1999, by installing The Three Portraits of Ramkrishnadev, Ma Sarada & Swami Vivekananda.
+              </p>
+            </div>
           </div>
         </div>
 
