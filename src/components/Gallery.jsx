@@ -3,31 +3,44 @@ import React, { useState, useRef } from 'react';
 const HoverVideo = ({ url }) => {
   const videoRef = useRef(null);
   const playPromiseRef = useRef(null);
-  
+  const isHoveredRef = useRef(false);
+
+  const handleMouseEnter = () => {
+    isHoveredRef.current = true;
+    if (videoRef.current) {
+      const promise = videoRef.current.play();
+      if (promise !== undefined) {
+        playPromiseRef.current = promise;
+        promise.catch(error => {
+          // Play prevented (usually due to lack of user interaction or rapid mouseout)
+        });
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    isHoveredRef.current = false;
+    if (videoRef.current) {
+      if (playPromiseRef.current !== undefined && playPromiseRef.current !== null) {
+        playPromiseRef.current.then(() => {
+          // Only pause if we are STILL not hovered
+          if (!isHoveredRef.current && videoRef.current) {
+            videoRef.current.pause();
+          }
+        }).catch(() => {
+          // Promise was rejected, no need to pause since it never played
+        });
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  };
+
   return (
     <div 
       style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, cursor: 'pointer' }}
-      onMouseEnter={() => {
-        if (videoRef.current) {
-          playPromiseRef.current = videoRef.current.play();
-          if (playPromiseRef.current !== undefined && playPromiseRef.current !== null) {
-            playPromiseRef.current.catch(e => console.log('Video play prevented:', e));
-          }
-        }
-      }}
-      onMouseLeave={() => {
-        if (videoRef.current) {
-          if (playPromiseRef.current !== undefined && playPromiseRef.current !== null) {
-            playPromiseRef.current.then(() => {
-              videoRef.current.pause();
-            }).catch(e => {
-              // Ignore play error
-            });
-          } else {
-            videoRef.current.pause();
-          }
-        }
-      }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <video 
         ref={videoRef}
