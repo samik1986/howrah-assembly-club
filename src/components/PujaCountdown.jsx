@@ -50,8 +50,7 @@ const PujaCountdown = () => {
 
   // Find the next upcoming event
   const upcomingEvents = PUJA_EVENTS.filter(event => new Date(event.date) > now);
-  // If Mahalaya is playing, the "next" event should technically be Sasti, so we don't show Mahalaya timer.
-  const nextEvent = isMahalayaPlaying ? (upcomingEvents.length > 1 ? upcomingEvents[1] : null) : (upcomingEvents.length > 0 ? upcomingEvents[0] : null);
+  const nextEvent = upcomingEvents.length > 0 ? upcomingEvents[0] : null;
   const nextTimeLeft = nextEvent ? calculateTimeLeft(nextEvent.date) : null;
   
   // Format for double digits
@@ -93,21 +92,8 @@ const PujaCountdown = () => {
         }
       `}</style>
       <h3 className="countdown-title">Durga Puja 2026</h3>
-      
-      {isMahalayaPlaying ? (
-        <div className="next-event-highlight">
-          <h4 className="flashing-text">Subho Mahalaya</h4>
-          <p>Awaken the Goddess!</p>
-          <a 
-            href="https://www.youtube.com/watch?v=S01Zf1fK0lA" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="flashing-btn"
-          >
-            ▶ Listen to Mahalaya
-          </a>
-        </div>
-      ) : nextEvent ? (
+
+      {nextEvent ? (
         <div className="next-event-highlight">
           <h4>{nextEvent.name}</h4>
           <div className="timer-display">
@@ -138,6 +124,33 @@ const PujaCountdown = () => {
           <p>See you next year!</p>
         </div>
       )}
+
+      {/* Permanent Mahalaya Ad Block */}
+      <div className="mahalaya-ad" style={{ textAlign: 'center', marginBottom: '2rem', padding: '1.5rem', background: 'rgba(0,0,0,0.4)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
+        <h4 className="flashing-text" style={{ margin: '0 0 0.5rem 0', fontSize: '1.2rem' }}>Subho Mahalaya</h4>
+        <p style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'rgba(255,255,255,0.8)' }}>
+          {isMahalayaPlaying ? "Awaken the Goddess! The link is now live." : "Audio link activates on Mahalaya morning at 4:00 AM."}
+        </p>
+        {isMahalayaPlaying ? (
+          <a 
+            href="https://www.youtube.com/watch?v=S01Zf1fK0lA" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flashing-btn"
+            style={{ marginTop: 0 }}
+          >
+            ▶ Listen to Mahalaya
+          </a>
+        ) : (
+          <button 
+            className="flashing-btn"
+            style={{ marginTop: 0, opacity: 0.6, cursor: 'not-allowed', animation: 'none', background: '#555', border: 'none' }}
+            disabled
+          >
+            ▶ Listen to Mahalaya
+          </button>
+        )}
+      </div>
 
       <div className="upcoming-events-list">
         <h4>Schedule</h4>
