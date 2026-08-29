@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 const PUJA_EVENTS = [
   { id: 'mahalaya', name: 'Mahalaya', date: '2026-10-10T04:00:00+05:30' },
   { id: 'sasti', name: 'Maha Sasthi', date: '2026-10-17T08:00:00+05:30' },
-  { id: 'kolabou', name: 'Kolabou Snan', date: '2026-10-18T06:30:00+05:30' },
+  { id: 'kolabou', name: 'Kolabou Snan', date: '2026-10-18T04:00:00+05:30' },
   { id: 'saptami', name: 'Maha Saptami', date: '2026-10-18T08:00:00+05:30' },
   { id: 'ashtami', name: 'Maha Ashtami', date: '2026-10-19T08:00:00+05:30' },
   { id: 'anjali', name: 'Ashtami Anjali', date: '2026-10-19T09:00:00+05:30' },
