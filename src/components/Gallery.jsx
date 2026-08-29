@@ -1,34 +1,41 @@
-import React, { useState } from 'react';
-import ReactPlayer from 'react-player';
+import React, { useState, useRef } from 'react';
 
 const HoverVideo = ({ url }) => {
-  const [playing, setPlaying] = useState(false);
+  const videoRef = useRef(null);
+  const playPromiseRef = useRef(null);
   
   return (
     <div 
       style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, cursor: 'pointer' }}
-      onMouseEnter={() => setPlaying(true)}
-      onMouseLeave={() => setPlaying(false)}
-      onClick={() => {
-        // If clicked, we might want to open a modal, but for now just toggle mute or play.
+      onMouseEnter={() => {
+        if (videoRef.current) {
+          playPromiseRef.current = videoRef.current.play();
+          if (playPromiseRef.current !== undefined && playPromiseRef.current !== null) {
+            playPromiseRef.current.catch(e => console.log('Video play prevented:', e));
+          }
+        }
+      }}
+      onMouseLeave={() => {
+        if (videoRef.current) {
+          if (playPromiseRef.current !== undefined && playPromiseRef.current !== null) {
+            playPromiseRef.current.then(() => {
+              videoRef.current.pause();
+            }).catch(e => {
+              // Ignore play error
+            });
+          } else {
+            videoRef.current.pause();
+          }
+        }
       }}
     >
       <video 
+        ref={videoRef}
         src={url}
         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        muted={!playing}
+        muted
         loop
         playsInline
-        controls={playing}
-        ref={(el) => {
-          if (el) {
-            if (playing) {
-              el.play().catch(e => console.log(e));
-            } else {
-              el.pause();
-            }
-          }
-        }}
       />
     </div>
   );
@@ -64,25 +71,72 @@ const Gallery = () => {
         '/assets/media/Sindur_khela/PXL_20241014_101547571.jpg'
       ],
       items: [
-        { id: 's1', type: 'video', url: '/assets/media/Sindur_khela/Sindur Khela _04.mp4', title: 'Sindur Khela Part 1' },
-        { id: 's2', type: 'video', url: '/assets/media/Sindur_khela/Sindur Khela _05.mp4', title: 'Sindur Khela Part 2' },
-        { id: 's3', type: 'video', url: '/assets/media/Sindur_khela/Sindur Khela _06.mp4', title: 'Sindur Khela Part 3' },
-        { id: 's4', type: 'video', url: '/assets/media/Sindur_khela/Sindur Khela _08.mp4', title: 'Sindur Khela Part 4' },
-        { id: 's5', type: 'video', url: '/assets/media/Sindur_khela/20241014_170756.mp4', title: 'Sindur Khela Highlight 1' },
-        { id: 's6', type: 'video', url: '/assets/media/Sindur_khela/20241014_170946.mp4', title: 'Sindur Khela Highlight 2' },
-        { id: 's7', type: 'video', url: '/assets/media/Sindur_khela/20241014_171003.mp4', title: 'Sindur Khela Highlight 3' },
-        { id: 'i1', type: 'image', url: '/assets/media/Sindur_khela/20241014_154556.jpg', title: 'Sindur Khela Image 1' },
-        { id: 'i2', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101439429.jpg', title: 'Sindur Khela Image 2' },
-        { id: 'i3', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101515795.jpg', title: 'Sindur Khela Image 3' },
-        { id: 'i4', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101530014.jpg', title: 'Sindur Khela Image 4' },
-        { id: 'i5', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101547571.jpg', title: 'Sindur Khela Image 5' },
-        { id: 'i6', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101621411.jpg', title: 'Sindur Khela Image 6' },
-        { id: 'i7', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_102054439.jpg', title: 'Sindur Khela Image 7' },
-        { id: 'i8', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_102103853.jpg', title: 'Sindur Khela Image 8' }
+        { id: 's1', type: 'video', url: '/assets/media/Sindur_khela/Sindur Khela _04.mp4' },
+        { id: 's2', type: 'video', url: '/assets/media/Sindur_khela/Sindur Khela _05.mp4' },
+        { id: 's3', type: 'video', url: '/assets/media/Sindur_khela/Sindur Khela _06.mp4' },
+        { id: 's4', type: 'video', url: '/assets/media/Sindur_khela/Sindur Khela _08.mp4' },
+        { id: 's5', type: 'video', url: '/assets/media/Sindur_khela/20241014_170756.mp4' },
+        { id: 's6', type: 'video', url: '/assets/media/Sindur_khela/20241014_170946.mp4' },
+        { id: 's7', type: 'video', url: '/assets/media/Sindur_khela/20241014_171003.mp4' },
+        { id: 'i1', type: 'image', url: '/assets/media/Sindur_khela/20241014_154556.jpg' },
+        { id: 'i2', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101439429.jpg' },
+        { id: 'i3', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101515795.jpg' },
+        { id: 'i4', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101530014.jpg' },
+        { id: 'i5', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101547571.jpg' },
+        { id: 'i6', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101621411.jpg' },
+        { id: 'i7', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_102054439.jpg' },
+        { id: 'i8', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_102103853.jpg' }
       ]
     },
     {
       id: 4,
+      type: 'album',
+      title: '2025 Bisarjan (100 Years Celebration)',
+      desc: 'Our monumental 100-year celebration and idol immersion.',
+      coverImages: [
+        '/assets/media/2025_Bisarjan/20241014_154625.jpg',
+        '/assets/media/2025_Bisarjan/PXL_20241014_101657805.jpg',
+        '/assets/media/2025_Bisarjan/PXL_20241014_102148714.jpg'
+      ],
+      items: [
+        { id: 'b1', type: 'video', url: '/assets/media/2025_Bisarjan/20241014_174006.mp4' },
+        { id: 'b2', type: 'video', url: '/assets/media/2025_Bisarjan/20241014_174213.mp4' },
+        { id: 'b3', type: 'video', url: '/assets/media/2025_Bisarjan/20241014_175024.mp4' },
+        { id: 'b4', type: 'video', url: '/assets/media/2025_Bisarjan/20241014_180231.mp4' },
+        { id: 'b5', type: 'video', url: '/assets/media/2025_Bisarjan/20241014_181156.mp4' },
+        { id: 'b6', type: 'video', url: '/assets/media/2025_Bisarjan/PXL_20241014_111354397.mp4' },
+        { id: 'b7', type: 'video', url: '/assets/media/2025_Bisarjan/20241014_210602.mp4' },
+        { id: 'b8', type: 'video', url: '/assets/media/2025_Bisarjan/20241014_210657.mp4' },
+        { id: 'b9', type: 'video', url: '/assets/media/2025_Bisarjan/20241014_211006.mp4' },
+        { id: 'b10', type: 'video', url: '/assets/media/2025_Bisarjan/20241014_220442.mp4' },
+        { id: 'b11', type: 'video', url: '/assets/media/2025_Bisarjan/20241014_222910.mp4' },
+        { id: 'b12', type: 'video', url: '/assets/media/2025_Bisarjan/PXL_20241014_143136009.TS.mp4' },
+        { id: 'b13', type: 'video', url: '/assets/media/2025_Bisarjan/PXL_20241014_145123407.TS.mp4' },
+        { id: 'bi1', type: 'image', url: '/assets/media/2025_Bisarjan/20241014_154625.jpg' },
+        { id: 'bi2', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_101625902.jpg' },
+        { id: 'bi3', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_101657805.jpg' },
+        { id: 'bi4', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_101700412.jpg' },
+        { id: 'bi5', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_102148714.jpg' },
+        { id: 'bi6', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_102149591.jpg' },
+        { id: 'bi7', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_122359400.jpg' },
+        { id: 'bi8', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_123117498.jpg' },
+        { id: 'bi9', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_123223126.jpg' },
+        { id: 'bi10', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_142436924.jpg' },
+        { id: 'bi11', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_142708946.jpg' },
+        { id: 'bi12', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_143513942.jpg' },
+        { id: 'bi13', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_144454769.jpg' },
+        { id: 'bi14', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_144547382.jpg' },
+        { id: 'bi15', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_145113150.jpg' },
+        { id: 'bi16', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_145635178.jpg' },
+        { id: 'bi17', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_151401286.jpg' },
+        { id: 'bi18', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_151533950.jpg' },
+        { id: 'bi19', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_152258559.jpg' },
+        { id: 'bi20', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_152530405.jpg' },
+        { id: 'bi21', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_152733246.jpg' }
+      ]
+    },
+    {
+      id: 5,
       type: 'image',
       url: 'https://images.unsplash.com/photo-1511067007398-7e4b90cfa4bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       alt: 'Blood Donation Camp',
@@ -191,15 +245,12 @@ const Gallery = () => {
                 {item.type === 'image' ? (
                   <img 
                     src={item.url} 
-                    alt={item.title} 
+                    alt="Gallery item" 
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 ) : (
                   <HoverVideo url={item.url} />
                 )}
-              </div>
-              <div style={{ padding: '1rem', background: 'var(--surface)' }}>
-                <h4 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--text-main)' }}>{item.title}</h4>
               </div>
             </div>
           ))
