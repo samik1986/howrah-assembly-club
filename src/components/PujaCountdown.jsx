@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 const PUJA_EVENTS = [
   { id: 'mahalaya', name: 'Mahalaya', date: '2026-10-10T04:00:00+05:30' },
-  { id: 'sasti', name: 'Maha Sasthi', date: '2026-10-17T08:00:00+05:30' },
+  { id: 'sasti', name: 'Maha Sasthi', date: '2026-10-16T08:00:00+05:30' },
   { id: 'kolabou', name: 'Kolabou Snan', date: '2026-10-18T04:00:00+05:30' },
   { id: 'saptami', name: 'Maha Saptami', date: '2026-10-18T08:00:00+05:30' },
   { id: 'ashtami', name: 'Maha Ashtami', date: '2026-10-19T08:00:00+05:30' },
@@ -42,9 +42,16 @@ const PujaCountdown = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Check if Mahalaya is currently playing (between 4 AM and 6 AM on Oct 10, 2026)
+  const mahalayaEvent = PUJA_EVENTS.find(e => e.id === 'mahalaya');
+  const mahalayaStartTime = new Date(mahalayaEvent.date).getTime();
+  const mahalayaEndTime = mahalayaStartTime + (2 * 60 * 60 * 1000); // 2 hours
+  const isMahalayaPlaying = now.getTime() >= mahalayaStartTime && now.getTime() < mahalayaEndTime;
+
   // Find the next upcoming event
   const upcomingEvents = PUJA_EVENTS.filter(event => new Date(event.date) > now);
-  const nextEvent = upcomingEvents.length > 0 ? upcomingEvents[0] : null;
+  // If Mahalaya is playing, the "next" event should technically be Sasti, so we don't show Mahalaya timer.
+  const nextEvent = isMahalayaPlaying ? (upcomingEvents.length > 1 ? upcomingEvents[1] : null) : (upcomingEvents.length > 0 ? upcomingEvents[0] : null);
   const nextTimeLeft = nextEvent ? calculateTimeLeft(nextEvent.date) : null;
   
   // Format for double digits
@@ -52,9 +59,55 @@ const PujaCountdown = () => {
 
   return (
     <div className="puja-countdown-panel glass">
+      <style>{`
+        @keyframes flashBtn {
+          0% { box-shadow: 0 0 5px #ff3b30; transform: scale(1); }
+          50% { box-shadow: 0 0 20px #ff3b30; transform: scale(1.05); }
+          100% { box-shadow: 0 0 5px #ff3b30; transform: scale(1); }
+        }
+        .flashing-btn {
+          animation: flashBtn 1.5s infinite;
+          background: #ff3b30;
+          color: white;
+          padding: 1rem 2rem;
+          border-radius: 50px;
+          display: inline-block;
+          font-size: 1.2rem;
+          font-weight: bold;
+          text-decoration: none;
+          margin-top: 1rem;
+          transition: 0.3s;
+        }
+        .flashing-btn:hover {
+          background: #e6332a;
+          color: white;
+        }
+        @keyframes textFlash {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+        .flashing-text {
+          animation: textFlash 1.5s infinite;
+          color: #ff3b30;
+          text-shadow: 0 0 10px rgba(255,59,48,0.5);
+        }
+      `}</style>
       <h3 className="countdown-title">Durga Puja 2026</h3>
       
-      {nextEvent ? (
+      {isMahalayaPlaying ? (
+        <div className="next-event-highlight">
+          <h4 className="flashing-text">Subho Mahalaya</h4>
+          <p>Awaken the Goddess!</p>
+          <a 
+            href="https://www.youtube.com/watch?v=S01Zf1fK0lA" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flashing-btn"
+          >
+            ▶ Listen to Mahalaya
+          </a>
+        </div>
+      ) : nextEvent ? (
         <div className="next-event-highlight">
           <h4>{nextEvent.name}</h4>
           <div className="timer-display">
@@ -92,7 +145,7 @@ const PujaCountdown = () => {
           {PUJA_EVENTS.map(event => {
             const timeLeft = calculateTimeLeft(event.date);
             const eventDate = new Date(event.date);
-            const dateStr = eventDate.toLocaleDateString('en-IN', { month: 'short', day: 'numeric' });
+            const dateStr = eventDate.toLocaleDateString('en-IN', { weekday: 'short', month: 'short', day: 'numeric' });
             const timeStr = eventDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
 
             return (
