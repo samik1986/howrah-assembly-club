@@ -176,13 +176,13 @@ const PujaCountdown = () => {
       </div>
 
       {/* Permanent Ashtami Anjali Ad Block */}
-      <div className="anjali-ad" style={{ textAlign: 'center', marginBottom: '2rem', padding: '1.5rem', background: 'rgba(0,0,0,0.4)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
-        <h4 className="flashing-text" style={{ margin: '0 0 0.5rem 0', fontSize: '1.2rem' }}>Ashtami Pushpanjali</h4>
-        <p style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'rgba(255,255,255,0.8)' }}>
-          {isAnjaliPlaying ? "Join the prayers! The live broadcast has started." : "Live broadcast activates on Maha Ashtami at 9:00 AM."}
+      <div className="anjali-ad" style={{ textAlign: 'center', marginBottom: '1.5rem', padding: '0.8rem', background: 'rgba(0,0,0,0.3)', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.08)' }}>
+        <h4 className="flashing-text" style={{ margin: '0 0 0.3rem 0', fontSize: '1rem' }}>Ashtami Pushpanjali</h4>
+        <p style={{ fontSize: '0.75rem', marginBottom: '0.5rem', color: 'rgba(255,255,255,0.8)' }}>
+          {isAnjaliPlaying ? "Join the prayers! Live broadcast started." : "Broadcast activates on Maha Ashtami at 9:00 AM."}
         </p>
         {isAnjaliPlaying ? (
-          <div className="iframe-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '1rem', borderRadius: '8px' }}>
+          <div className="iframe-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '0.5rem', borderRadius: '6px' }}>
             <iframe 
               style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
               src={`https://www.youtube.com/embed/KzE_Q3B0Kxg?autoplay=1&start=${anjaliStartSeconds}`} 
@@ -195,7 +195,7 @@ const PujaCountdown = () => {
         ) : (
           <button 
             className="flashing-btn"
-            style={{ marginTop: 0, opacity: 0.6, cursor: 'not-allowed', animation: 'none', background: '#555', border: 'none' }}
+            style={{ marginTop: 0, opacity: 0.6, cursor: 'not-allowed', animation: 'none', background: '#555', border: 'none', padding: '0.5rem 1rem', fontSize: '0.85rem' }}
             disabled
           >
             ▶ Recite Anjali Mantra
