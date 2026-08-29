@@ -48,11 +48,21 @@ const PujaCountdown = () => {
   const mahalayaEndTime = mahalayaStartTime + (2 * 60 * 60 * 1000); // 2 hours
   const isMahalayaPlaying = now.getTime() >= mahalayaStartTime && now.getTime() < mahalayaEndTime;
 
+  let mahalayaStartSeconds = 0;
+  if (isMahalayaPlaying) {
+    mahalayaStartSeconds = Math.floor((now.getTime() - mahalayaStartTime) / 1000);
+  }
+
   // Check if Ashtami Anjali is currently playing (between 9 AM and 11 AM on Oct 19, 2026)
   const anjaliEvent = PUJA_EVENTS.find(e => e.id === 'anjali');
   const anjaliStartTime = new Date(anjaliEvent.date).getTime();
   const anjaliEndTime = anjaliStartTime + (2 * 60 * 60 * 1000); // 2 hours
   const isAnjaliPlaying = now.getTime() >= anjaliStartTime && now.getTime() < anjaliEndTime;
+
+  let anjaliStartSeconds = 0;
+  if (isAnjaliPlaying) {
+    anjaliStartSeconds = Math.floor((now.getTime() - anjaliStartTime) / 1000);
+  }
 
   // Find the next upcoming event
   const upcomingEvents = PUJA_EVENTS.filter(event => new Date(event.date) > now);
@@ -135,18 +145,19 @@ const PujaCountdown = () => {
       <div className="mahalaya-ad" style={{ textAlign: 'center', marginBottom: '1rem', padding: '1.5rem', background: 'rgba(0,0,0,0.4)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
         <h4 className="flashing-text" style={{ margin: '0 0 0.5rem 0', fontSize: '1.2rem' }}>Subho Mahalaya</h4>
         <p style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'rgba(255,255,255,0.8)' }}>
-          {isMahalayaPlaying ? "Awaken the Goddess! The link is now live." : "Audio link activates on Mahalaya morning at 4:00 AM."}
+          {isMahalayaPlaying ? "Awaken the Goddess! The broadcast is live." : "Audio broadcast activates on Mahalaya morning at 4:00 AM."}
         </p>
         {isMahalayaPlaying ? (
-          <a 
-            href="https://www.youtube.com/watch?v=S01Zf1fK0lA" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="flashing-btn"
-            style={{ marginTop: 0 }}
-          >
-            ▶ Listen to Mahalaya
-          </a>
+          <div className="iframe-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '1rem', borderRadius: '8px' }}>
+            <iframe 
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+              src={`https://www.youtube.com/embed/S01Zf1fK0lA?autoplay=1&start=${mahalayaStartSeconds}`} 
+              title="Mahalaya Audio"
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen>
+            </iframe>
+          </div>
         ) : (
           <button 
             className="flashing-btn"
@@ -162,18 +173,19 @@ const PujaCountdown = () => {
       <div className="anjali-ad" style={{ textAlign: 'center', marginBottom: '2rem', padding: '1.5rem', background: 'rgba(0,0,0,0.4)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
         <h4 className="flashing-text" style={{ margin: '0 0 0.5rem 0', fontSize: '1.2rem' }}>Ashtami Pushpanjali</h4>
         <p style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'rgba(255,255,255,0.8)' }}>
-          {isAnjaliPlaying ? "Join the prayers! The mantra link is now live." : "Mantra link activates on Maha Ashtami at 9:00 AM."}
+          {isAnjaliPlaying ? "Join the prayers! The live broadcast has started." : "Live broadcast activates on Maha Ashtami at 9:00 AM."}
         </p>
         {isAnjaliPlaying ? (
-          <a 
-            href="https://www.youtube.com/results?search_query=Maha+Ashtami+Pushpanjali+Mantra+in+Bengali" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="flashing-btn"
-            style={{ marginTop: 0 }}
-          >
-            ▶ Recite Anjali Mantra
-          </a>
+          <div className="iframe-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '1rem', borderRadius: '8px' }}>
+            <iframe 
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+              src={`https://www.youtube.com/embed/KzE_Q3B0Kxg?autoplay=1&start=${anjaliStartSeconds}`} 
+              title="Ashtami Anjali Audio"
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen>
+            </iframe>
+          </div>
         ) : (
           <button 
             className="flashing-btn"
