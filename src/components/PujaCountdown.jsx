@@ -48,6 +48,12 @@ const PujaCountdown = () => {
   const mahalayaEndTime = mahalayaStartTime + (2 * 60 * 60 * 1000); // 2 hours
   const isMahalayaPlaying = now.getTime() >= mahalayaStartTime && now.getTime() < mahalayaEndTime;
 
+  // Check if Ashtami Anjali is currently playing (between 9 AM and 11 AM on Oct 19, 2026)
+  const anjaliEvent = PUJA_EVENTS.find(e => e.id === 'anjali');
+  const anjaliStartTime = new Date(anjaliEvent.date).getTime();
+  const anjaliEndTime = anjaliStartTime + (2 * 60 * 60 * 1000); // 2 hours
+  const isAnjaliPlaying = now.getTime() >= anjaliStartTime && now.getTime() < anjaliEndTime;
+
   // Find the next upcoming event
   const upcomingEvents = PUJA_EVENTS.filter(event => new Date(event.date) > now);
   const nextEvent = upcomingEvents.length > 0 ? upcomingEvents[0] : null;
@@ -126,7 +132,7 @@ const PujaCountdown = () => {
       )}
 
       {/* Permanent Mahalaya Ad Block */}
-      <div className="mahalaya-ad" style={{ textAlign: 'center', marginBottom: '2rem', padding: '1.5rem', background: 'rgba(0,0,0,0.4)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
+      <div className="mahalaya-ad" style={{ textAlign: 'center', marginBottom: '1rem', padding: '1.5rem', background: 'rgba(0,0,0,0.4)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
         <h4 className="flashing-text" style={{ margin: '0 0 0.5rem 0', fontSize: '1.2rem' }}>Subho Mahalaya</h4>
         <p style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'rgba(255,255,255,0.8)' }}>
           {isMahalayaPlaying ? "Awaken the Goddess! The link is now live." : "Audio link activates on Mahalaya morning at 4:00 AM."}
@@ -148,6 +154,33 @@ const PujaCountdown = () => {
             disabled
           >
             ▶ Listen to Mahalaya
+          </button>
+        )}
+      </div>
+
+      {/* Permanent Ashtami Anjali Ad Block */}
+      <div className="anjali-ad" style={{ textAlign: 'center', marginBottom: '2rem', padding: '1.5rem', background: 'rgba(0,0,0,0.4)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
+        <h4 className="flashing-text" style={{ margin: '0 0 0.5rem 0', fontSize: '1.2rem' }}>Ashtami Pushpanjali</h4>
+        <p style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'rgba(255,255,255,0.8)' }}>
+          {isAnjaliPlaying ? "Join the prayers! The mantra link is now live." : "Mantra link activates on Maha Ashtami at 9:00 AM."}
+        </p>
+        {isAnjaliPlaying ? (
+          <a 
+            href="https://www.youtube.com/results?search_query=Maha+Ashtami+Pushpanjali+Mantra+in+Bengali" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flashing-btn"
+            style={{ marginTop: 0 }}
+          >
+            ▶ Recite Anjali Mantra
+          </a>
+        ) : (
+          <button 
+            className="flashing-btn"
+            style={{ marginTop: 0, opacity: 0.6, cursor: 'not-allowed', animation: 'none', background: '#555', border: 'none' }}
+            disabled
+          >
+            ▶ Recite Anjali Mantra
           </button>
         )}
       </div>
