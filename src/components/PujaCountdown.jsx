@@ -4,9 +4,11 @@ import { useTranslation } from 'react-i18next';
 const PUJA_EVENTS = [
   { id: 'mahalaya', name: 'Mahalaya', date: '2026-10-10T04:00:00+05:30' },
   { id: 'sasti', name: 'Maha Sasthi', date: '2026-10-17T08:00:00+05:30' },
+  { id: 'kolabou', name: 'Kolabou Snan', date: '2026-10-18T06:30:00+05:30' },
   { id: 'saptami', name: 'Maha Saptami', date: '2026-10-18T08:00:00+05:30' },
   { id: 'ashtami', name: 'Maha Ashtami', date: '2026-10-19T08:00:00+05:30' },
   { id: 'anjali', name: 'Ashtami Anjali', date: '2026-10-19T09:00:00+05:30' },
+  { id: 'bhog', name: 'Ashtami Bhog Bitaran', date: '2026-10-19T13:00:00+05:30' },
   { id: 'sandhi', name: 'Sandhi Puja', date: '2026-10-19T23:30:00+05:30' },
   { id: 'nabami', name: 'Maha Navami', date: '2026-10-20T08:00:00+05:30' },
   { id: 'dashami', name: 'Dashami', date: '2026-10-21T08:00:00+05:30' },
