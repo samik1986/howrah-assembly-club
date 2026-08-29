@@ -81,25 +81,18 @@ const Gallery = () => {
       desc: 'The emotional farewell to Maa Durga. Click to view album.',
       coverImages: [
         '/assets/media/Sindur_khela/20241014_154556.jpg',
-        '/assets/media/Sindur_khela/PXL_20241014_101515795.jpg',
-        '/assets/media/Sindur_khela/PXL_20241014_101547571.jpg'
+        '/assets/media/Sindur_khela/PXL_20241014_101439429.jpg',
+        '/assets/media/Sindur_khela/PXL_20241014_101515795.jpg'
       ],
       items: [
-        { id: 's1', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/Sindur_khela/Sindur Khela _04.mp4' },
-        { id: 's2', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/Sindur_khela/Sindur Khela _05.mp4' },
-        { id: 's3', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/Sindur_khela/Sindur Khela _06.mp4' },
-        { id: 's4', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/Sindur_khela/Sindur Khela _08.mp4' },
-        { id: 's5', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/Sindur_khela/20241014_170756.mp4' },
-        { id: 's6', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/Sindur_khela/20241014_170946.mp4' },
-        { id: 's7', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/Sindur_khela/20241014_171003.mp4' },
+        { id: 's1', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/Sindur_khela/20241014_170756.mp4' },
+        { id: 's2', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/Sindur_khela/20241014_170946.mp4' },
+        { id: 's3', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/Sindur_khela/20241014_171003.mp4' },
         { id: 'i1', type: 'image', url: '/assets/media/Sindur_khela/20241014_154556.jpg' },
         { id: 'i2', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101439429.jpg' },
         { id: 'i3', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101515795.jpg' },
         { id: 'i4', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101530014.jpg' },
-        { id: 'i5', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101547571.jpg' },
-        { id: 'i6', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101621411.jpg' },
-        { id: 'i7', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_102054439.jpg' },
-        { id: 'i8', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_102103853.jpg' }
+        { id: 'i5', type: 'image', url: '/assets/media/Sindur_khela/PXL_20241014_101547571.jpg' }
       ]
     },
     {
@@ -108,43 +101,28 @@ const Gallery = () => {
       title: '2025 Bisarjan (100 Years Celebration)',
       desc: 'Our monumental 100-year celebration and idol immersion.',
       coverImages: [
-        '/assets/media/2025_Bisarjan/20241014_154625.jpg',
-        '/assets/media/2025_Bisarjan/PXL_20241014_101657805.jpg',
-        '/assets/media/2025_Bisarjan/PXL_20241014_102148714.jpg'
+        '/assets/media/2025_Bisarjan/PXL_20241014_142436924.jpg',
+        '/assets/media/2025_Bisarjan/PXL_20241014_142708946.jpg',
+        '/assets/media/2025_Bisarjan/PXL_20241014_143513942.jpg'
       ],
       items: [
-        { id: 'b1', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_174006.mp4' },
-        { id: 'b2', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_174213.mp4' },
-        { id: 'b3', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_175024.mp4' },
-        { id: 'b4', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_180231.mp4' },
-        { id: 'b5', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_181156.mp4' },
-        { id: 'b6', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/PXL_20241014_111354397.mp4' },
-        { id: 'b7', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_210602.mp4' },
-        { id: 'b8', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_210657.mp4' },
-        { id: 'b9', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_211006.mp4' },
-        { id: 'b10', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_220442.mp4' },
-        { id: 'b11', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_222910.mp4' },
-        { id: 'bi1', type: 'image', url: '/assets/media/2025_Bisarjan/20241014_154625.jpg' },
-        { id: 'bi2', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_101625902.jpg' },
-        { id: 'bi3', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_101657805.jpg' },
-        { id: 'bi4', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_101700412.jpg' },
-        { id: 'bi5', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_102148714.jpg' },
-        { id: 'bi6', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_102149591.jpg' },
-        { id: 'bi7', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_122359400.jpg' },
-        { id: 'bi8', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_123117498.jpg' },
-        { id: 'bi9', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_123223126.jpg' },
-        { id: 'bi10', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_142436924.jpg' },
-        { id: 'bi11', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_142708946.jpg' },
-        { id: 'bi12', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_143513942.jpg' },
-        { id: 'bi13', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_144454769.jpg' },
-        { id: 'bi14', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_144547382.jpg' },
-        { id: 'bi15', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_145113150.jpg' },
-        { id: 'bi16', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_145635178.jpg' },
-        { id: 'bi17', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_151401286.jpg' },
-        { id: 'bi18', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_151533950.jpg' },
-        { id: 'bi19', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_152258559.jpg' },
-        { id: 'bi20', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_152530405.jpg' },
-        { id: 'bi21', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_152733246.jpg' }
+        { id: 'b1', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_210602.mp4' },
+        { id: 'b2', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_210657.mp4' },
+        { id: 'b3', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_211006.mp4' },
+        { id: 'b4', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_220442.mp4' },
+        { id: 'b5', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_222910.mp4' },
+        { id: 'bi1', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_142436924.jpg' },
+        { id: 'bi2', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_142708946.jpg' },
+        { id: 'bi3', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_143513942.jpg' },
+        { id: 'bi4', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_144454769.jpg' },
+        { id: 'bi5', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_144547382.jpg' },
+        { id: 'bi6', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_145113150.jpg' },
+        { id: 'bi7', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_145635178.jpg' },
+        { id: 'bi8', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_151401286.jpg' },
+        { id: 'bi9', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_151533950.jpg' },
+        { id: 'bi10', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_152258559.jpg' },
+        { id: 'bi11', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_152530405.jpg' },
+        { id: 'bi12', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_152733246.jpg' }
       ]
     },
     {
@@ -259,6 +237,7 @@ const Gallery = () => {
                     src={item.url} 
                     alt="Gallery item" 
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    loading="lazy"
                   />
                 ) : (
                   <HoverVideo url={item.url} />
