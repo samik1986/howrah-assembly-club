@@ -242,12 +242,15 @@ header.scrolled {
 /* Hero Section */
 .hero {
   min-height: 100vh;
+  width: 100%;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.6)),
-              url('/assets/media/Photo_Debi_Durga.jpeg') center/cover no-repeat;
+  background-image: linear-gradient(to right, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.4)), url('/assets/media/Photo_Debi_Durga.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   padding-top: 80px;
 }
 
