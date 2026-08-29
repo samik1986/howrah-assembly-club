@@ -1,13 +1,20 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --primary: #0f172a; /* Deep Slate */
-  --secondary: #3b82f6; /* Vibrant Blue */
-  --accent: #10b981; /* Lively Green for sports */
-  --background: #f8fafc; /* Very light slate gray */
-  --surface: #ffffff; /* Pure white for cards */
-  --text-main: #1e293b;
-  --text-muted: #64748b;
+  /* Color Palette - Premium Modern Durga Theme */
+  --primary: #c92a2a;      /* Deep Crimson Red */
+  --primary-light: #e03131;
+  --primary-dark: #b02323;
+  
+  --secondary: #f59f00;    /* Festive Gold/Orange */
+  --secondary-light: #fcc419;
+  
+  --background: #fffdf5;   /* Warm off-white */
+  --surface: #ffffff;      
+  --surface-alt: #fdf2e9;  /* Warm surface alt */
+  
+  --text-main: #2b1111;    /* Dark warm brown/black */
+  --text-muted: #755555;   /* Warm muted */
   --border: #e2e8f0;
 
   --font-family: 'Outfit', sans-serif;
@@ -239,8 +246,8 @@ header.scrolled {
   align-items: center;
   position: relative;
   overflow: hidden;
-  background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 40%),
-              radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.05), transparent 40%);
+  background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.6)),
+              url('/assets/media/Photo_Debi_Durga.jpeg') center/cover no-repeat;
   padding-top: 80px;
 }
 
