@@ -26,9 +26,15 @@ const Home = () => {
               <p style={{ fontSize: '0.95rem', lineHeight: '1.6', color: 'var(--text-muted)' }}>
                 On Good Friday, 21 members of Howrah Assembly went to Shantiniketan by Cycle. Rabindranath Tagore gave the following blessing:
               </p>
-              <blockquote style={{ fontStyle: 'italic', background: 'var(--bg-main)', padding: '0.8rem', borderRadius: '8px', marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+              <blockquote style={{ fontStyle: 'italic', background: 'var(--bg-main)', padding: '0.8rem', borderRadius: '8px', margin: '0.5rem 0', fontSize: '0.9rem', color: 'var(--text-main)' }}>
                 "I am pleased with the adventurous spirit of young members of Howrah Wheelers, who are touring over our motherland enduring hardship and privations."
               </blockquote>
+              <img 
+                src="/assets/media/1934_Shantiniketan_CycleRide.jpeg" 
+                alt="1934 Shantiniketan Cycle Ride" 
+                style={{ width: '100%', maxWidth: '300px', borderRadius: '8px', marginTop: '0.5rem', border: '1px solid var(--border)' }}
+                loading="lazy"
+              />
             </div>
 
             <div style={{ marginBottom: '1.5rem', borderLeft: '3px solid var(--primary)', paddingLeft: '1rem' }}>
@@ -47,40 +53,40 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="presidents-section" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
-          
-          {/* Club President */}
-          <div className="president-card card" style={{ textAlign: 'center', padding: '2rem' }}>
-            <div className="president-img-placeholder" style={{ 
-              width: '150px', height: '150px', borderRadius: '50%', background: '#e2e8f0', 
-              margin: '0 auto 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: 'var(--shadow-md)', border: '4px solid white'
-            }}>
-              <span style={{ color: '#94a3b8', fontSize: '0.9rem' }}>Image Placeholder</span>
+        <h3 style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '3rem', color: 'var(--primary)' }}>Messages from our Presidents</h3>
+        
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+          {/* President 1 */}
+          <div className="card hover-scale" style={{ background: 'var(--surface)', padding: '2rem', borderRadius: '12px', boxShadow: 'var(--shadow-md)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1.5rem' }}>
+              <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'var(--primary-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '1.5rem', fontWeight: 'bold' }}>
+                SG
+              </div>
+              <div style={{ marginLeft: '1rem' }}>
+                <h4 style={{ fontSize: '1.2rem', color: 'var(--text-main)' }}>Mr Sovanlal Ghosh</h4>
+                <p style={{ color: 'var(--primary)', fontSize: '0.9rem' }}>Club President</p>
+              </div>
             </div>
-            <h3 style={{ marginBottom: '0.5rem' }}>Message from the Club President</h3>
-            <p style={{ fontSize: '1rem', fontStyle: 'italic', color: 'var(--text-main)', marginBottom: '1.5rem' }}>
-              "Our mission has always been to foster a sense of belonging and community spirit. Through our various initiatives, we strive to empower the youth, support the underprivileged, and celebrate our rich cultural heritage together. Welcome to our family."
+            <p style={{ color: 'var(--text-muted)', fontStyle: 'italic', lineHeight: '1.6' }}>
+              "Welcome to our beloved Howrah Assembly Club. For decades, we have fostered a spirit of community and excellence in sports and culture. Let us continue to build upon our rich heritage together."
             </p>
-            <strong style={{ color: 'var(--primary)' }}>- Name of Club President</strong>
           </div>
 
-          {/* Durga Puja Committee President */}
-          <div className="president-card card" style={{ textAlign: 'center', padding: '2rem' }}>
-            <div className="president-img-placeholder" style={{ 
-              width: '150px', height: '150px', borderRadius: '50%', background: '#e2e8f0', 
-              margin: '0 auto 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: 'var(--shadow-md)', border: '4px solid white'
-            }}>
-              <span style={{ color: '#94a3b8', fontSize: '0.9rem' }}>Image Placeholder</span>
+          {/* President 2 */}
+          <div className="card hover-scale" style={{ background: 'var(--surface)', padding: '2rem', borderRadius: '12px', boxShadow: 'var(--shadow-md)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1.5rem' }}>
+              <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'var(--secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '1.5rem', fontWeight: 'bold' }}>
+                SB
+              </div>
+              <div style={{ marginLeft: '1rem' }}>
+                <h4 style={{ fontSize: '1.2rem', color: 'var(--text-main)' }}>Mr. Subir Banerjee</h4>
+                <p style={{ color: 'var(--secondary)', fontSize: '0.9rem' }}>Puja President</p>
+              </div>
             </div>
-            <h3 style={{ marginBottom: '0.5rem' }}>Message from the Puja Committee President</h3>
-            <p style={{ fontSize: '1rem', fontStyle: 'italic', color: 'var(--text-main)', marginBottom: '1.5rem' }}>
-              "Durga Puja is not just a festival; it is an emotion that unites us all. Every year, we pour our hearts into organizing a Puja that reflects our devotion, artistic excellence, and commitment to social service. Join us in this divine celebration."
+            <p style={{ color: 'var(--text-muted)', fontStyle: 'italic', lineHeight: '1.6' }}>
+              "Our annual Durga Puja is a time of immense joy and spiritual reflection. It brings our entire community together in celebration and devotion. May the Goddess bless us all with peace and prosperity."
             </p>
-            <strong style={{ color: 'var(--primary)' }}>- Name of Puja Committee President</strong>
           </div>
-
         </div>
       </section>
     </>
