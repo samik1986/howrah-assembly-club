@@ -91,10 +91,19 @@ const PujaCountdown = () => {
         <ul>
           {PUJA_EVENTS.map(event => {
             const timeLeft = calculateTimeLeft(event.date);
+            const eventDate = new Date(event.date);
+            const dateStr = eventDate.toLocaleDateString('en-IN', { month: 'short', day: 'numeric' });
+            const timeStr = eventDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+
             return (
               <li key={event.id} className={timeLeft.isPassed ? 'event-passed' : 'event-upcoming'}>
-                <span className="event-name">{event.name}</span>
-                <span className="event-time">
+                <div className="event-details" style={{ display: 'flex', flexDirection: 'column' }}>
+                  <span className="event-name">{event.name}</span>
+                  <span className="event-date-str" style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', marginTop: '2px' }}>
+                    {dateStr}, {timeStr}
+                  </span>
+                </div>
+                <span className="event-time" style={{ display: 'flex', alignItems: 'center' }}>
                   {timeLeft.isPassed 
                     ? 'Completed' 
                     : `${timeLeft.days}d ${pad(timeLeft.hours)}h ${pad(timeLeft.minutes)}m`}
