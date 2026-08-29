@@ -1,87 +1,86 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import ReactPlayer from 'react-player';
 
 const Gallery = () => {
-  const { t } = useTranslation();
-
   const mediaItems = [
     {
       id: 1,
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1534158914592-062992fbe900?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      alt: 'Players engaged in a competitive table tennis match',
-      title: t('Evening_Match')
+      url: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      alt: 'Durga Puja Celebrations',
+      title: 'Maha Ashtami Pushpanjali',
+      desc: 'Devotees gathered for the morning prayers.'
     },
     {
       id: 2,
-      type: 'image',
-      url: 'https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      alt: 'Table tennis paddle and ball close up',
-      title: t('Equipment_Ready')
+      type: 'video',
+      url: 'https://www.youtube.com/watch?v=placeholder1',
+      title: 'Cultural Evening Highlights',
+      desc: 'Glimpses from our annual cultural fest.'
     },
     {
       id: 3,
       type: 'image',
       url: 'https://images.unsplash.com/photo-1511067007398-7e4b90cfa4bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      alt: 'Community sports hall',
-      title: t('Our_Facilities')
+      alt: 'Blood Donation Camp',
+      title: 'Annual Blood Donation Camp',
+      desc: 'Our successful social drive last month.'
     },
     {
       id: 4,
-      type: 'image',
-      url: 'https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      alt: 'Dynamic serve during a ping pong game',
-      title: t('Action_Shot')
+      type: 'video',
+      url: 'https://www.youtube.com/watch?v=placeholder2',
+      title: 'Sindoor Khela',
+      desc: 'The emotional farewell to Maa Durga.'
     }
   ];
 
   return (
-    <section id="gallery" className="section container">
-      <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-        <span className="hero-badge">{t('Multimedia')}</span>
-        <h2>{t('Club_Gallery')}</h2>
-        <p style={{ color: 'var(--text-light)', maxWidth: '600px', margin: '1rem auto 0' }}>
-          {t('Gallery_Desc')}
+    <section id="gallery" className="section container animate-fade-in" style={{ paddingTop: '120px' }}>
+      <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+        <span className="hero-badge">Our Memories</span>
+        <h2 style={{ fontSize: '3rem' }}>Club Gallery</h2>
+        <p style={{ color: 'var(--text-main)', maxWidth: '600px', margin: '1rem auto 0', fontSize: '1.1rem' }}>
+          Explore moments captured during our events, celebrations, and social activities.
         </p>
       </div>
 
       <div className="gallery-grid" style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-        gap: '1.5rem'
+        gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
+        gap: '2rem'
       }}>
         {mediaItems.map((item) => (
-          <div key={item.id} className="gallery-item" style={{
+          <div key={item.id} className="gallery-item card" style={{
             position: 'relative',
             borderRadius: '12px',
             overflow: 'hidden',
             boxShadow: 'var(--shadow-md)',
-            aspectRatio: '4/3',
-            group: 'true'
+            padding: 0,
+            display: 'flex',
+            flexDirection: 'column'
           }}>
-            <img 
-              src={item.url} 
-              alt={item.alt} 
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                transition: 'transform 0.4s ease'
-              }}
-              onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
-              onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
-            />
-            <div style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              right: 0,
-              padding: '1.5rem 1rem 1rem',
-              background: 'linear-gradient(transparent, rgba(0,0,0,0.8))',
-              color: 'white',
-              pointerEvents: 'none'
-            }}>
-              <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: '500' }}>{item.title}</h3>
+            <div style={{ width: '100%', aspectRatio: '16/9', position: 'relative', background: '#e2e8f0' }}>
+              {item.type === 'image' ? (
+                <img 
+                  src={item.url} 
+                  alt={item.alt} 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                <ReactPlayer 
+                  url={item.url} 
+                  width="100%" 
+                  height="100%" 
+                  style={{ position: 'absolute', top: 0, left: 0 }}
+                  controls={true}
+                  light={true}
+                />
+              )}
+            </div>
+            <div style={{ padding: '1.5rem', flexGrow: 1, background: 'var(--surface)' }}>
+              <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.3rem', color: 'var(--primary)' }}>{item.title}</h3>
+              <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)' }}>{item.desc}</p>
             </div>
           </div>
         ))}

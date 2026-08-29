@@ -186,6 +186,52 @@ header.scrolled {
   width: 100%;
 }
 
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--surface);
+  min-width: 160px;
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius);
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dropdown-content a {
+  color: var(--text-main);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  display: block;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--secondary);
+}
+.dropdown-content a::after {
+  display: none;
+}
+
 /* Hero Section */
 .hero {
   min-height: 100vh;
