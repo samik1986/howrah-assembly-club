@@ -71,10 +71,6 @@ const PujaCountdown = () => {
     anjaliStartSeconds = Math.floor(elapsedInCurrentBatch / 1000);
   }
 
-  // Determine styling based on which event is "next"
-  const isMahalayaPrimary = !isMahalayaOver;
-  const isAnjaliPrimary = isMahalayaOver && !isAnjaliOver;
-
   // Find the next upcoming event
   const upcomingEvents = PUJA_EVENTS.filter(event => new Date(event.date) > now);
   const nextEvent = upcomingEvents.length > 0 ? upcomingEvents[0] : null;
@@ -160,13 +156,13 @@ const PujaCountdown = () => {
 
       {/* Permanent Mahalaya Ad Block (disappears when over) */}
       {!isMahalayaOver && (
-        <div className="mahalaya-ad" style={isMahalayaPrimary ? { textAlign: 'center', marginBottom: '1rem', padding: '1.5rem', background: 'rgba(0,0,0,0.4)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' } : { textAlign: 'center', marginBottom: '1.5rem', padding: '0.8rem', background: 'rgba(0,0,0,0.3)', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.08)' }}>
-          <h4 className="flashing-text" style={isMahalayaPrimary ? { margin: '0 0 0.5rem 0', fontSize: '1.2rem' } : { margin: '0 0 0.3rem 0', fontSize: '1rem' }}>Subho Mahalaya</h4>
-          <p style={isMahalayaPrimary ? { fontSize: '0.9rem', marginBottom: '1rem', color: 'rgba(255,255,255,0.8)' } : { fontSize: '0.75rem', marginBottom: '0.5rem', color: 'rgba(255,255,255,0.8)' }}>
+        <div className="mahalaya-ad" style={{ textAlign: 'center', marginBottom: '1.5rem', padding: '0.8rem', background: 'rgba(0,0,0,0.3)', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.08)' }}>
+          <h4 className="flashing-text" style={{ margin: '0 0 0.3rem 0', fontSize: '1rem' }}>Subho Mahalaya</h4>
+          <p style={{ fontSize: '0.75rem', marginBottom: '0.5rem', color: 'rgba(255,255,255,0.8)' }}>
             {isMahalayaPlaying ? "Awaken the Goddess! The broadcast is live." : "Audio broadcast activates on Mahalaya morning at 4:00 AM."}
           </p>
           {isMahalayaPlaying ? (
-            <div className="iframe-container" style={isMahalayaPrimary ? { position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '1rem', borderRadius: '8px' } : { position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '0.5rem', borderRadius: '6px' }}>
+            <div className="iframe-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '0.5rem', borderRadius: '6px' }}>
               <iframe 
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                 src={`https://www.youtube.com/embed/S01Zf1fK0lA?autoplay=1&start=${mahalayaStartSeconds}`} 
@@ -179,7 +175,7 @@ const PujaCountdown = () => {
           ) : (
             <button 
               className="flashing-btn"
-              style={isMahalayaPrimary ? { marginTop: 0, opacity: 0.6, cursor: 'not-allowed', animation: 'none', background: '#555', border: 'none' } : { marginTop: 0, opacity: 0.6, cursor: 'not-allowed', animation: 'none', background: '#555', border: 'none', padding: '0.5rem 1rem', fontSize: '0.85rem' }}
+              style={{ marginTop: 0, opacity: 0.6, cursor: 'not-allowed', animation: 'none', background: '#555', border: 'none', padding: '0.5rem 1rem', fontSize: '0.85rem' }}
               disabled
             >
               ▶ Listen to Mahalaya
@@ -190,13 +186,13 @@ const PujaCountdown = () => {
 
       {/* Permanent Ashtami Anjali Ad Block (disappears when over) */}
       {!isAnjaliOver && (
-        <div className="anjali-ad" style={isAnjaliPrimary ? { textAlign: 'center', marginBottom: '1rem', padding: '1.5rem', background: 'rgba(0,0,0,0.4)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' } : { textAlign: 'center', marginBottom: '1.5rem', padding: '0.8rem', background: 'rgba(0,0,0,0.3)', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.08)' }}>
-          <h4 className="flashing-text" style={isAnjaliPrimary ? { margin: '0 0 0.5rem 0', fontSize: '1.2rem' } : { margin: '0 0 0.3rem 0', fontSize: '1rem' }}>Ashtami Pushpanjali {isAnjaliPlaying ? `(Batch ${currentAnjaliBatch}/4)` : ''}</h4>
-          <p style={isAnjaliPrimary ? { fontSize: '0.9rem', marginBottom: '1rem', color: 'rgba(255,255,255,0.8)' } : { fontSize: '0.75rem', marginBottom: '0.5rem', color: 'rgba(255,255,255,0.8)' }}>
+        <div className="anjali-ad" style={{ textAlign: 'center', marginBottom: '1.5rem', padding: '0.8rem', background: 'rgba(0,0,0,0.3)', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.08)' }}>
+          <h4 className="flashing-text" style={{ margin: '0 0 0.3rem 0', fontSize: '1rem' }}>Ashtami Pushpanjali {isAnjaliPlaying ? `(Batch ${currentAnjaliBatch}/4)` : ''}</h4>
+          <p style={{ fontSize: '0.75rem', marginBottom: '0.5rem', color: 'rgba(255,255,255,0.8)' }}>
             {isAnjaliPlaying ? "Join the prayers! Live broadcast started." : "Broadcast activates on Maha Ashtami at 9:00 AM."}
           </p>
           {isAnjaliPlaying ? (
-            <div className="iframe-container" style={isAnjaliPrimary ? { position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '1rem', borderRadius: '8px' } : { position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '0.5rem', borderRadius: '6px' }}>
+            <div className="iframe-container" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginTop: '0.5rem', borderRadius: '6px' }}>
               <iframe 
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                 src={`https://www.youtube.com/embed/KzE_Q3B0Kxg?autoplay=1&start=${anjaliStartSeconds}`} 
@@ -209,7 +205,7 @@ const PujaCountdown = () => {
           ) : (
             <button 
               className="flashing-btn"
-              style={isAnjaliPrimary ? { marginTop: 0, opacity: 0.6, cursor: 'not-allowed', animation: 'none', background: '#555', border: 'none' } : { marginTop: 0, opacity: 0.6, cursor: 'not-allowed', animation: 'none', background: '#555', border: 'none', padding: '0.5rem 1rem', fontSize: '0.85rem' }}
+              style={{ marginTop: 0, opacity: 0.6, cursor: 'not-allowed', animation: 'none', background: '#555', border: 'none', padding: '0.5rem 1rem', fontSize: '0.85rem' }}
               disabled
             >
               ▶ Recite Anjali Mantra
