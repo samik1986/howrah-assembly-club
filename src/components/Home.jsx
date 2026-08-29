@@ -10,11 +10,21 @@ const Home = () => {
     <>
       <Hero />
       <section className="section container animate-fade-in" style={{ padding: '4rem 2rem' }}>
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>About Howrah Assembly Club</h2>
-          <p style={{ maxWidth: '800px', margin: '0 auto', fontSize: '1.1rem' }}>
-            A beacon of culture, heritage, and social harmony in the heart of Howrah. For decades, our club has been at the forefront of community engagement, bringing people together through sports, cultural events, and philanthropic activities.
-          </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', alignItems: 'center', marginBottom: '4rem' }}>
+          <div>
+            <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--primary)' }}>About Howrah Assembly Club</h2>
+            <p style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
+              A beacon of culture, heritage, and social harmony in the heart of Howrah. For decades, our club has been at the forefront of community engagement, bringing people together through sports, cultural events, and philanthropic activities.
+            </p>
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <img 
+              src="/assets/media/History.jpeg" 
+              alt="History of Howrah Assembly Club" 
+              style={{ width: '100%', maxWidth: '500px', borderRadius: '12px', boxShadow: 'var(--shadow-lg)' }} 
+              loading="lazy"
+            />
+          </div>
         </div>
 
         <div className="presidents-section" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
