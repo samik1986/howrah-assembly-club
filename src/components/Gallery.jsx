@@ -49,6 +49,7 @@ const HoverVideo = ({ url }) => {
         muted
         loop
         playsInline
+        preload="metadata"
       />
     </div>
   );
@@ -123,8 +124,6 @@ const Gallery = () => {
         { id: 'b9', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_211006.mp4' },
         { id: 'b10', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_220442.mp4' },
         { id: 'b11', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/20241014_222910.mp4' },
-        { id: 'b12', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/PXL_20241014_143136009.TS.mp4' },
-        { id: 'b13', type: 'video', url: 'https://media.githubusercontent.com/media/samik1986/howrah-assembly-club/master/public/assets/media/2025_Bisarjan/PXL_20241014_145123407.TS.mp4' },
         { id: 'bi1', type: 'image', url: '/assets/media/2025_Bisarjan/20241014_154625.jpg' },
         { id: 'bi2', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_101625902.jpg' },
         { id: 'bi3', type: 'image', url: '/assets/media/2025_Bisarjan/PXL_20241014_101657805.jpg' },
