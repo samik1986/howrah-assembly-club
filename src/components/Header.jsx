@@ -45,7 +45,6 @@ const Header = () => {
             <div className="dropdown-content">
               <Link to="/durga-puja" style={getStyle('/durga-puja')}>History & Legacy</Link>
               <Link to="/durga-puja-2026" style={getStyle('/durga-puja-2026')}>2026 Puja</Link>
-              <Link to="/donate" style={getStyle('/donate')}>Support/Donate</Link>
             </div>
           </div>
           <Link to="/gallery" style={getStyle('/gallery')}>{t('Gallery')}</Link>
@@ -58,6 +57,7 @@ const Header = () => {
               <Link to="/wellness" style={getStyle('/wellness')}>{t('Wellness_Corner')}</Link>
             </div>
           </div>
+          <Link to="/donate" className="donate-btn" style={{ ...getStyle('/donate'), background: 'var(--primary)', color: 'white', padding: '0.4rem 1rem', borderRadius: '20px', fontWeight: 'bold' }}>Donate</Link>
         </nav>
         <div className="lang-switcher" style={{ display: 'flex', gap: '0.5rem', marginLeft: '1rem' }}>
           <button onClick={() => changeLanguage('en')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: i18n.language === 'en' ? 'var(--primary)' : 'var(--text)', fontWeight: i18n.language === 'en' ? 'bold' : 'normal' }}>EN</button>
