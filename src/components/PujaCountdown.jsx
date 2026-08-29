@@ -107,7 +107,13 @@ const PujaCountdown = () => {
           text-shadow: 0 0 10px rgba(255,59,48,0.5);
         }
       `}</style>
-      <h3 className="countdown-title">Durga Puja 2026</h3>
+      <h3 className="countdown-title" style={{ lineHeight: '1.4' }}>
+        Kali Kundu Lane Sarbojonin Durgotsab 2026
+        <br />
+        <span style={{ fontSize: '0.8em', color: 'rgba(255,255,255,0.8)', fontWeight: 'normal' }}>
+          80th Year Celebration
+        </span>
+      </h3>
 
       {nextEvent ? (
         <div className="next-event-highlight">
